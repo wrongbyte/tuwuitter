@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --blue: #1DA1F2;
     --black: #14171A;
@@ -5,4 +9,13 @@
     --light-gray: #AAB8C2;
     --xlight-gray: #E1E8ED;
     --xxlight-gray: #F5F8FA;
+}
+/* TODO: add fonts */
+
+body {
+    background-color: var(--black);
+}
+
+.login-page-main {
+    color: var(--xxlight-gray)
 }

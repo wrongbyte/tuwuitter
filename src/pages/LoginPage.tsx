@@ -1,3 +1,5 @@
+import '../styles/global.css';
+
 export default function LoginPage() {
-  return <main>test</main>;
+  return <main className="login-page-main">Hello world</main>;
 }
