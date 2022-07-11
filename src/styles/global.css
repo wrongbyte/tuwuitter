@@ -26,3 +26,18 @@ body {
     outline: none;
     border:1px solid var(--blue);
 }
+
+.or-text {
+    margin: -20px;
+}
+
+.policy {
+    margin-top: -10px;
+    font-size: small;
+    opacity: 0.7;
+    width: 300px;
+}
+
+.close-x {
+    
+}

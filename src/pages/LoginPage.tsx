@@ -1,10 +1,12 @@
 import '../styles/global.css';
 import '../styles/login.css';
 import LoginBar from '../components/LoginBar';
+import LoginModal from '../components/LoginModal';
 
 export default function LoginPage() {
   return (
     <main className="login-page-main flex justify-center">
+      <LoginModal />
       <div className="content-login">
         <img className="login-white-logo" src="twitter-xxl.png" />
         <form>
