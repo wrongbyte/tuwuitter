@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Dispatch, SetStateAction } from 'react';
 import '../styles/global.css';
 import '../styles/login.css';
+import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
 
 export default function LoginBar() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openRegisterModal, setOpenRegisterModal] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
   return (
     <>
-      {openModal !== false && <LoginModal setOpenModal={setOpenModal} />}
+      {openRegisterModal !== false && (
+        <RegisterModal setOpenRegisterModal={setOpenRegisterModal} />
+      )}
+      {openLoginModal !== false && (
+        <LoginModal setOpenLoginModal={setOpenLoginModal} />
+      )}
       <div className="login-bar flex justify-between">
         <div className="text">
           <p className="bold-text-tt">Join the conversation on Twitter</p>
@@ -17,11 +23,14 @@ export default function LoginBar() {
         <div className="buttons">
           <button
             className="button-transparent"
-            onClick={() => setOpenModal(true)}
+            onClick={() => setOpenLoginModal(true)}
           >
             Log in
           </button>
-          <button className="button-white" onClick={() => setOpenModal(true)}>
+          <button
+            className="button-white"
+            onClick={() => setOpenRegisterModal(true)}
+          >
             Sign up
           </button>
         </div>
