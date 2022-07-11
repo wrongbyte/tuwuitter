@@ -1,11 +1,18 @@
 import '../styles/global.css';
 import '../styles/login.css';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function LoginModal() {
+export default function LoginModal({
+  setOpenModal,
+}: {
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <div className="login-modal">
       <div className="login-wrapper">
-        <div className="close-x">x</div>
+        <div className="close-x" onClick={() => setOpenModal(false)}>
+          x
+        </div>
         <img className="img-modal-login" src="twitter-xxl.png" alt="" />
         <p className="join-phrase-login">Join Tuwuitter today :3 </p>
         <button className="button-white-modal-login">

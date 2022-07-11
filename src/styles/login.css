@@ -80,6 +80,7 @@
     position: absolute;
     z-index: 10;
     top: 10vh;
+    padding-bottom: 50px;
 }
 
 .login-wrapper {
@@ -97,7 +98,7 @@
 
 .join-phrase-login {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .img-modal-login {
@@ -125,4 +126,13 @@
 
 .highlight {
     color: var(--blue);
+}
+
+@media(max-height: 700px) {
+    .login-modal {
+        top: 5vh;
+    }
+    .login-wrapper {
+        height: 80vh;
+    }
 }
