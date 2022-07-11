@@ -11,6 +11,8 @@
     --xxlight-gray: #F5F8FA;
 }
 /* TODO: add fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 
 body {
     background-color: var(--black);
@@ -18,4 +20,9 @@ body {
 
 .login-page-main {
     color: var(--xxlight-gray)
+}
+
+.input:focus {
+    outline: none;
+    border:1px solid var(--blue);
 }

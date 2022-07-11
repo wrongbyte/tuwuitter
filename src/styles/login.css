@@ -1,0 +1,77 @@
+.content-login {
+    font-family: 'Lato', sans-serif;
+    position: absolute;
+    top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.search {
+    background: none;
+    border-radius: 20px;
+    width: 450px;
+    height: 40px;
+    border: 0.2px solid var(--dark-gray);
+}
+
+.login-white-logo {
+    width: 45px;
+}
+
+/* Login bar */
+
+.login-bar {
+    position: absolute;
+    font-family: 'Lato', sans-serif;
+    bottom: 0px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+    line-height: 30px;
+    padding-top: 8px;
+    background-color: var(--blue);
+    width: 100%;
+}
+
+.search {
+    background-image: url('../../public/search.png');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 20px;
+    opacity: 0.5;
+    text-indent: 50px;
+}
+
+.bold-text-tt {
+    font-weight: 900;
+    font-size: 23px;
+}
+
+.buttons {
+    display: flex;
+    font-weight: bold;
+    gap: 20px;
+    align-items: center;
+}
+
+.button-transparent {
+    border: 0.1px solid var(--xlight-gray);
+    border-radius: 30px;
+    width: 100px;
+    height: 45px;
+}
+
+.button-white {
+    background-color: white;
+    width: 100px;
+    height: 45px;
+    border-radius: 30px;
+    color: black
+}
+
+.show-more-login {
+    cursor: pointer;
+    color: var(--blue)
+}
