@@ -102,6 +102,21 @@
     font-weight: 900;
 }
 
+.create-account {
+    /* margin-left: -150px; */
+    color: var(--xlight-gray);
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.step-modal {
+    color: var(--xlight-gray);
+    margin-top:15px;
+    /* margin-left: -350px; */
+    font-size: 20px;
+    font-weight: 900;
+}
+
 .img-modal-login {
     width: 30px;
     opacity: 0.8;
@@ -151,6 +166,15 @@
     text-indent: 10px;
 }
 
+.login-input-register {
+    background: none;
+    border-radius: 5px;
+    width: 400px;
+    height: 60px;
+    border: 0.2px solid rgba(62, 87, 102, 0.4);
+    text-indent: 10px;
+}
+
 .button-black-modal-login {
     color:var(--xlight-gray);
     background: none;
@@ -163,7 +187,7 @@
 .font-small-login {
     font-size: 15px;
     color: var(--dark-gray);
-    margin-left: -100px;
+    /* margin-left: -100px; */
 }
 
 @media(max-height: 700px) {
