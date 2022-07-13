@@ -103,18 +103,43 @@
 }
 
 .create-account {
-    /* margin-left: -150px; */
+    align-self: flex-start;
+    margin-left: 100px;
     color: var(--xlight-gray);
     font-size: 30px;
     font-weight: 900;
 }
 
 .step-modal {
+    align-self: flex-start;
+    margin-left: 100px;
     color: var(--xlight-gray);
     margin-top:15px;
-    /* margin-left: -350px; */
     font-size: 20px;
     font-weight: 900;
+}
+
+.use-email {
+    align-self: flex-end;
+    margin-right: 100px;
+    font-size: small;
+    margin-top:-20px;
+    color: var(--blue)
+}
+
+.date-birth {
+    align-self: flex-start;
+    margin-left: 100px;
+    margin-top: -15px;
+    color: var(--xlight-gray);
+    font-size: 16px;
+}
+
+.date-birth-additionals {
+    width: 400px;
+    margin-top: -20px;
+    color: var(--dark-gray);
+    font-size: smaller;
 }
 
 .img-modal-login {
@@ -188,6 +213,29 @@
     font-size: 15px;
     color: var(--dark-gray);
     /* margin-left: -100px; */
+}
+
+.birth-dropdown {
+    background: none;
+    border: 0.2px solid rgba(62, 87, 102, 0.4);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.birth-dropdowns-div {
+    /* TODO: needs to fill the entire width */
+    display: flex;
+    width: 400px;
+    gap: 20px;
+}
+
+.next-button-step1 {
+    background-color: white;
+    width: 400px;
+    margin-top: 50px;
+    height: 50px;
+    border-radius: 30px;
+    color: black
 }
 
 @media(max-height: 700px) {
