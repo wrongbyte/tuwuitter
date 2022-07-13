@@ -1,6 +1,7 @@
 import '../styles/global.css';
 import '../styles/login.css';
 import { Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function RegisterModal({
   setOpenRegisterModal,
@@ -24,7 +25,7 @@ export default function RegisterModal({
           </button>
           <p className="or-text">or</p>
           <button className="button-white-modal-login font-bold">
-            Sign up with phone or email
+            <Link to="/register">Sign up with phone or email</Link>
           </button>
 
           <p className="policy">
