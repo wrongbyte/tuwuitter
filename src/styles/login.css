@@ -229,14 +229,22 @@
     gap: 20px;
 }
 
+.adjust-login-title {
+    align-self: flex-start;
+    margin-left: 100px;
+    margin-top: -20px;
+}
+
 .next-button-step1 {
     background-color: white;
     width: 400px;
-    margin-top: 50px;
+    position: absolute;
+    bottom: 20px;
     height: 50px;
     border-radius: 30px;
     color: black
 }
+
 
 @media(max-height: 700px) {
     .login-modal {

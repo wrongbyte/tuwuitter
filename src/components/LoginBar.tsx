@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/global.css';
 import '../styles/login.css';
 import RegisterModal from './RegisterModal';

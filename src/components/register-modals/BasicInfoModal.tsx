@@ -1,7 +1,11 @@
 import ModalLayout from '../ModalLayout';
+import { useState } from 'react';
+import SetPasswordModal from './SetPasswordModal';
 
 //TODO: check days and months to see if 31 days is valid for the given month
-export default function RegisterAccount() {
+export default function BasicInfoModal() {
+  const [userHasBasicInfo, setUserBasicInfo] = useState(false);
+
   const days = Array.from(Array(32).keys()).slice(1);
   const months = [
     'January',
@@ -20,7 +24,9 @@ export default function RegisterAccount() {
   const currentYear = new Date().getFullYear();
   const years = Array.from(Array(currentYear).keys()).slice(1930).reverse();
 
-  return (
+  return userHasBasicInfo ? (
+    <SetPasswordModal />
+  ) : (
     <ModalLayout>
       <p className="step-modal">Step 1 of 2 </p>
       <p className="create-account">Create your account</p>
@@ -83,7 +89,13 @@ export default function RegisterAccount() {
           </select>
         </form>
       </div>
-      <button className="next-button-step1 font-bold">Next</button>
+      {/* THIS IS A TEST */}
+      <button
+        className="next-button-step1 font-bold"
+        onClick={() => setUserBasicInfo(true)}
+      >
+        Next
+      </button>
     </ModalLayout>
   );
 }
