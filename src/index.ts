@@ -1,5 +1,6 @@
 import app from './server';
 import { connectDatabase } from './config/database';
+import { PORT } from './config/environment';
 
 const init = async () => {
   try {
@@ -8,7 +9,9 @@ const init = async () => {
     console.log('Error in database connection:', error);
     process.exit(1);
   }
-  app.listen(3005);
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+  });
 };
 
 init();
