@@ -1,7 +1,6 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
 import { User } from './userModel';
 
-// TODO: add id
 export const UserType = new GraphQLObjectType<User>({
   name: 'User',
   fields: () => ({

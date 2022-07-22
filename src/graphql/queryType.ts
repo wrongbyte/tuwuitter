@@ -1,24 +1,18 @@
 import {
-  GraphQLList,
-  GraphQLNonNull,
   GraphQLObjectType,
+  GraphQLInt,
   GraphQLString,
+  GraphQLNonNull,
 } from 'graphql';
-import * as userMutations from '../modules/user/mutations';
-import { UserModel } from '../modules/user/userModel';
-import { UserType } from '../modules/user/userType';
-// THIS IS A TEST
+import { version as packageVersion } from '../../package.json';
 
 export const QueryType = new GraphQLObjectType({
   name: 'Query',
-  description: 'Find all users',
-  fields: {
-    allUsers: {
-      type: new GraphQLList(UserType),
-      async resolve(parent, args) {
-        const user = await UserModel.find({});
-        return user;
-      },
+  description: 'Query',
+  fields: () => ({
+    version: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: () => packageVersion,
     },
-  },
+  }),
 });
