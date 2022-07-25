@@ -5,6 +5,7 @@ import { UserType } from '../userType';
 
 export const CreateUserMutation = mutationWithClientMutationId({
   name: 'CreateUser',
+  description: 'Creates a new user',
   inputFields: {
     username: { type: new GraphQLNonNull(GraphQLString) },
     displayName: { type: new GraphQLNonNull(GraphQLString) },

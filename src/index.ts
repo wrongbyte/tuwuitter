@@ -1,6 +1,9 @@
 import app from './server';
 import { connectDatabase } from './config/database';
 import { PORT } from './config/environment';
+import validateEnv from './utils/validateEnv';
+
+validateEnv();
 
 const init = async () => {
   try {

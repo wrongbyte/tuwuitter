@@ -1,13 +1,10 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
-import { version as packageVersion } from '../../package.json';
+import { VersionQuery } from '../modules/user/queries/testQuery';
 
 export const QueryType = new GraphQLObjectType({
   name: 'Query',
-  description: 'Query',
+  description: 'Root of queries',
   fields: () => ({
-    version: {
-      type: new GraphQLNonNull(GraphQLString),
-      resolve: () => packageVersion,
-    },
+    VersionQuery,
   }),
 });
