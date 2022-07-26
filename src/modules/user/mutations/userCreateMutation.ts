@@ -2,6 +2,7 @@ import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { UserModel } from '../userModel';
 import { UserType } from '../userType';
+import { User } from '../userModel';
 
 export const CreateUserMutation = mutationWithClientMutationId({
   name: 'CreateUser',
@@ -14,10 +15,11 @@ export const CreateUserMutation = mutationWithClientMutationId({
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
 
-  mutateAndGetPayload: async ({ email, ...rest }) => {
+  mutateAndGetPayload: async (userInfo: User) => {
+    const { username, ...accountInfo } = userInfo;
     const user = new UserModel({
-      ...rest,
-      email,
+      username,
+      ...accountInfo,
     });
 
     return user.save();
@@ -26,7 +28,7 @@ export const CreateUserMutation = mutationWithClientMutationId({
   outputFields: {
     user: {
       type: UserType,
-      resolve: async ({ email }) => UserModel.findOne({ email }),
+      resolve: async ({ username }) => UserModel.findOne({ username }),
     },
   },
 });

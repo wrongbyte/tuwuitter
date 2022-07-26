@@ -9,7 +9,7 @@ export interface User {
   password: string;
 }
 
-export interface UserInterface extends User, Document {
+export interface UserDocumentInterface extends User, Document {
   hashPassword(password: string): Promise<string>;
   comparePasswords(
     candidatePassword: string,
@@ -51,7 +51,7 @@ const UserSchema = new Schema({
 
 UserSchema.index({ email: 1 });
 
-UserSchema.pre<UserInterface>('save', async function (next) {
+UserSchema.pre<UserDocumentInterface>('save', async function (next) {
   if (this.isModified('password') || this.isNew) {
     const hashedPassword = await this.hashPassword(this.password);
     this.password = hashedPassword;
@@ -76,4 +76,7 @@ UserSchema.methods = {
   },
 };
 
-export const UserModel = mongoose.model<UserInterface>('User', UserSchema);
+export const UserModel = mongoose.model<UserDocumentInterface>(
+  'User',
+  UserSchema
+);

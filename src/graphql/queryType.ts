@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
+import { GraphQLObjectType } from 'graphql';
 import { VersionQuery } from '../modules/user/queries/testQuery';
 import { FindUsers } from '../modules/user/queries';
 
