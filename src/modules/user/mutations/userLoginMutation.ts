@@ -1,6 +1,6 @@
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLString, GraphQLNonNull } from 'graphql';
-import { UserInterface } from '../userModel';
+import { signTokens } from '../userAuth';
 import { UserModel } from '../userModel';
 import { version as packageVersion } from '../../../../package.json';
 
@@ -21,12 +21,18 @@ export const userLoginMutation = mutationWithClientMutationId({
     if (!(await user.comparePasswords(password, user.password))) {
       throw new Error('Incorrect password');
     }
+
+    const { access_token, refresh_token } = await signTokens(user);
+
+    return {
+      access_token,
+    };
   },
 
   outputFields: {
-    teste: {
+    token: {
       type: GraphQLString,
-      resolve: () => packageVersion,
+      resolve: ({ access_token }) => access_token,
     },
   },
 });

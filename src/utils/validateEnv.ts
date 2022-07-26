@@ -4,6 +4,11 @@ const validateEnv = () => {
   cleanEnv(process.env, {
     NODE_ENV: str(),
     PORT: port(),
+    ACCESSTOKEN_PRIVATE_KEY: str(),
+    REFRESHTOKEN_PRIVATE_KEY: str(),
+    ACCESSTOKEN_PUBLIC_KEY: str(),
+    REFRESHTOKEN_PUBLIC_KEY: str(),
+    REDIS_URI: str(),
 
     MONGO_URI: str(),
   });
