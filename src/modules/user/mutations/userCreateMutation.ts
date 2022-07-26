@@ -3,6 +3,7 @@ import { mutationWithClientMutationId } from 'graphql-relay';
 import { UserModel } from '../userModel';
 import { UserType } from '../userType';
 import { User } from '../userModel';
+import { findUserByEmail, findUserByUsername } from '../userService';
 
 export const CreateUserMutation = mutationWithClientMutationId({
   name: 'CreateUser',
@@ -16,8 +17,20 @@ export const CreateUserMutation = mutationWithClientMutationId({
   },
 
   mutateAndGetPayload: async (userInfo: User) => {
-    const { username, ...accountInfo } = userInfo;
+    const { email, username, ...accountInfo } = userInfo;
+
+    const existingUser = await findUserByEmail({ email });
+    if (existingUser) {
+      throw new Error('This email has already been registered');
+    }
+
+    const usernameTaken = await findUserByUsername({ username });
+    if (usernameTaken) {
+      throw new Error('This username is already in use');
+    }
+
     const user = new UserModel({
+      email,
       username,
       ...accountInfo,
     });
@@ -28,7 +41,7 @@ export const CreateUserMutation = mutationWithClientMutationId({
   outputFields: {
     user: {
       type: UserType,
-      resolve: async ({ username }) => UserModel.findOne({ username }),
+      resolve: async ({ email }) => findUserByEmail({ email }),
     },
   },
 });

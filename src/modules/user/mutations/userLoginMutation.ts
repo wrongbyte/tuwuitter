@@ -1,8 +1,7 @@
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLString, GraphQLNonNull } from 'graphql';
 import { signTokens } from '../userAuth';
-import { UserModel } from '../userModel';
-import { version as packageVersion } from '../../../../package.json';
+import { findUserLoginData } from '../userService';
 
 export const userLoginMutation = mutationWithClientMutationId({
   name: 'UserLogin',
@@ -13,7 +12,7 @@ export const userLoginMutation = mutationWithClientMutationId({
   },
 
   mutateAndGetPayload: async ({ username, password }) => {
-    const user = await UserModel.findOne({ username }).select('+password');
+    const user = await findUserLoginData({ username });
     if (!user) {
       throw new Error('User not found');
     }
