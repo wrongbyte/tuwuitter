@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLObjectType } from 'graphql';
 import * as userMutations from '../modules/user/mutations/index';
 
 export const MutationType = new GraphQLObjectType({
