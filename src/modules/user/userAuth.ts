@@ -1,5 +1,4 @@
 import redisClient from '../../config/redis';
-import { UserModel } from './userModel';
 import { signJWT } from '../../utils/jwt';
 
 const THIRTY_MINUTES = 30 * 60;
