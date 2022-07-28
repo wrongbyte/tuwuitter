@@ -1,8 +1,9 @@
 import LateralBar from '../components/feed/LateralBar';
 import MainColumn from '../components/feed/MainColumn';
+import UserProfile from '../components/feed/Profile';
+import UserTopBar from '../components/user/UserTopBar';
 import '../styles/global.css';
 import '../styles/home.css';
-import UserTopBar from '../components/user/UserTopBar';
 
 export default function UserPage() {
   return (
@@ -10,6 +11,7 @@ export default function UserPage() {
       <LateralBar />
       <div className="user-column">
         <UserTopBar />
+        <UserProfile />
       </div>
     </MainColumn>
   );
