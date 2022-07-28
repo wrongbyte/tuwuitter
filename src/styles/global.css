@@ -9,6 +9,7 @@
     --light-gray: #AAB8C2;
     --xlight-gray: #E1E8ED;
     --xxlight-gray: #F5F8FA;
+    --dark-background: #192836;
 }
 /* TODO: add fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');

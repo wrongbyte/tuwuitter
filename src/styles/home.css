@@ -1,6 +1,5 @@
 .twitter-feed-wrapper {
-    background-color: #192836;
-    
+    background-color: var(--dark-background);
     height: 100vh;
 }
 
