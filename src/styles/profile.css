@@ -44,6 +44,7 @@
 }
 
 .nav-user {
+    cursor: pointer;
     margin-left: -30px;
     margin-top: 30px;
     width: 100%;

@@ -1,5 +1,5 @@
 import '../../styles/profile.css';
-export default function UserProfile() {
+export default function UserHeader() {
   return (
     <div className="user-header-info">
       <div className="user-profile-cover">
