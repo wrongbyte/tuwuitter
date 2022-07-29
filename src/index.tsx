@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import LoginPage from './pages/LoginPage';
 import BasicInfoModal from './components/register-modals/BasicInfoModal';
 import Home from './pages/Home';
-import UserPage from './pages/UserPage';
+import UserPage from './components/user/UserPage';
 
 ReactDOM.render(
   <React.StrictMode>
