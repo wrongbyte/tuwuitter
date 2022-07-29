@@ -29,6 +29,10 @@
     color: var(--dark-gray);
 }
 
+.dark-gray {
+    color: var(--dark-gray); 
+}
+
 .username {
     line-height: 80%;
 }
@@ -103,3 +107,34 @@
     left: 20px;
     
 }
+
+.tweet-wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    border-bottom: solid 1px var(--dark-gray);
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.tweet-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%
+}
+
+.profile-tweets-column {
+    position: relative;
+    top: -60px;
+    padding-left: 10px;
+}
+
+.tweet-content-column {
+    width: 80%;   
+}
+
+.svg-smaller-gray {
+    width: 20px;
+    filter: invert(82%) sepia(32%) saturate(112%) hue-rotate(162deg) brightness(86%) contrast(85%);
+}
+

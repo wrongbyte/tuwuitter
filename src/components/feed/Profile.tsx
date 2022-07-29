@@ -17,10 +17,10 @@ export default function UserHeader() {
         <p className="text-white bio">404 bio not found</p>
         <div className="flex text-white gap-4">
           <span>
-            <strong>0</strong> Seguindo
+            <strong>0</strong> <span className="dark-gray">Seguindo</span>
           </span>
           <span>
-            <strong>0</strong> Seguidores
+            <strong>0</strong> <span className="dark-gray">Seguindo</span>
           </span>
         </div>
         <nav className="flex justify-around nav-user font-semibold">

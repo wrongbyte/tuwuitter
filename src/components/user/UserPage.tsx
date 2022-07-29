@@ -4,6 +4,7 @@ import UserHeader from '../feed/Profile';
 import UserTopBar from './UserTopBar';
 import '../../styles/global.css';
 import '../../styles/home.css';
+import Tweet from '../feed/Tweet';
 
 export default function UserPage() {
   return (
@@ -12,6 +13,12 @@ export default function UserPage() {
       <div className="user-column">
         <UserTopBar />
         <UserHeader />
+        <div className="profile-tweets-column">
+          <Tweet />
+          <Tweet />
+          <Tweet />
+          <Tweet />
+        </div>
       </div>
     </MainColumn>
   );

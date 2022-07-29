@@ -1,6 +1,5 @@
-.twitter-feed-wrapper {
+body {
     background-color: var(--dark-background);
-    height: 100vh;
 }
 
 .main-column-app {
@@ -10,7 +9,6 @@
 }
 
 /* LATERAL BAR */
-
 .lateralbar-wrapper {
     position: fixed;
     width: 60px;
