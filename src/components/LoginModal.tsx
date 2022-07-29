@@ -1,6 +1,7 @@
 import '../styles/global.css';
 import '../styles/login.css';
 import { Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function LoginModal({
   setOpenLoginModal,
@@ -16,26 +17,19 @@ export default function LoginModal({
           </div>
           <img className="img-modal-login" src="twitter-xxl.png" alt="" />
           <p className="join-phrase-login">Sign in to Tuwuitter :3 </p>
-          <button className="button-white-modal-login">
-            Sign up with Google
-          </button>
-          <button className="button-white-modal-login font-bold">
-            Sign up with Apple
-          </button>
-          <p className="or-text">or</p>
-          <form>
-            <input
-              type="search"
-              className="login-input"
-              placeholder="Phone, email, or username"
-            />
+          <form className="flex flex-col gap-10">
+            <input type="text" className="login-input" placeholder="Username" />
+            <input type="text" className="login-input" placeholder="Password" />
           </form>
           <button className="button-white-modal-login font-bold">Next</button>
           <button className="button-black-modal-login font-bold">
             Forgot password?
           </button>
           <p className="font-small-login">
-            Don't have an account? <span className="highlight">Sign up</span>
+            Don't have an account?{' '}
+            <Link to="/register" className="highlight">
+              Sign up
+            </Link>
           </p>
         </div>
       </div>

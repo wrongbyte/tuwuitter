@@ -10,6 +10,7 @@
     --xlight-gray: #E1E8ED;
     --xxlight-gray: #F5F8FA;
     --dark-background: #192836;
+    font-family: 'Lato', sans-serif;
 }
 /* TODO: add fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
