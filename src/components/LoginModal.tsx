@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { object, string, TypeOf } from 'zod';
 
 const loginSchema = object({
-  email: string().min(1, 'Provide your email').email('Invalid email'),
+  username: string().min(1, 'Provide your username'),
   password: string()
     .min(1, 'Provide your password')
     .max(32, 'Password must be less than 32 characters'),
@@ -21,7 +21,7 @@ export default function LoginModal({
   setOpenLoginModal: Dispatch<SetStateAction<boolean>>;
 }) {
   const defaultValues: ILogin = {
-    email: '',
+    username: '',
     password: '',
   };
   const {
@@ -53,12 +53,12 @@ export default function LoginModal({
             <input
               type="text"
               className="login-input"
-              placeholder="Email"
-              {...register('email')}
+              placeholder="Username"
+              {...register('username')}
             />
             {errors && (
               <span className="text-red-500 -mt-3 -mb-3 text-center">
-                {errors.email?.message}
+                {errors.username?.message}
               </span>
             )}
             <input
