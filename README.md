@@ -7,6 +7,12 @@ Run the client:
 ```
 yarn workspace @tuwuitter/client start
 ```
+Add the .env file in the server repository, following `.env.example`
+
+Run the Redis instance:
+```
+docker-compose up -d
+```
 
 Run the server:
 ```
