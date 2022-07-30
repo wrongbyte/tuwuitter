@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --blue: #1DA1F2;
+    --black: #14171A;
+    --dark-gray: #657786;
+    --light-gray: #AAB8C2;
+    --xlight-gray: #E1E8ED;
+    --xxlight-gray: #F5F8FA;
+    --dark-background: #192836;
+    font-family: 'Lato', sans-serif;
+}
+/* TODO: add fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+body {
+    background-color: var(--black);
+}
+
+.login-page-main {
+    color: var(--xxlight-gray)
+}
+
+.input:focus {
+    outline: none;
+    border:1px solid var(--blue);
+}
+
+.or-text {
+    margin: -20px;
+}
+
+.policy {
+    margin-top: -10px;
+    font-size: small;
+    opacity: 0.7;
+    width: 300px;
+}

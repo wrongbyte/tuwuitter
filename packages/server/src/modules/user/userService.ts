@@ -1,6 +1,10 @@
 import { UserModel, User, UserDocumentInterface } from './userModel';
 
-export const findUserByEmail = async ({ email }: { email: string }): Promise<User | undefined> => {
+export const findUserByEmail = async ({
+  email,
+}: {
+  email: string;
+}): Promise<User | undefined> => {
   return await UserModel.findOne({ email });
 };
 

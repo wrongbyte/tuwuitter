@@ -1,0 +1,88 @@
+body {
+  background-color: var(--dark-background);
+}
+
+.main-column-app {
+  padding-top: 10px;
+  height: 100vh;
+  border-right: 1px solid var(--dark-gray);
+}
+
+/* LATERAL BAR */
+.lateralbar-wrapper {
+  position: fixed;
+  width: 60px;
+  border-right: 1px solid var(--dark-gray);
+  height: 100%;
+}
+
+.lateralbar-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.twitter-icon-lateralbar {
+  width: 30px;
+}
+
+.blue-circle {
+  margin-left: -10px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 13px;
+  background-color: var(--blue);
+}
+
+.svg-small {
+  cursor: pointer;
+  width: 27px;
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(143deg)
+    brightness(104%) contrast(100%);
+}
+/* TODO: make it responsive */
+.new-tweet-modal {
+  position: fixed;
+  width: 600px; 
+  height: 250px;
+  border-radius: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+  background-color: var(--dark-background);
+  z-index: 10;
+}
+
+.tweet-input {
+    background: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    resize: none;
+    width: 100%;
+    height: 60px;
+    border: none;
+    outline: none;
+}
+
+.tweet-input-wrapper {
+    border-bottom: 1px solid var(--dark-gray);
+    width: 80%;
+    height: 100px;
+    margin-bottom: 20px
+}   
+
+.tweet-blue-button {
+    position: absolute;
+    right: 25px;
+    color: white;
+    background-color: var(--blue);
+    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 25px
+}

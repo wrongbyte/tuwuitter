@@ -3,4 +3,4 @@
       "prettier --write",
       "eslint --fix"
     ]
-}   
+}

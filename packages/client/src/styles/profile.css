@@ -1,0 +1,140 @@
+.user-column {
+    padding-left: 70px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.svg-smaller {
+    width: 20px;
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(143deg) brightness(104%) contrast(100%);
+}
+
+.user-top-navbar {
+    cursor: pointer;
+    display: flex;
+    gap: 35px;
+    position: fixed;
+    padding-left: 10px;
+    height: 40px;
+}
+
+/* USER PROFILE PAGE */
+
+.user-profile-username {
+    margin-top: -8px;
+}
+
+.number-tweets, .username {
+    color: var(--dark-gray);
+}
+
+.dark-gray {
+    color: var(--dark-gray); 
+}
+
+.username {
+    line-height: 80%;
+}
+
+.bio {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.number-tweets {
+    line-height: 80%;
+    font-size: small;
+}
+
+.nav-user {
+    cursor: pointer;
+    margin-left: -30px;
+    margin-top: 30px;
+    width: 100%;
+    border-bottom: 1px solid var(--dark-gray);
+}
+
+.nav-user-active {
+    color: white;
+    padding-bottom: 10px;
+    border-bottom: 5px solid var(--blue)
+}
+
+.nav-user-inactive {
+    color: var(--light-gray)
+}
+
+.user-profile-cover {
+    margin-top: 45px;
+    margin-left: -10px;
+    position: relative;
+}
+.user-image-cover {
+    margin-left: 0px;
+    width: 100%
+}
+
+.user-avatar-profile {
+    position: relative;
+    bottom: 75px;
+    left: 10px;
+    width: 150px;
+    height: 150px;
+    border: 5px solid var(--dark-background);
+    border-radius: 50%
+}
+
+.edit-profile-button {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    color:var(--xlight-gray);
+    background: none;
+    width: 130px;
+    height: 38px;
+    border-radius: 30px;
+    border: 1px solid rgba(62, 87, 102, 0.8);
+}
+
+.user-header-info {
+    width: 100%;
+}
+
+.user-info-profile {
+    position: relative;
+    top: -60px;
+    left: 20px;
+    
+}
+
+.tweet-wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    border-bottom: solid 1px var(--dark-gray);
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.tweet-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%
+}
+
+.profile-tweets-column {
+    position: relative;
+    top: -60px;
+    padding-left: 10px;
+}
+
+.tweet-content-column {
+    width: 80%;   
+}
+
+.svg-smaller-gray {
+    width: 20px;
+    filter: invert(82%) sepia(32%) saturate(112%) hue-rotate(162deg) brightness(86%) contrast(85%);
+}
+
