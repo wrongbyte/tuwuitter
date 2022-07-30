@@ -1,0 +1,56 @@
+{
+  "name": "tuwuitter-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev -r dotenv/config src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wrongbyte/tuwuitter-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wrongbyte/tuwuitter-server/issues"
+  },
+  "homepage": "https://github.com/wrongbyte/tuwuitter-server#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@types/http-status-codes": "^1.2.0",
+    "@types/koa": "^2.13.5",
+    "@types/koa-bodyparser": "^4.3.7",
+    "@types/koa-router": "^7.4.4",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^18.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.20.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@koa/router": "^11.0.1",
+    "@types/koa__router": "^8.0.11",
+    "@types/redis": "^4.0.11",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "envalid": "^7.3.1",
+    "graphql": "^16.5.0",
+    "graphql-relay": "^0.10.0",
+    "ioredis": "^5.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-graphql": "^0.12.0",
+    "mongoose": "^6.4.4",
+    "redis": "^4.2.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}
