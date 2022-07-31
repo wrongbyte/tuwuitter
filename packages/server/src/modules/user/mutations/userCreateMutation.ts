@@ -16,8 +16,8 @@ export const CreateUserMutation = mutationWithClientMutationId({
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
 
-  mutateAndGetPayload: async (userInfo: User) => {
-    const { email, username, ...accountInfo } = userInfo;
+  mutateAndGetPayload: async (userPayload: User) => {
+    const { email, username, ...accountInfo } = userPayload;
 
     const existingUser = await findUserByEmail({ email });
     if (existingUser) {
