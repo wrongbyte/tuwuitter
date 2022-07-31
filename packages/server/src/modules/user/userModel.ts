@@ -43,13 +43,14 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
-    maxLength: 64,
+    maxLength: 32,
     minlength: [8, 'Password must be more than 8 characters'],
     select: false,
   },
 });
 
 UserSchema.index({ email: 1 });
+UserSchema.index({ username: 1 });
 
 UserSchema.pre<UserDocumentInterface>('save', async function (next) {
   if (this.isModified('password') || this.isNew) {

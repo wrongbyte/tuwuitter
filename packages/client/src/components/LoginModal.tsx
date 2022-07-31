@@ -7,9 +7,11 @@ import { Link } from 'react-router-dom';
 import { object, string, TypeOf } from 'zod';
 
 const loginSchema = object({
-  username: string().min(1, 'Provide your username'),
+  username: string()
+    .min(1, 'Provide your username')
+    .max(12, 'Password must be less than 12 characters'),
   password: string()
-    .min(1, 'Provide your password')
+    .min(8, 'Password must be more than 8 characters')
     .max(32, 'Password must be less than 32 characters'),
 });
 
