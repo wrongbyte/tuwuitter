@@ -12,6 +12,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
     "eslint": "^8.20.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
@@ -19,7 +20,11 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "yarn dev:all",
+    "dev:all": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
+    "dev:server": "yarn workspace @tuwuitter/server dev",
+    "dev:client": "yarn workspace @tuwuitter/client start"
   },
   "dependencies": {
     "commitlint": "^17.0.3"
