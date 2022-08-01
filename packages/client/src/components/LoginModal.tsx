@@ -5,6 +5,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
 import { object, string, TypeOf } from 'zod';
+import { useMutation } from 'react-relay';
+import { UserLogin } from '../relay/mutations/user/UserLoginMutation';
+import type { UserLoginMutation } from '../relay/mutations/user/__generated__/UserLoginMutation.graphql';
 
 const loginSchema = object({
   username: string()
@@ -34,9 +37,19 @@ export default function LoginModal({
     resolver: zodResolver(loginSchema),
     defaultValues,
   });
+  const [handleUserLogin] = useMutation<UserLoginMutation>(UserLogin);
 
   const onSubmitHandler: SubmitHandler<ILogin> = (values: ILogin) => {
-    console.log(values);
+    console.log('a');
+    // handleUserLogin({
+    //   variables: values,
+    //   onCompleted: ({ userLoginMutation }, error) => {
+    //     if (error && error.length > 0) {
+    //       return
+    //     }
+    //     console.log(userLoginMutation?.token)
+    //     }
+    // })
   };
   return (
     <>
