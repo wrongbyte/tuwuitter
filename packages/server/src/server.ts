@@ -3,6 +3,7 @@ import Router from '@koa/router';
 import bodyparser from 'koa-bodyparser';
 import { graphqlHTTP } from 'koa-graphql';
 import { schema } from './graphql/schema';
+import cors from '@koa/cors';
 const app = new Koa();
 const router = new Router();
 
@@ -18,6 +19,7 @@ router.all(
   })
 );
 
+app.use(cors());
 app.use(bodyparser());
 app.use(router.routes()).use(router.allowedMethods());
 

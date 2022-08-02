@@ -1,9 +1,9 @@
 import { Variables } from 'relay-runtime';
 
-export const { REACT_APP_API_URL } = process.env;
+// TODO: put the url into an env var
 
 export const fetchGraphQL = async (query: string, variables: Variables) => {
-  const response = await fetch(REACT_APP_API_URL as string, {
+  const response = await fetch('http://localhost:3001/graphql' as string, {
     method: 'POST',
     headers: {
       'Access-Control-Allow-Origin': '*',
