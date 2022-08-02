@@ -1,3 +1,6 @@
+import '../../styles/global.css';
+import '../../styles/login.css';
+import '../../styles/home.css';
 import '../../styles/profile.css';
 import { ReactComponent as BackIcon } from '../../assets/back.svg';
 

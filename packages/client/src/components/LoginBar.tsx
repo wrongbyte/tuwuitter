@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import '../styles/global.css';
 import '../styles/login.css';
+import { useState } from 'react';
 import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
 

@@ -1,4 +1,8 @@
 import '../../styles/global.css';
+import '../../styles/login.css';
+import '../../styles/home.css';
+import '../../styles/profile.css';
+import '../../styles/global.css';
 import { ReactComponent as RepliesIcon } from '../../assets/replies.svg';
 import { ReactComponent as RetweetsIcon } from '../../assets/retweets.svg';
 import { ReactComponent as LikesIcon } from '../../assets/likes.svg';

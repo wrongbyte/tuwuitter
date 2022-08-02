@@ -1,3 +1,7 @@
+import '../../styles/global.css';
+import '../../styles/login.css';
+import '../../styles/home.css';
+import '../../styles/profile.css';
 import ModalLayout from '../ModalLayout';
 
 export default function SetPasswordModal() {

@@ -1,5 +1,7 @@
 import '../styles/global.css';
 import '../styles/login.css';
+import '../styles/home.css';
+import '../styles/profile.css';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
