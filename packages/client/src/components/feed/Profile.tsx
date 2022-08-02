@@ -1,3 +1,6 @@
+import '../../styles/global.css';
+import '../../styles/login.css';
+import '../../styles/home.css';
 import '../../styles/profile.css';
 export default function UserHeader() {
   return (

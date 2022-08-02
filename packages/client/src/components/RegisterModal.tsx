@@ -1,5 +1,9 @@
 import '../styles/global.css';
 import '../styles/login.css';
+import '../styles/home.css';
+import '../styles/profile.css';
+import '../styles/global.css';
+import '../styles/login.css';
 import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 

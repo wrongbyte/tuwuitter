@@ -1,10 +1,10 @@
-import LateralBar from '../feed/LateralBar';
+import '../../styles/global.css';
+import '../../styles/profile.css';
 import MainColumn from '../feed/MainColumn';
+import LateralBar from '../feed/LateralBar';
+import Tweet from '../feed/Tweet';
 import UserHeader from '../feed/Profile';
 import UserTopBar from './UserTopBar';
-import '../../styles/global.css';
-import '../../styles/home.css';
-import Tweet from '../feed/Tweet';
 
 export default function UserPage() {
   return (

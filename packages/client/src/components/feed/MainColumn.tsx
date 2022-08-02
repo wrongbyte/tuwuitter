@@ -1,3 +1,7 @@
+import '../../styles/global.css';
+import '../../styles/login.css';
+import '../../styles/home.css';
+import '../../styles/profile.css';
 import { ReactNode } from 'react';
 
 export default function MainColumn({ children }: { children: ReactNode }) {

@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import '../../styles/global.css';
-import NewTweetModal from './NewTweetModal';
 import { ReactComponent as HomeIcon } from '../../assets/home.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { ReactComponent as NotificationsIcon } from '../../assets/notifications.svg';
@@ -10,6 +7,11 @@ import { ReactComponent as ListsIcon } from '../../assets/lists.svg';
 import { ReactComponent as UserProfileIcon } from '../../assets/profile.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more.svg';
 import { ReactComponent as WriteTweetIcon } from '../../assets/writetweet.svg';
+import NewTweetModal from './NewTweetModal';
+import '../../styles/global.css';
+import '../../styles/home.css';
+import '../../styles/profile.css';
+import { useState } from 'react';
 
 export default function LateralBar() {
   const [openNewTweetModal, setOpenTweetModal] = useState(false);

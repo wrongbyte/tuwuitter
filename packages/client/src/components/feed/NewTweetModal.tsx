@@ -1,3 +1,4 @@
+import '../../styles/profile.css';
 import { Dispatch, SetStateAction } from 'react';
 
 export default function NewTweetModal({

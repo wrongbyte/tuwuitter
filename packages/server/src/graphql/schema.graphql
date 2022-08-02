@@ -1,0 +1,70 @@
+"""Root of queries"""
+type Query {
+  FindUsers: [User]
+  VersionQuery: String!
+}
+
+type User {
+  username: String!
+  displayName: String
+  birthday: String!
+  email: String!
+  password: String!
+}
+
+"""Root of mutations"""
+type Mutation {
+  """Creates a new user"""
+  CreateUserMutation(input: CreateUserInput!): CreateUserPayload
+
+  """Logs in an user or raises an error"""
+  userLoginMutation(input: UserLoginInput!): UserLoginPayload
+
+  """Posts a new tweet"""
+  CreateTweetMutation(input: CreateTweetInput!): CreateTweetPayload
+}
+
+type CreateUserPayload {
+  user: User
+  clientMutationId: String
+}
+
+input CreateUserInput {
+  username: String!
+  displayName: String!
+  birthday: String!
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type UserLoginPayload {
+  token: String
+  clientMutationId: String
+}
+
+input UserLoginInput {
+  username: String!
+  password: String!
+  clientMutationId: String
+}
+
+type CreateTweetPayload {
+  tweet: Tweet
+  clientMutationId: String
+}
+
+type Tweet {
+  author: String!
+  content: String!
+  likedBy: [String]
+  retweetedBy: [String]
+  replies: [String]
+}
+
+input CreateTweetInput {
+  author: String!
+  content: String!
+  replies: [String]
+  clientMutationId: String
+}
