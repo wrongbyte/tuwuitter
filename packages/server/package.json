@@ -25,6 +25,7 @@
     "prettier": "^2.7.1"
   },
   "dependencies": {
+    "@koa/cors": "^3.3.0",
     "@koa/router": "^11.0.1",
     "@types/koa__router": "^8.0.11",
     "@types/redis": "^4.0.11",

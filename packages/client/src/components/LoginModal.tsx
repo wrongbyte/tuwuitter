@@ -42,15 +42,15 @@ export default function LoginModal({
   const [handleUserLogin] = useMutation<UserLoginMutation>(UserLogin);
 
   const onSubmitHandler: SubmitHandler<ILogin> = (values: ILogin) => {
-    // handleUserLogin({
-    //   variables: values,
-    //   onCompleted: ({ userLoginMutation }, error) => {
-    //     if (error && error.length > 0) {
-    //       return
-    //     }
-    //     console.log(userLoginMutation?.token)
-    //     }
-    // })
+    handleUserLogin({
+      variables: values,
+      onCompleted: ({ userLoginMutation }, error) => {
+        if (error && error.length > 0) {
+          return;
+        }
+        console.log(userLoginMutation?.token);
+      },
+    });
   };
   return (
     <>
