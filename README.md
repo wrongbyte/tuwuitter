@@ -8,18 +8,14 @@ Install the dependencies
 ```
 yarn install
 ```
-Run the client:
-```
-yarn workspace @tuwuitter/client start
-```
-Add the .env file in the server repository, following `.env.example`
 
 Run the Redis instance:
 ```
 docker-compose up -d
 ```
 
-Run the server:
+Run both the client and server:
 ```
-yarn workspace @tuwuitter/server dev
+yarn dev:all
 ```
+The frontend will be initialized in `localhost:8080`.
