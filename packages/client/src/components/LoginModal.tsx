@@ -48,7 +48,7 @@ export default function LoginModal({
         if (error && error.length > 0) {
           return;
         }
-        console.log(userLoginMutation?.token);
+        console.log(userLoginMutation?.token, userLoginMutation?.currentUser);
       },
     });
   };
