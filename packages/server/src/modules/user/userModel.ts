@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export interface User {
+  id: string;
   username: string;
   displayName?: string;
   birthday: string;
@@ -10,6 +11,7 @@ export interface User {
 }
 
 export interface UserDocumentInterface extends User, Document {
+  id: string;
   hashPassword(password: string): Promise<string>;
   comparePasswords(
     candidatePassword: string,
