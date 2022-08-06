@@ -75,9 +75,17 @@ body {
     margin-bottom: 20px
 }   
 
+.tweet-input-wrapper-timeline {
+  position: relative;
+  width: 80%;
+  height: 100px;
+  margin-bottom: 20px
+}
+
 .tweet-blue-button {
     position: absolute;
     right: 25px;
+    bottom: 25px;
     color: white;
     background-color: var(--blue);
     padding-top: 5px;
