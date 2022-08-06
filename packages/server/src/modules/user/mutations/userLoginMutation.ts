@@ -2,6 +2,7 @@ import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLString, GraphQLNonNull } from 'graphql';
 import { signTokens } from '../userAuth';
 import { findUserLoginData } from '../userService';
+import { UserType } from '../userType';
 
 export const userLoginMutation = mutationWithClientMutationId({
   name: 'UserLogin',
@@ -25,6 +26,7 @@ export const userLoginMutation = mutationWithClientMutationId({
 
     return {
       access_token,
+      user,
     };
   },
 
@@ -32,6 +34,10 @@ export const userLoginMutation = mutationWithClientMutationId({
     token: {
       type: GraphQLString,
       resolve: ({ access_token }) => access_token,
+    },
+    currentUser: {
+      type: UserType,
+      resolve: ({ user }) => user,
     },
   },
 });

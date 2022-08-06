@@ -4,12 +4,15 @@ import '../styles/home.css';
 import '../styles/profile.css';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
 import { object, string, TypeOf } from 'zod';
 import { useMutation } from 'react-relay';
 import { UserLogin } from '../relay/mutations/user/UserLoginMutation';
 import type { UserLoginMutation } from '../relay/mutations/user/__generated__/UserLoginMutation.graphql';
+import { updateAuthToken } from '../auth/jwt';
+import { useAuth } from '../auth/AuthContext';
 
 const loginSchema = object({
   username: string()
@@ -40,6 +43,8 @@ export default function LoginModal({
     defaultValues,
   });
   const [handleUserLogin] = useMutation<UserLoginMutation>(UserLogin);
+  const { loginUser } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmitHandler: SubmitHandler<ILogin> = (values: ILogin) => {
     handleUserLogin({
@@ -48,7 +53,9 @@ export default function LoginModal({
         if (error && error.length > 0) {
           return;
         }
-        console.log(userLoginMutation?.token);
+        updateAuthToken(userLoginMutation?.token as string);
+        loginUser(userLoginMutation?.currentUser);
+        navigate('/profile');
       },
     });
   };
