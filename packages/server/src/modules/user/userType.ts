@@ -4,6 +4,10 @@ import { User } from './userModel';
 export const UserType = new GraphQLObjectType<User>({
   name: 'User',
   fields: () => ({
+    id: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: (user) => user.id,
+    },
     username: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (user) => user.username,
