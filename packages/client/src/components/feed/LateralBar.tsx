@@ -7,6 +7,7 @@ import { ReactComponent as ListsIcon } from '../../assets/lists.svg';
 import { ReactComponent as UserProfileIcon } from '../../assets/profile.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more.svg';
 import { ReactComponent as WriteTweetIcon } from '../../assets/writetweet.svg';
+import { Link } from 'react-router-dom';
 import NewTweetModal from './NewTweetModal';
 import '../../styles/global.css';
 import '../../styles/home.css';
@@ -23,13 +24,17 @@ export default function LateralBar() {
         <div className="lateralbar-icons">
           <img className="twitter-icon-lateralbar" src="twitter-xxl.png"></img>
 
-          <HomeIcon className="svg-small" />
+          <Link to="/home">
+            <HomeIcon className="svg-small" />
+          </Link>
           <SearchIcon className="svg-small" />
           <NotificationsIcon className="svg-small" />
           <MessagesIcon className="svg-small" />
           <SavedItemsIcon className="svg-small" />
           <ListsIcon className="svg-small" />
-          <UserProfileIcon className="svg-small" />
+          <Link to="/profile">
+            <UserProfileIcon className="svg-small" />
+          </Link>
           <MoreIcon className="svg-small" />
 
           <div className="blue-circle cursor-pointer">
