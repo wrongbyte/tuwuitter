@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken';
+
+import { UserModel } from './userModel';
 import redisClient from '../../config/redis';
 import { signJWT } from '../../utils/jwt';
 
@@ -15,4 +18,24 @@ export const signTokens = async (user) => {
   });
 
   return { access_token, refresh_token };
+};
+
+export const getUser = async (token: string | null | undefined) => {
+  if (!token) return { user: null };
+
+  try {
+    const publickKey = Buffer.from(
+      process.env['ACCESSTOKEN_PUBLIC_KEY'],
+      'base64'
+    ).toString('utf-8');
+    const decoded = jwt.verify(token, publickKey);
+
+    const user = await UserModel.findById(decoded.sub);
+    console.log(decoded);
+    return {
+      user,
+    };
+  } catch (error) {
+    return null;
+  }
 };

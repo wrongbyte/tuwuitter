@@ -27,6 +27,7 @@
     "dev:client": "yarn workspace @tuwuitter/client start"
   },
   "dependencies": {
-    "commitlint": "^17.0.3"
+    "commitlint": "^17.0.3",
+    "install-peers": "^1.0.4"
   }
 }
