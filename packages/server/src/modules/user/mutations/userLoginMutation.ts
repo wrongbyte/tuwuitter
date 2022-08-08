@@ -12,7 +12,7 @@ export const userLoginMutation = mutationWithClientMutationId({
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
 
-  mutateAndGetPayload: async ({ username, password }) => {
+  mutateAndGetPayload: async ({ username, password }, ctx) => {
     const user = await findUserLoginData({ username });
     if (!user) {
       throw new Error('User not found');
@@ -23,7 +23,6 @@ export const userLoginMutation = mutationWithClientMutationId({
     }
 
     const { access_token, refresh_token } = await signTokens(user);
-
     return {
       access_token,
       user,
@@ -35,7 +34,7 @@ export const userLoginMutation = mutationWithClientMutationId({
       type: GraphQLString,
       resolve: ({ access_token }) => access_token,
     },
-    currentUser: {
+    me: {
       type: UserType,
       resolve: ({ user }) => user,
     },
