@@ -17,9 +17,7 @@ export const QueryType = new GraphQLObjectType({
         ...connectionArgs,
       },
       resolve: async (_, args, context) => {
-        const users = await UserLoader.loadAll(context, args);
-        console.log(users);
-        await UserLoader.loadAll(context, args);
+        return await UserLoader.loadAll(context, args);
       },
     },
     me: {
