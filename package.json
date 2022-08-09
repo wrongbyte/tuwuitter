@@ -24,7 +24,8 @@
     "dev": "yarn dev:all",
     "dev:all": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
     "dev:server": "yarn workspace @tuwuitter/server dev",
-    "dev:client": "yarn workspace @tuwuitter/client start"
+    "dev:client": "yarn workspace @tuwuitter/client start",
+    "compile-relay": "yarn workspace @tuwuitter/client relay"
   },
   "dependencies": {
     "commitlint": "^17.0.3",

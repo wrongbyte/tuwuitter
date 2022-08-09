@@ -4,7 +4,7 @@ export const UserLogin = graphql`
   mutation UserLoginMutation($username: String!, $password: String!) {
     userLoginMutation(input: { username: $username, password: $password }) {
       token
-      currentUser {
+      me {
         username
         displayName
         email

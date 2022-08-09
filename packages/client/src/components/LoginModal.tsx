@@ -13,6 +13,7 @@ import { UserLogin } from '../relay/mutations/user/UserLoginMutation';
 import type { UserLoginMutation } from '../relay/mutations/user/__generated__/UserLoginMutation.graphql';
 import { updateAuthToken } from '../auth/jwt';
 import { useAuth } from '../auth/AuthContext';
+// import { getUser } from '../../../server/src/modules/user/userAuth';
 
 const loginSchema = object({
   username: string()
@@ -46,7 +47,7 @@ export default function LoginModal({
   const { loginUser } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmitHandler: SubmitHandler<ILogin> = (values: ILogin) => {
+  const onSubmitHandler: SubmitHandler<ILogin> = async (values: ILogin) => {
     handleUserLogin({
       variables: values,
       onCompleted: ({ userLoginMutation }, error) => {
@@ -54,7 +55,7 @@ export default function LoginModal({
           return;
         }
         updateAuthToken(userLoginMutation?.token as string);
-        loginUser(userLoginMutation?.currentUser);
+        loginUser(userLoginMutation?.me);
         navigate('/profile');
       },
     });

@@ -31,11 +31,10 @@ export const getUser = async (token: string | null | undefined) => {
     const decoded = jwt.verify(token, publickKey);
 
     const user = await UserModel.findById(decoded.sub);
-    console.log(decoded);
     return {
       user,
     };
   } catch (error) {
-    return null;
+    throw new Error('Authentication error');
   }
 };
