@@ -13,7 +13,6 @@ import { UserLogin } from '../relay/mutations/user/UserLoginMutation';
 import type { UserLoginMutation } from '../relay/mutations/user/__generated__/UserLoginMutation.graphql';
 import { updateAuthToken } from '../auth/jwt';
 import { useAuth } from '../auth/AuthContext';
-// import { getUser } from '../../../server/src/modules/user/userAuth';
 
 const loginSchema = object({
   username: string()
