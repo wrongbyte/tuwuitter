@@ -32,7 +32,8 @@ export default function LateralBar() {
           <MessagesIcon className="svg-small" />
           <SavedItemsIcon className="svg-small" />
           <ListsIcon className="svg-small" />
-          <Link to="/profile">
+          {/* TODO: change link to current user profile */}
+          <Link to="/user">
             <UserProfileIcon className="svg-small" />
           </Link>
           <MoreIcon className="svg-small" />

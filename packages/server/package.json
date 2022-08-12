@@ -42,6 +42,7 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-graphql": "^0.12.0",
+    "koa-static": "^5.0.0",
     "mongoose": "^6.5.1",
     "redis": "^4.2.0",
     "ts-node-dev": "^2.0.0"

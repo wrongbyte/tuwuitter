@@ -2,12 +2,15 @@ import { RelayEnvironmentProvider } from 'react-relay';
 import { RelayEnvironment } from './relay/RelayEnvironment';
 import { AuthProvider } from './auth/AuthContext';
 import AppRoutes from './AppRoutes';
+import { Suspense } from 'react';
 
 export default function App() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
       <AuthProvider>
-        <AppRoutes />
+        <Suspense fallback={<h1 className="text-white">Loading profile...</h1>}>
+          <AppRoutes />
+        </Suspense>
       </AuthProvider>
     </RelayEnvironmentProvider>
   );

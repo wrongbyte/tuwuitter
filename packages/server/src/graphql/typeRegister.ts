@@ -33,8 +33,11 @@ function getTypeRegister() {
 
   // gets the type of graphql object
   const typeResolver = (obj) => {
-    const { type } = typesLoaders[obj.constructor.name] || { type: null };
-    return type;
+    // TODO: REVIEW THIS LATER
+    const objName =
+      obj.constructor.name === 'users' ? 'User' : obj.constructor.name;
+    const { type } = typesLoaders[objName] || { type: null };
+    return objName;
   };
 
   const { nodeField, nodesField, nodeInterface } = nodeDefinitions(

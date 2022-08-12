@@ -1,8 +1,17 @@
 import '../styles/global.css';
 import '../styles/login.css';
 import LoginBar from '../components/LoginBar';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const isUserLoggedIn = localStorage.getItem('ACCESS_TOKEN');
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      navigate('/home');
+    }
+  });
   return (
     <main className="login-page-main flex justify-center">
       <div className="content-login">
