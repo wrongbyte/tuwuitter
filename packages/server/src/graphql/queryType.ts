@@ -26,16 +26,6 @@ export const QueryType = new GraphQLObjectType({
       resolve: (root, args, context) =>
         UserLoader.load(context, context.user?._id),
     },
-    findUserByUsername: {
-      type: UserType,
-      args: {
-        username: { type: GraphQLString },
-      },
-      resolve: async (_, args, context) => {
-        const user = await UserModel.findOne({ username: args.username });
-        return await UserLoader.load(context, user.id);
-      },
-    },
     ...userQueries,
   }),
 });
