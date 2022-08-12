@@ -55,7 +55,7 @@ export default function LoginModal({
         }
         updateAuthToken(userLoginMutation?.token as string);
         loginUser(userLoginMutation?.me);
-        navigate('/profile');
+        navigate(`/user/${userLoginMutation?.me?.username}`);
       },
     });
   };

@@ -15,8 +15,9 @@ export default function AppRoutes() {
         <Route path="/test" element={<Test />} />
         <Route element={<RequireAuthLayout />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<UserPage />} />
+          <Route path="/user/:username" element={<UserPage />} />
         </Route>
+        <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );
