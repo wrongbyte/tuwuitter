@@ -9,11 +9,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
 import { object, string, TypeOf } from 'zod';
 import { useMutation } from 'react-relay';
-import { UserLogin } from '../relay/mutations/user/UserLoginMutation';
-import type { UserLoginMutation } from '../relay/mutations/user/__generated__/UserLoginMutation.graphql';
+import { UserLogin } from '../relay/user/UserLoginMutation';
+import type { UserLoginMutation } from '../relay/user/__generated__/UserLoginMutation.graphql';
 import { updateAuthToken } from '../auth/jwt';
 import { useAuth } from '../auth/AuthContext';
-// import { getUser } from '../../../server/src/modules/user/userAuth';
 
 const loginSchema = object({
   username: string()
@@ -56,7 +55,7 @@ export default function LoginModal({
         }
         updateAuthToken(userLoginMutation?.token as string);
         loginUser(userLoginMutation?.me);
-        navigate('/profile');
+        navigate(`/user/${userLoginMutation?.me?.username}`);
       },
     });
   };

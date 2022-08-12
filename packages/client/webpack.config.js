@@ -15,6 +15,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.join(cwd, 'dist'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.mjs', '.js', '.jsx'],
@@ -36,6 +37,10 @@ module.exports = {
       {
         test: /\.svg$/,
         use: ['@svgr/webpack', 'url-loader'],
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },

@@ -4,6 +4,7 @@ import BasicInfoModal from './components/register-modals/BasicInfoModal';
 import Home from './pages/Home';
 import UserPage from './components/user/UserPage';
 import { RequireAuthLayout } from './RequireAuthLayout';
+import Test from './pages/Test';
 
 export default function AppRoutes() {
   return (
@@ -11,10 +12,12 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<BasicInfoModal />} />
+        <Route path="/test" element={<Test />} />
         <Route element={<RequireAuthLayout />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<UserPage />} />
+          <Route path="/user/:username" element={<UserPage />} />
         </Route>
+        <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );

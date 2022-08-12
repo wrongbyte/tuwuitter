@@ -8,6 +8,7 @@ export const UserLogin = graphql`
         username
         displayName
         email
+        id
       }
     }
   }
