@@ -49,6 +49,11 @@ const UserSchema = new Schema({
     minlength: [8, 'Password must be more than 8 characters'],
     select: false,
   },
+  tweets: {
+    type: [Schema.Types.ObjectId],
+    default: [],
+    ref: 'Tweet',
+  },
 });
 
 UserSchema.index({ email: 1 });

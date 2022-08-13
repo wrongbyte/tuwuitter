@@ -1,4 +1,4 @@
-import { GraphQLFieldConfig, GraphQLList, GraphQLString } from 'graphql';
+import { GraphQLFieldConfig, GraphQLString } from 'graphql';
 import * as UserLoader from '../UserLoader';
 import { UserModel } from '../userModel';
 import { UserType } from '../userType';
