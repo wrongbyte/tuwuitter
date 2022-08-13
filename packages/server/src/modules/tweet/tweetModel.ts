@@ -35,6 +35,7 @@ const TweetSchema = new Schema({
   replies: {
     type: [Schema.Types.ObjectId],
     ref: 'Tweet',
+    default: [],
   },
   // TODO: add timestamp
 });
