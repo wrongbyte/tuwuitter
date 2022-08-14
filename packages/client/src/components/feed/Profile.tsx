@@ -21,7 +21,6 @@ export default function UserHeader({
         <button className="edit-profile-button font-bold ">Editar perfil</button>
       </div>
       <div className="user-info-profile">
-        {/* TODO: change */}
         {username ? (
           <>
             <p className="text-white font-bold text-xl">{displayName}</p>

@@ -42,24 +42,32 @@ export default function UserPage() {
   return (
     <MainColumn>
       <LateralBar />
-      <div className="user-column">
-        <UserTopBar />
-        <UserHeader
-          username={findUserByUsername.username as string}
-          displayName={findUserByUsername.displayName as string}
-        />
-        <div className="profile-tweets-column">
-          {findUserByUsername.tweets.edges.map((tweet: any) => {
-            return (
-              <Tweet
-                content={tweet.node.content}
-                displayName={findUserByUsername.displayName}
-                username={findUserByUsername.username}
-              />
-            );
-          })}
+
+      <UserTopBar />
+      {findUserByUsername ? (
+        <div className="user-column">
+          <UserHeader
+            username={findUserByUsername.username as string}
+            displayName={findUserByUsername.displayName as string}
+          />
+          <div className="profile-tweets-column">
+            {findUserByUsername.tweets.edges.map((tweet: any) => {
+              return (
+                <Tweet
+                  content={tweet.node.content}
+                  displayName={findUserByUsername.displayName}
+                  username={findUserByUsername.username}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="user-column">
+          <UserHeader username="" displayName="" />
+          <div className="profile-tweets-column"></div>
+        </div>
+      )}
     </MainColumn>
   );
 }
