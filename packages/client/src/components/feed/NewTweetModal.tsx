@@ -1,13 +1,11 @@
 import '../../styles/profile.css';
 import { Dispatch, SetStateAction } from 'react';
-import { useState } from 'react';
 import { useMutation } from 'react-relay';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import type { TweetCreateMutation } from '../../relay/tweet/__generated__/TweetCreateMutation.graphql';
 import { object, string, TypeOf } from 'zod';
 import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { getUser } from '../../../../server/src/modules/user/userAuth';
 
 const tweetSchema = object({
   content: string()
@@ -27,10 +25,7 @@ export default function NewTweetModal({
 }: {
   setOpenTweetModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  const userToken = localStorage.getItem('ACCESS_TOKEN');
-  // const { user } = await getUser(userToken);
   const [handleSubmitTweet] = useMutation<TweetCreateMutation>(TweetCreate);
-  const [tweetContent, setTweetContent] = useState('');
   const {
     handleSubmit,
     register,
@@ -73,6 +68,9 @@ export default function NewTweetModal({
           <button type="submit" className="tweet-blue-button font-bold" value="Tweet">
             Tweet
           </button>
+          {errors && (
+            <span className="text-red-500 -mt-3 -mb-3 ml-4">{errors.content?.message}</span>
+          )}
         </form>
       </div>
       <div className="modalBackground"></div>
