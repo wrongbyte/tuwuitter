@@ -1,9 +1,15 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
 import { globalIdField } from 'graphql-relay';
 import { registerTypeLoader, nodeInterface } from '../../graphql/typeRegister';
-import { connectionDefinitions } from '@entria/graphql-mongo-helpers';
+import {
+  connectionArgs,
+  connectionDefinitions,
+  withFilter,
+} from '@entria/graphql-mongo-helpers';
+import * as TweetLoader from '../tweet/TweetLoader';
 import { User } from './userModel';
 import { load } from './UserLoader';
+import { TweetConnection } from '../tweet/tweetType';
 
 export const UserType = new GraphQLObjectType<User>({
   name: 'User',
@@ -28,6 +34,16 @@ export const UserType = new GraphQLObjectType<User>({
     password: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (user) => user.password,
+    },
+    tweets: {
+      type: new GraphQLNonNull(TweetConnection.connectionType),
+      args: { ...connectionArgs },
+      resolve: async (user, args, context) => {
+        return await TweetLoader.loadAll(
+          context,
+          withFilter(args, { author: user.id })
+        );
+      },
     },
   }),
   interfaces: () => [nodeInterface],

@@ -4,19 +4,13 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
-export default function UserHeader({ username }: { username: string }) {
-  const { findUserByUsername } = useLazyLoadQuery(
-    graphql`
-      query ProfileUserQuery($username: String!) {
-        findUserByUsername(username: $username) {
-          displayName
-          username
-        }
-      }
-    `,
-    { username: username }
-  );
-
+export default function UserHeader({
+  username,
+  displayName,
+}: {
+  username: string;
+  displayName: string;
+}) {
   return (
     <div className="user-header-info">
       <div className="user-profile-cover">
@@ -27,10 +21,10 @@ export default function UserHeader({ username }: { username: string }) {
         <button className="edit-profile-button font-bold ">Editar perfil</button>
       </div>
       <div className="user-info-profile">
-        {findUserByUsername ? (
+        {username ? (
           <>
-            <p className="text-white font-bold text-xl">{findUserByUsername.displayName}</p>
-            <p className="username">@{findUserByUsername.username}</p>
+            <p className="text-white font-bold text-xl">{displayName}</p>
+            <p className="username">@{username}</p>
             <p className="text-white bio">404 bio not found</p>
             <div className="flex text-white gap-4">
               <span>

@@ -2,6 +2,9 @@ export interface DataLoaders {
   UserLoader?: ReturnType<
     typeof import('../modules/user/UserLoader').getLoader
   >;
+  TweetLoader?: ReturnType<
+    typeof import('../modules/tweet/TweetLoader').getLoader
+  >;
 }
 
 const loaders: {

@@ -11,10 +11,9 @@ type Query {
     """The IDs of objects"""
     ids: [ID!]!
   ): [Node]!
-  users(after: String, first: Int, before: String, last: Int): UserConnection!
+  tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
   me: User
   findUserByUsername(username: String): User
-  FindUsersQuery: [User]
   VersionQuery: String!
 }
 
@@ -25,52 +24,12 @@ interface Node {
 }
 
 """A connection to a list of items."""
-type UserConnection implements Connection {
-  """Number of items in this connection."""
-  count: Int
-
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
-
-  """Offset from start."""
-  startCursorOffset: Int!
-
-  """Offset till end."""
-  endCursorOffset: Int!
-
+type TweetConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [UserEdge]!
-}
-
-"""A connection to a list of items."""
-interface Connection {
-  """Number of items in this connection."""
-  count: Int
-
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-  This allows a client to fetch the first five objects by passing "5" as the
-  argument to "first", then fetch the total count so it could display "5 of 83",
-  for example.
-  """
-  totalCount: Int
-
-  """Offset from start."""
-  startCursorOffset: Int!
-
-  """Offset till end."""
-  endCursorOffset: Int!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
+  edges: [TweetEdge]
 }
 
 """Information about pagination in a connection."""
@@ -89,12 +48,22 @@ type PageInfo {
 }
 
 """An edge in a connection."""
-type UserEdge {
-  """The item at the end of the edge."""
-  node: User
+type TweetEdge {
+  """The item at the end of the edge"""
+  node: Tweet
 
-  """A cursor for use in pagination."""
+  """A cursor for use in pagination"""
   cursor: String!
+}
+
+type Tweet implements Node {
+  """The ID of an object"""
+  id: ID!
+  author: String!
+  content: String!
+  likedBy: [String]
+  retweetedBy: [String]
+  replies: [String]
 }
 
 type User implements Node {
@@ -105,6 +74,7 @@ type User implements Node {
   birthday: String!
   email: String!
   password: String!
+  tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
 }
 
 """Root of mutations"""
@@ -148,14 +118,6 @@ input UserLoginInput {
 type CreateTweetPayload {
   tweet: Tweet
   clientMutationId: String
-}
-
-type Tweet {
-  author: String!
-  content: String!
-  likedBy: [String]
-  retweetedBy: [String]
-  replies: [String]
 }
 
 input CreateTweetInput {
