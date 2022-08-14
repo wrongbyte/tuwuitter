@@ -3,6 +3,7 @@
 ## WORK IN PROGRESS
 
 ### To-do list
+- [ ] clear unused dependencies
 - [ ] fix timeline bug
 - [ ] redirect user to their profile when clicking on lateral bar icon
 - [ ] simplify register page
