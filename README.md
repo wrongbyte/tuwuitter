@@ -12,6 +12,7 @@
 - [ ] show followers in profiles
 - [ ] display following users' tweets on timeline
 - [ ] create error modal
+- [ ] remove unused fields (such as birthday)
 
 ### How to run
 
