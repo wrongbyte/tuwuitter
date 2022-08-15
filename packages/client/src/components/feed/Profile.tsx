@@ -11,6 +11,14 @@ export default function UserHeader({
   username: string;
   displayName: string;
 }) {
+  const { me } = useLazyLoadQuery(graphql`
+    query ProfileCurrentUserQuery {
+      me {
+        username
+      }
+    }
+  `);
+
   return (
     <div className="user-header-info">
       <div className="user-profile-cover">
@@ -18,7 +26,11 @@ export default function UserHeader({
       </div>
       <div className="flex justify-between">
         <img className="user-avatar-profile" src="default-pfp-tt.png"></img>
-        <button className="edit-profile-button font-bold ">Editar perfil</button>
+        {username === me.username ? (
+          <button className="edit-profile-button cursor-default font-bold ">Editar perfil</button>
+        ) : (
+          <button className="edit-profile-button font-bold">Seguir</button>
+        )}
       </div>
       <div className="user-info-profile">
         {username ? (

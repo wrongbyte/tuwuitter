@@ -13,6 +13,7 @@
 - [ ] display following users' tweets on timeline
 - [ ] create error modal
 - [ ] remove unused fields (such as birthday)
+- [ ] show username in user top bar
 
 ### How to run
 

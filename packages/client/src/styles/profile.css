@@ -11,7 +11,7 @@
 }
 
 .user-top-navbar {
-    cursor: pointer;
+    /* cursor: pointer; */
     display: flex;
     gap: 35px;
     position: fixed;
@@ -48,7 +48,7 @@
 }
 
 .nav-user {
-    cursor: pointer;
+    /* cursor: pointer; */
     margin-left: -30px;
     margin-top: 30px;
     width: 100%;
