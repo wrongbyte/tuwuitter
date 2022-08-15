@@ -42,7 +42,6 @@ export default function UserPage() {
   return (
     <MainColumn>
       <LateralBar />
-
       <UserTopBar />
       {findUserByUsername ? (
         <div className="user-column">

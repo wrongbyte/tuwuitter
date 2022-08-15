@@ -59,7 +59,7 @@ type TweetEdge {
 type Tweet implements Node {
   """The ID of an object"""
   id: ID!
-  author: String!
+  author: User
   content: String!
   likedBy: [String]
   retweetedBy: [String]
@@ -121,7 +121,6 @@ type CreateTweetPayload {
 }
 
 input CreateTweetInput {
-  author: String!
   content: String!
   replies: [String]
   clientMutationId: String
