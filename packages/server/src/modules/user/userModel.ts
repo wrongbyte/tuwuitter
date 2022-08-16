@@ -8,10 +8,14 @@ export interface User {
   birthday: string;
   email: string;
   password: string;
+  following: [];
+  followers: [];
 }
 
 export interface UserDocumentInterface extends User, Document {
   id: string;
+  following: [];
+  followers: [];
   hashPassword(password: string): Promise<string>;
   comparePasswords(
     candidatePassword: string,
@@ -31,11 +35,6 @@ const UserSchema = new Schema({
     type: String,
     maxLength: 30,
   },
-  birthday: {
-    type: String,
-    required: true,
-    // TODO: add validation
-  },
   email: {
     type: String,
     required: true,
@@ -53,6 +52,16 @@ const UserSchema = new Schema({
     type: [Schema.Types.ObjectId],
     default: [],
     ref: 'Tweet',
+  },
+  following: {
+    type: [Schema.Types.ObjectId],
+    default: [],
+    ref: 'User',
+  },
+  followers: {
+    type: [Schema.Types.ObjectId],
+    default: [],
+    ref: 'User',
   },
 });
 

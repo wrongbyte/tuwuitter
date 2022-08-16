@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLNonNull,
+  GraphQLList,
+} from 'graphql';
 import { globalIdField } from 'graphql-relay';
 import { registerTypeLoader, nodeInterface } from '../../graphql/typeRegister';
 import {
@@ -34,6 +39,14 @@ export const UserType = new GraphQLObjectType<User>({
     password: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (user) => user.password,
+    },
+    following: {
+      type: new GraphQLList(UserType),
+      resolve: (user) => user.following,
+    },
+    followers: {
+      type: new GraphQLList(UserType),
+      resolve: (user) => user.followers,
     },
     tweets: {
       type: new GraphQLNonNull(TweetConnection.connectionType),
