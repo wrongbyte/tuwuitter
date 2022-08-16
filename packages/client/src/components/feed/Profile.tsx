@@ -7,9 +7,13 @@ const { graphql, useLazyLoadQuery } = require('react-relay');
 export default function UserHeader({
   username,
   displayName,
+  followingCount,
+  followersCount,
 }: {
   username: string;
   displayName: string;
+  followingCount?: number;
+  followersCount?: number;
 }) {
   const { me } = useLazyLoadQuery(graphql`
     query ProfileCurrentUserQuery {
@@ -40,10 +44,10 @@ export default function UserHeader({
             <p className="text-white bio">404 bio not found</p>
             <div className="flex text-white gap-4">
               <span>
-                <strong>0</strong> <span className="dark-gray">Seguindo</span>
+                <strong>{followingCount}</strong> <span className="dark-gray">Seguindo</span>
               </span>
               <span>
-                <strong>0</strong> <span className="dark-gray">Seguindo</span>
+                <strong>{followersCount}</strong> <span className="dark-gray">Seguindo</span>
               </span>
             </div>
             <nav className="flex justify-around nav-user font-semibold">
@@ -55,7 +59,6 @@ export default function UserHeader({
           </>
         ) : (
           <>
-            <p className="username">@{username}</p>
             <p className="text-white text-5xl text-center font-bold">Essa conta não existe.</p>
           </>
         )}

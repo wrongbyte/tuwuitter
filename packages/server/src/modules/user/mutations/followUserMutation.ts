@@ -6,6 +6,7 @@ import * as UserLoader from '../UserLoader';
 import { UserType } from '../userType';
 import { User } from '../userModel';
 
+// TODO: REFACTOR THIS MESS
 export const FollowUserMutation = mutationWithClientMutationId({
   name: 'FolowUser',
   description:

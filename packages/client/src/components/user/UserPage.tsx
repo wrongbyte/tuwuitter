@@ -23,6 +23,8 @@ export default function UserPage() {
         findUserByUsername(username: $username) {
           displayName
           username
+          followers
+          following
           tweets {
             edges {
               node {
@@ -48,6 +50,8 @@ export default function UserPage() {
           <UserHeader
             username={findUserByUsername.username as string}
             displayName={findUserByUsername.displayName as string}
+            followingCount={findUserByUsername.following.length}
+            followersCount={findUserByUsername.followers.length}
           />
           <div className="profile-tweets-column">
             {findUserByUsername.tweets.edges.map((tweet: any) => {
