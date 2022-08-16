@@ -71,9 +71,10 @@ type User implements Node {
   id: ID!
   username: String!
   displayName: String
-  birthday: String!
   email: String!
   password: String!
+  following: [User]
+  followers: [User]
   tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
 }
 
@@ -97,7 +98,6 @@ type CreateUserPayload {
 input CreateUserInput {
   username: String!
   displayName: String!
-  birthday: String!
   email: String!
   password: String!
   clientMutationId: String

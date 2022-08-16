@@ -24,7 +24,7 @@ export const CreateTweetMutation = mutationWithClientMutationId({
     }).save();
     await UserModel.findOneAndUpdate(
       { _id: ctx.user.id },
-      { $addToSet: { tweets: tweet.id } }
+      { $addToSet: { tweets: tweet._id } }
     );
     return tweet;
   },

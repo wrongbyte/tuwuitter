@@ -28,10 +28,6 @@ export const UserType = new GraphQLObjectType<User>({
       type: GraphQLString,
       resolve: (user) => user.displayName,
     },
-    birthday: {
-      type: new GraphQLNonNull(GraphQLString),
-      resolve: (user) => user.birthday,
-    },
     email: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (user) => user.email,
@@ -41,11 +37,11 @@ export const UserType = new GraphQLObjectType<User>({
       resolve: (user) => user.password,
     },
     following: {
-      type: new GraphQLList(UserType),
+      type: new GraphQLList(GraphQLString),
       resolve: (user) => user.following,
     },
     followers: {
-      type: new GraphQLList(UserType),
+      type: new GraphQLList(GraphQLString),
       resolve: (user) => user.followers,
     },
     tweets: {

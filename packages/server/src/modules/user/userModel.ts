@@ -1,21 +1,22 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, Types } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export interface User {
   id: string;
   username: string;
   displayName?: string;
-  birthday: string;
   email: string;
   password: string;
-  following: [];
-  followers: [];
+  tweets: Types.ObjectId[];
+  following: Types.ObjectId[];
+  followers: Types.ObjectId[];
 }
 
 export interface UserDocumentInterface extends User, Document {
   id: string;
-  following: [];
-  followers: [];
+  tweets: Types.ObjectId[];
+  following: Types.ObjectId[];
+  followers: Types.ObjectId[];
   hashPassword(password: string): Promise<string>;
   comparePasswords(
     candidatePassword: string,
