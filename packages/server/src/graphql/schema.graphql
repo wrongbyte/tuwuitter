@@ -73,8 +73,8 @@ type User implements Node {
   displayName: String
   email: String!
   password: String!
-  following: [User]
-  followers: [User]
+  following: [String]
+  followers: [String]
   tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
 }
 
@@ -85,6 +85,11 @@ type Mutation {
 
   """Logs in an user or raises an error"""
   userLoginMutation(input: UserLoginInput!): UserLoginPayload
+
+  """
+  Adds the target user to the list of followed accounts of current user logged in
+  """
+  FollowUserMutation(input: FolowUserInput!): FolowUserPayload
 
   """Posts a new tweet"""
   CreateTweetMutation(input: CreateTweetInput!): CreateTweetPayload
@@ -112,6 +117,16 @@ type UserLoginPayload {
 input UserLoginInput {
   username: String!
   password: String!
+  clientMutationId: String
+}
+
+type FolowUserPayload {
+  user: User
+  clientMutationId: String
+}
+
+input FolowUserInput {
+  username: String!
   clientMutationId: String
 }
 
