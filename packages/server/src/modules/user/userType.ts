@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLNonNull,
+  GraphQLList,
+} from 'graphql';
 import { globalIdField } from 'graphql-relay';
 import { registerTypeLoader, nodeInterface } from '../../graphql/typeRegister';
 import {
@@ -23,10 +28,6 @@ export const UserType = new GraphQLObjectType<User>({
       type: GraphQLString,
       resolve: (user) => user.displayName,
     },
-    birthday: {
-      type: new GraphQLNonNull(GraphQLString),
-      resolve: (user) => user.birthday,
-    },
     email: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (user) => user.email,
@@ -34,6 +35,14 @@ export const UserType = new GraphQLObjectType<User>({
     password: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (user) => user.password,
+    },
+    following: {
+      type: new GraphQLList(GraphQLString),
+      resolve: (user) => user.following,
+    },
+    followers: {
+      type: new GraphQLList(GraphQLString),
+      resolve: (user) => user.followers,
     },
     tweets: {
       type: new GraphQLNonNull(TweetConnection.connectionType),
