@@ -15,6 +15,7 @@ type Query {
   me: User
   findUserByUsername(username: String): User
   VersionQuery: String!
+  findTimelineTweets(after: String, first: Int, before: String, last: Int): TweetConnection!
 }
 
 """An object with an ID"""

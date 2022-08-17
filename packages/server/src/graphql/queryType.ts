@@ -1,6 +1,7 @@
 import { GraphQLNonNull, GraphQLObjectType } from 'graphql';
 import { nodeField, nodesField } from './typeRegister';
 import * as userQueries from '../modules/user/queries';
+import * as tweetQueries from '../modules/tweet/queries';
 import { UserConnection, UserType } from '../modules/user/userType';
 import { connectionArgs } from '@entria/graphql-mongo-helpers';
 import * as UserLoader from '../modules/user/UserLoader';
@@ -28,5 +29,6 @@ export const QueryType = new GraphQLObjectType({
         UserLoader.load(context, context.user?._id),
     },
     ...userQueries,
+    ...tweetQueries,
   }),
 });
