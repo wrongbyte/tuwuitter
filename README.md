@@ -1,4 +1,6 @@
-![preview](https://user-images.githubusercontent.com/57643375/182004479-b71eb6b3-d21d-44be-a041-c4ad38d8b830.png)
+![user profile preview](https://user-images.githubusercontent.com/57643375/182004479-b71eb6b3-d21d-44be-a041-c4ad38d8b830.png)
+![timeline preview](https://user-images.githubusercontent.com/57643375/185009264-3311524a-0a5a-4e2b-bcd3-931a921c8da4.png)
+
 
 ## WORK IN PROGRESS
 
@@ -9,11 +11,10 @@
 - [ ] simplify register page
 - [ ] implement funcionality to post tweets on timeline component
 - [x] implement follow feature
-- [ ] show followers in profiles
-- [ ] display following users' tweets on timeline
+- [x] show followers in profiles
+- [x] display following users' tweets on timeline
 - [ ] create error modal
-- [ ] remove unused fields (such as birthday)
-- [ ] show username in user top bar
+- [x] remove unused fields (such as birthday)
 
 ### How to run
 
