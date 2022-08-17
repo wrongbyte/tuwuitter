@@ -7,7 +7,7 @@
 ### To-do list
 - [ ] clear unused dependencies
 - [x] fix timeline bug
-- [ ] redirect user to their profile when clicking on lateral bar icon
+- [x] redirect user to their profile when clicking on lateral bar icon
 - [ ] simplify register page
 - [x] implement funcionality to post tweets on timeline component
 - [x] implement follow feature
