@@ -21,6 +21,10 @@ export const FollowUserMutation = mutationWithClientMutationId({
     }
     const { username } = userPayload;
 
+    if (username === ctx.user.username) {
+      throw new Error('You cannot follow yourself.');
+    }
+
     const targetUser = await UserModel.findOne({ username });
 
     if (!targetUser) {
@@ -31,10 +35,6 @@ export const FollowUserMutation = mutationWithClientMutationId({
       username: ctx?.user.username,
       following: targetUser.id,
     });
-
-    if (username === ctx.user.username) {
-      throw new Error('You cannot follow yourself.');
-    }
 
     if (isFollowing) {
       throw new Error('You already follow this user.');
