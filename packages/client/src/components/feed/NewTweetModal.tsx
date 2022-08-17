@@ -40,7 +40,6 @@ export default function NewTweetModal({
       variables: values,
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
-          console.log(error);
           return;
         }
         setOpenTweetModal(false);
