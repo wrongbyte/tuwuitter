@@ -23,11 +23,6 @@ Install the dependencies
 yarn install
 ```
 
-Run the Redis instance:
-```
-docker-compose up -d
-```
-
 Run both the client and server:
 ```
 yarn dev:all
