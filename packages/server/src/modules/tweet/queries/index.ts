@@ -1,1 +1,1 @@
-export * from './TimelineTweets';
+export * from './timelineTweets';

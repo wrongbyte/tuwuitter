@@ -1,5 +1,4 @@
 import '../../styles/global.css';
-import '../../styles/login.css';
 import '../../styles/home.css';
 import '../../styles/profile.css';
 const { graphql, useLazyLoadQuery } = require('react-relay');
