@@ -2,6 +2,9 @@ import { fromGlobalId } from 'graphql-relay';
 import '../../styles/global.css';
 import '../../styles/home.css';
 import '../../styles/profile.css';
+import { useMutation } from 'react-relay';
+import { UserFollow } from '../../relay/user/UserFollowMutation';
+import type { UserFollowMutation } from '../../relay/user/__generated__/UserFollowMutation.graphql';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function UserHeader({
@@ -27,6 +30,7 @@ export default function UserHeader({
   `);
 
   const userMongoId = fromGlobalId(userId as string).id;
+  const [followUser] = useMutation<UserFollowMutation>(UserFollow);
 
   return (
     <div className="user-header-info">
@@ -40,7 +44,21 @@ export default function UserHeader({
         ) : me.following.includes(userMongoId) ? (
           <button className="edit-profile-button font-bold cursor-default">Seguindo</button>
         ) : (
-          <button className="edit-profile-button font-bold">Seguir</button>
+          <button
+            className="edit-profile-button font-bold"
+            onClick={() => {
+              followUser({
+                variables: {
+                  username: username,
+                },
+                onCompleted() {
+                  window.location.reload();
+                },
+              });
+            }}
+          >
+            Seguir
+          </button>
         )}
       </div>
       <div className="user-info-profile">

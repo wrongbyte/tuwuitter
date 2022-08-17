@@ -41,13 +41,13 @@ export const FollowUserMutation = mutationWithClientMutationId({
     }
 
     await UserModel.findOneAndUpdate(
-      { _id: targetUser._id },
-      { $addToSet: { followers: ctx.user.id as any } }
+      { _id: ctx.user.id },
+      { $addToSet: { following: targetUser._id as any } }
     );
 
     const user = await UserModel.findOneAndUpdate(
-      { _id: ctx.user.id },
-      { $addToSet: { following: targetUser._id } },
+      { _id: targetUser._id },
+      { $addToSet: { followers: ctx.user.id as any } },
       { new: true }
     );
 
