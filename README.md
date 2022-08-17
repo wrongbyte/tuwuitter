@@ -4,11 +4,11 @@
 
 ### To-do list
 - [ ] clear unused dependencies
-- [ ] fix timeline bug
+- [x] fix timeline bug
 - [ ] redirect user to their profile when clicking on lateral bar icon
 - [ ] simplify register page
 - [ ] implement funcionality to post tweets on timeline component
-- [ ] implement follow feature
+- [x] implement follow feature
 - [ ] show followers in profiles
 - [ ] display following users' tweets on timeline
 - [ ] create error modal

@@ -1,3 +1,4 @@
+import { fromGlobalId } from 'graphql-relay';
 import '../../styles/global.css';
 import '../../styles/home.css';
 import '../../styles/profile.css';
@@ -8,19 +9,23 @@ export default function UserHeader({
   displayName,
   followingCount,
   followersCount,
+  userId,
 }: {
   username: string;
   displayName: string;
   followingCount?: number;
   followersCount?: number;
+  userId?: string;
 }) {
   const { me } = useLazyLoadQuery(graphql`
     query ProfileCurrentUserQuery {
       me {
         username
+        following
       }
     }
   `);
+  const userMongoId = fromGlobalId(userId as string).id;
 
   return (
     <div className="user-header-info">
@@ -31,6 +36,8 @@ export default function UserHeader({
         <img className="user-avatar-profile" src="default-pfp-tt.png"></img>
         {username === me.username ? (
           <button className="edit-profile-button cursor-default font-bold ">Editar perfil</button>
+        ) : me.following.includes(userMongoId) ? (
+          <button className="edit-profile-button font-bold cursor-default">Seguindo</button>
         ) : (
           <button className="edit-profile-button font-bold">Seguir</button>
         )}

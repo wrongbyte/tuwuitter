@@ -13,9 +13,17 @@ import '../../styles/global.css';
 import '../../styles/home.css';
 import '../../styles/profile.css';
 import { useState } from 'react';
+const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function LateralBar() {
   const [openNewTweetModal, setOpenTweetModal] = useState(false);
+  const { me } = useLazyLoadQuery(graphql`
+    query LateralBarQuery {
+      me {
+        username
+      }
+    }
+  `);
 
   return (
     <>
@@ -32,8 +40,7 @@ export default function LateralBar() {
           <MessagesIcon className="svg-small" />
           <SavedItemsIcon className="svg-small" />
           <ListsIcon className="svg-small" />
-          {/* TODO: change link to current user profile */}
-          <Link to="/user">
+          <Link to={`/user/${me.username}`}>
             <UserProfileIcon className="svg-small" />
           </Link>
           <MoreIcon className="svg-small" />

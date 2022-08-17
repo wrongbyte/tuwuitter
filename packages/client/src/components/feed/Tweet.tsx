@@ -2,12 +2,12 @@ import '../../styles/global.css';
 import '../../styles/login.css';
 import '../../styles/home.css';
 import '../../styles/profile.css';
-import '../../styles/global.css';
 import { ReactComponent as RepliesIcon } from '../../assets/replies.svg';
 import { ReactComponent as RetweetsIcon } from '../../assets/retweets.svg';
 import { ReactComponent as LikesIcon } from '../../assets/likes.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more-options-tweet.svg';
 import { ReactComponent as ShareIcon } from '../../assets/share.svg';
+import { Link } from 'react-router-dom';
 
 export default function Tweet({
   content,
@@ -24,8 +24,12 @@ export default function Tweet({
       <div className="tweet-content-column">
         <div className="flex justify-between">
           <div className="tweet-user-info-row flex gap-3">
-            <p className="text-white font-semibold">{displayName}</p>
-            <p className="dark-gray">@{username}</p>
+            <Link to={`/user/${username}`}>
+              <p className="text-white font-semibold">{displayName}</p>
+            </Link>
+            <Link to={`/user/${username}`}>
+              <p className="dark-gray">@{username}</p>
+            </Link>
             <p className="dark-gray"> · 1h</p>
           </div>
           <MoreIcon className="svg-smaller-gray cursor-pointer" />

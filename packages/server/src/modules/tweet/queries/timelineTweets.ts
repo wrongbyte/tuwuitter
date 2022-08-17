@@ -1,5 +1,5 @@
 import { withFilter, connectionArgs } from '@entria/graphql-mongo-helpers';
-import { GraphQLFieldConfig, GraphQLNonNull, GraphQLString } from 'graphql';
+import { GraphQLFieldConfig, GraphQLNonNull } from 'graphql';
 import { UserModel } from '../../user/userModel';
 import * as TweetLoader from '../TweetLoader';
 import { TweetConnection } from '../tweetType';
