@@ -25,6 +25,7 @@ export default function UserHeader({
       }
     }
   `);
+
   const userMongoId = fromGlobalId(userId as string).id;
 
   return (
@@ -43,31 +44,23 @@ export default function UserHeader({
         )}
       </div>
       <div className="user-info-profile">
-        {username ? (
-          <>
-            <p className="text-white font-bold text-xl">{displayName}</p>
-            <p className="username">@{username}</p>
-            <p className="text-white bio">404 bio not found</p>
-            <div className="flex text-white gap-4">
-              <span>
-                <strong>{followingCount}</strong> <span className="dark-gray">Seguindo</span>
-              </span>
-              <span>
-                <strong>{followersCount}</strong> <span className="dark-gray">Seguindo</span>
-              </span>
-            </div>
-            <nav className="flex justify-around nav-user font-semibold">
-              <div className="nav-user-active">Tweets</div>
-              <div className="nav-user-inactive">Tweets e respostas</div>
-              <div className="nav-user-inactive">Mídia</div>
-              <div className="nav-user-inactive">Curtidas</div>
-            </nav>
-          </>
-        ) : (
-          <>
-            <p className="text-white text-5xl text-center font-bold">Essa conta não existe.</p>
-          </>
-        )}
+        <p className="text-white font-bold text-xl">{displayName}</p>
+        <p className="username">@{username}</p>
+        <p className="text-white bio">404 bio not found</p>
+        <div className="flex text-white gap-4">
+          <span>
+            <strong>{followingCount}</strong> <span className="dark-gray">Seguindo</span>
+          </span>
+          <span>
+            <strong>{followersCount}</strong> <span className="dark-gray">Seguidores</span>
+          </span>
+        </div>
+        <nav className="flex justify-around nav-user font-semibold">
+          <div className="nav-user-active">Tweets</div>
+          <div className="nav-user-inactive">Tweets e respostas</div>
+          <div className="nav-user-inactive">Mídia</div>
+          <div className="nav-user-inactive">Curtidas</div>
+        </nav>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Tweet from '../feed/Tweet';
 import UserHeader from '../feed/Profile';
 import UserTopBar from './UserTopBar';
 import { useParams } from 'react-router-dom';
+import NotFoundUser from './NotFoundUser';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function UserPage() {
@@ -69,8 +70,7 @@ export default function UserPage() {
         </div>
       ) : (
         <div className="user-column">
-          <UserHeader username="" displayName="" />
-          <div className="profile-tweets-column"></div>
+          <NotFoundUser />
         </div>
       )}
     </MainColumn>
