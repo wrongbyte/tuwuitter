@@ -1,3 +1,6 @@
+import ModalLayout from '../components/ModalLayout';
+
+import ErrorModal from '../components/ErrorModal';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function Test() {
@@ -16,5 +19,5 @@ export default function Test() {
     { id: 'VXNlcjo2MmRmM2UyZDE3ODc2YWI0MjdlNmJlMmY=' }
   );
 
-  return <h1>{data.node?.username}</h1>;
+  return <ErrorModal phrase="Invalid token."></ErrorModal>;
 }

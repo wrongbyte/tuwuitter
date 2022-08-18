@@ -13,6 +13,8 @@ import { UserLogin } from '../relay/user/UserLoginMutation';
 import type { UserLoginMutation } from '../relay/user/__generated__/UserLoginMutation.graphql';
 import { updateAuthToken } from '../auth/jwt';
 import { useAuth } from '../auth/AuthContext';
+import ErrorModal from './ErrorModal';
+import { useState } from 'react';
 
 const loginSchema = object({
   username: string()
@@ -43,6 +45,7 @@ export default function LoginModal({
     defaultValues,
   });
   const [handleUserLogin] = useMutation<UserLoginMutation>(UserLogin);
+  const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const { loginUser } = useAuth();
   const navigate = useNavigate();
 
@@ -50,6 +53,10 @@ export default function LoginModal({
     handleUserLogin({
       variables: values,
       onCompleted: ({ userLoginMutation }, error) => {
+        if (error) {
+          const errorMessage = error[0].message || 'Unknown error';
+          setErrorStatus(errorMessage);
+        }
         if (error && error.length > 0) {
           return;
         }
@@ -61,6 +68,7 @@ export default function LoginModal({
   };
   return (
     <>
+      {errorStatus && <ErrorModal phrase={errorStatus as string} setErrorStatus={setErrorStatus} />}
       <div className="login-modal">
         <div className="login-wrapper">
           <div className="close-x" onClick={() => setOpenLoginModal(false)}>
