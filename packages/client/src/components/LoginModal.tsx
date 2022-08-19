@@ -54,7 +54,7 @@ export default function LoginModal({
       onCompleted: ({ userLoginMutation }, error) => {
         if (error && error.length > 0) {
           const errorMessage = error[0].message || 'Unknown error';
-          return setErrorStatus(errorMessage);
+          return setErrorStatus(`Error: ${errorMessage}`);
         }
         loginUser(userLoginMutation?.token as string);
         navigate(`/user/${userLoginMutation?.me?.username}`);
