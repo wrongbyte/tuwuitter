@@ -25,11 +25,20 @@ export const getUser = async (token: string | null | undefined) => {
     ).toString('utf-8');
     const decoded = jwt.verify(token, publickKey);
 
+    if (!decoded) {
+      return { user: null };
+    }
+
     const user = await UserModel.findById(decoded.sub);
+
+    if (!user) {
+      return { user: null };
+    }
+
     return {
       user,
     };
   } catch (error) {
-    throw new Error('Invalid token');
+    return { user: null };
   }
 };

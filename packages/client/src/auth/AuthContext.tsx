@@ -1,13 +1,8 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
-
-export interface User {
-  username: string;
-  displayName: string;
-  email: string;
-}
+import jwt_decode from 'jwt-decode';
 
 export interface UserContext {
-  user: User;
+  isLoggedIn: boolean;
   loginUser: (userData: any) => void;
 }
 
@@ -17,25 +12,34 @@ export function useAuth(): UserContext {
   return useContext(AuthContext) as UserContext;
 }
 
-//TODO: error handling
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-
-  function loginUser(userData: any) {
-    localStorage.setItem('user', JSON.stringify(userData));
-  }
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const storagedUser = localStorage.getItem('user');
     const storagedToken = localStorage.getItem('ACCESS_TOKEN');
 
-    if (storagedUser && storagedToken) {
-      setUser(JSON.parse(storagedUser));
+    if (storagedToken) {
+      const userToken: { sub: string; iat: number; exp: number } = jwt_decode(storagedToken);
+      const tokenExpirationDate = userToken.exp;
+      let currentDate = new Date();
+      if (tokenExpirationDate * 1000 < currentDate.getTime()) {
+        localStorage.removeItem('ACCESS_TOKEN');
+      } else {
+        setIsLoggedIn(true);
+      }
     }
   }, []);
 
+  const loginUser = (token?: string) => {
+    if (!token) {
+      localStorage.removeItem('ACCESS_TOKEN');
+    } else {
+      localStorage.setItem('ACCESS_TOKEN', token);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loginUser } as UserContext}>
+    <AuthContext.Provider value={{ isLoggedIn, loginUser } as UserContext}>
       {children}
     </AuthContext.Provider>
   );
