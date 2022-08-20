@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import ErrorModal from '../components/ErrorModal';
+import { useState } from 'react';
 import type { TestQuery$data } from './__generated__/TestQuery.graphql';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 

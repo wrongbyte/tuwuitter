@@ -53,7 +53,7 @@ body {
   transform: translateX(-50%);
   top: 50px;
   background-color: var(--dark-background);
-  z-index: 10;
+  z-index: 5;
 }
 
 .tweet-input {

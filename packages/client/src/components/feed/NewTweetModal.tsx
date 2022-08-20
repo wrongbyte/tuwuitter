@@ -6,6 +6,8 @@ import type { TweetCreateMutation } from '../../relay/tweet/__generated__/TweetC
 import { object, string, TypeOf } from 'zod';
 import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import ErrorModal from '../ErrorModal';
+import { useState } from 'react';
 
 const tweetSchema = object({
   content: string()
@@ -26,6 +28,7 @@ export default function NewTweetModal({
   setOpenTweetModal: Dispatch<SetStateAction<boolean>>;
 }) {
   const [handleSubmitTweet] = useMutation<TweetCreateMutation>(TweetCreate);
+  const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const {
     handleSubmit,
     register,
@@ -40,7 +43,8 @@ export default function NewTweetModal({
       variables: values,
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
-          return;
+          const errorMessage = error[0].message || 'Unknown error';
+          return setErrorStatus(`Error when posting tweet: ${errorMessage}`);
         }
         setOpenTweetModal(false);
       },
@@ -49,6 +53,7 @@ export default function NewTweetModal({
 
   return (
     <>
+      {errorStatus && <ErrorModal phrase={errorStatus as string} setErrorStatus={setErrorStatus} />}
       <div className="new-tweet-modal">
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <div className="close-x text-white" onClick={() => setOpenTweetModal(false)}>

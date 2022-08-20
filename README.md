@@ -13,8 +13,9 @@
 - [x] implement follow feature
 - [x] show followers in profiles
 - [x] display following users' tweets on timeline
-- [ ] create error modal
+- [x] create error modal
 - [x] remove unused fields (such as birthday)
+- [ ] update pages on change
 
 ### How to run
 

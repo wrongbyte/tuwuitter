@@ -4,13 +4,14 @@ import type { TweetCreateMutation } from '../../relay/tweet/__generated__/TweetC
 import { object, string, TypeOf } from 'zod';
 import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import ErrorModal from '../ErrorModal';
 
 const tweetSchema = object({
   content: string()
     .min(1, 'You cannot post an empty tweet.')
     .max(280, 'Maximum number of characters exceeded.'),
 });
-// todo: redirect if not logged in
 
 type ITweet = TypeOf<typeof tweetSchema>;
 
@@ -20,6 +21,7 @@ const defaultValues: ITweet = {
 
 export default function WriteTweetFeed() {
   const [handleSubmitTweet] = useMutation<TweetCreateMutation>(TweetCreate);
+  const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const {
     handleSubmit,
     register,
@@ -34,28 +36,34 @@ export default function WriteTweetFeed() {
       variables: values,
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
-          return;
+          const errorMessage = error[0].message || 'Unknown error';
+          return setErrorStatus(`Error when posting tweet: ${errorMessage}`);
         }
         window.location.reload();
       },
     });
   };
   return (
-    <div className="tweet-wrapper">
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="flex ml-4 mt-16 gap-5 ">
-          <img src="default-pfp-tt.png" className="tweet-avatar"></img>
-          <div className="tweet-input-wrapper-timeline">
-            <textarea
-              {...register('content')}
-              className="tweet-input"
-              placeholder="What's happening?"
-            />
+    <>
+      {errorStatus && <ErrorModal phrase={errorStatus as string} setErrorStatus={setErrorStatus} />}
+      <div className="tweet-wrapper">
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <div className="flex ml-4 mt-16 gap-5 ">
+            <img src="default-pfp-tt.png" className="tweet-avatar"></img>
+            <div className="tweet-input-wrapper-timeline">
+              <textarea
+                {...register('content')}
+                className="tweet-input"
+                placeholder="What's happening?"
+              />
+            </div>
           </div>
-        </div>
-        <button className="tweet-blue-button font-bold">Tweet</button>
-        {errors && <span className="text-red-500 -mt-3 -mb-3 ml-4">{errors.content?.message}</span>}
-      </form>
-    </div>
+          <button className="tweet-blue-button font-bold">Tweet</button>
+          {errors && (
+            <span className="text-red-500 -mt-3 -mb-3 ml-4">{errors.content?.message}</span>
+          )}
+        </form>
+      </div>
+    </>
   );
 }
