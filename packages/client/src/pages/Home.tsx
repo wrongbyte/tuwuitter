@@ -9,21 +9,25 @@ import { HomeTweetsQuery$data } from './__generated__/HomeTweetsQuery.graphql';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function Home() {
-  const { findTimelineTweets } = useLazyLoadQuery(graphql`
-    query HomeTweetsQuery {
-      findTimelineTweets {
-        edges {
-          node {
-            author {
-              username
-              displayName
+  const { findTimelineTweets } = useLazyLoadQuery(
+    graphql`
+      query HomeTweetsQuery {
+        findTimelineTweets {
+          edges {
+            node {
+              author {
+                username
+                displayName
+              }
+              content
             }
-            content
           }
         }
       }
-    }
-  `) as HomeTweetsQuery$data;
+    `,
+    {},
+    { fetchPolicy: 'store-or-network' }
+  ) as HomeTweetsQuery$data;
   return (
     <MainColumn>
       <LateralBar />

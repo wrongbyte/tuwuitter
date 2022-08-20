@@ -18,13 +18,17 @@ const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function LateralBar() {
   const [openNewTweetModal, setOpenTweetModal] = useState(false);
-  const { me } = useLazyLoadQuery(graphql`
-    query LateralBarQuery {
-      me {
-        username
+  const { me } = useLazyLoadQuery(
+    graphql`
+      query LateralBarQuery {
+        me {
+          username
+        }
       }
-    }
-  `) as LateralBarQuery$data;
+    `,
+    {},
+    { fetchPolicy: 'store-or-network' }
+  ) as LateralBarQuery$data;
 
   return (
     <>

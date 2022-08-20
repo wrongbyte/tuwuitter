@@ -9,7 +9,7 @@ export const findTimelineTweets: GraphQLFieldConfig<any, any, any> = {
   args: { ...connectionArgs },
   resolve: async (_, args, context) => {
     if (!context.user) {
-      throw new Error('Authentication error');
+      throw new Error('User not logged in');
     }
     const currentUser = await UserModel.findById(context.user._id);
     return await TweetLoader.loadAll(

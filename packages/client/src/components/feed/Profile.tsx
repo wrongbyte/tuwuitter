@@ -23,14 +23,18 @@ export default function UserHeader({
   followersCount?: number;
   userId?: string;
 }) {
-  const { me } = useLazyLoadQuery(graphql`
-    query ProfileCurrentUserQuery {
-      me {
-        username
-        following
+  const { me } = useLazyLoadQuery(
+    graphql`
+      query ProfileCurrentUserQuery {
+        me {
+          username
+          following
+        }
       }
-    }
-  `) as ProfileCurrentUserQuery$data;
+    `,
+    {},
+    { fetchPolicy: 'store-or-network' }
+  ) as ProfileCurrentUserQuery$data;
 
   const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const userMongoId = fromGlobalId(userId as string).id;

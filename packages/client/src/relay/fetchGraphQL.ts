@@ -16,7 +16,12 @@ export const fetchGraphQL = async (query: string, variables: Variables) => {
     }),
   });
 
-  const data = await response.json();
+  const result = await response.json();
 
-  return data;
+  // TODO: improve error handling
+  if (result != null && Array.isArray(result.errors)) {
+    localStorage.removeItem('ACCESS_TOKEN');
+    return { data: result.errors[0] };
+  }
+  return result;
 };

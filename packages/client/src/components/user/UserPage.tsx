@@ -41,7 +41,8 @@ export default function UserPage() {
         }
       }
     `,
-    { username: username }
+    { username: username },
+    { fetchPolicy: 'store-or-network' }
   ) as UserPageQuery$data;
 
   return (

@@ -8,7 +8,7 @@ export default function App() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
       <AuthProvider>
-        <Suspense fallback={<h1 className="text-white">Loading profile...</h1>}>
+        <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
           <AppRoutes />
         </Suspense>
       </AuthProvider>
