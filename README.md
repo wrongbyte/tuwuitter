@@ -16,6 +16,7 @@
 - [x] create error modal
 - [x] remove unused fields (such as birthday)
 - [ ] update pages on change
+- [ ] refactor repeated queries
 
 ### How to run
 

@@ -1,8 +1,7 @@
 import { Variables } from 'relay-runtime';
 
-const token = localStorage.getItem('ACCESS_TOKEN');
-
 export const fetchGraphQL = async (query: string, variables: Variables) => {
+  const token = localStorage.getItem('ACCESS_TOKEN');
   const response = await fetch(process.env.REACT_APP_API_URL as string, {
     method: 'POST',
     headers: {
@@ -20,8 +19,9 @@ export const fetchGraphQL = async (query: string, variables: Variables) => {
 
   // TODO: improve error handling
   if (result != null && Array.isArray(result.errors)) {
-    localStorage.removeItem('ACCESS_TOKEN');
-    return { data: result.errors[0] };
+    if (result.errors[0].message === 'User not logged in') {
+      localStorage.removeItem('ACCESS_TOKEN');
+    }
   }
   return result;
 };
