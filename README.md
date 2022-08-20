@@ -8,7 +8,7 @@
 - [ ] clear unused dependencies
 - [x] fix timeline bug
 - [x] redirect user to their profile when clicking on lateral bar icon
-- [ ] simplify register page
+- [x] simplify register page
 - [x] implement funcionality to post tweets on timeline component
 - [x] implement follow feature
 - [x] show followers in profiles

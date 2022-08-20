@@ -22,7 +22,7 @@ export const userLoginMutation = mutationWithClientMutationId({
       throw new Error('Incorrect password');
     }
 
-    const { access_token, refresh_token } = await signTokens(user);
+    const { access_token } = await signTokens(user);
     return {
       access_token,
       user,

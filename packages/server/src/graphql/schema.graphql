@@ -97,7 +97,8 @@ type Mutation {
 }
 
 type CreateUserPayload {
-  user: User
+  token: String
+  me: User
   clientMutationId: String
 }
 

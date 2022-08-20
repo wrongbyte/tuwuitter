@@ -11,6 +11,9 @@ export const UserCreate = graphql`
       input: { username: $username, displayName: $displayName, email: $email, password: $password }
     ) {
       token
+      me {
+        username
+      }
     }
   }
 `;

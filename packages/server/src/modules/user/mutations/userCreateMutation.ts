@@ -35,6 +35,8 @@ export const CreateUserMutation = mutationWithClientMutationId({
       ...accountInfo,
     });
 
+    await user.save();
+
     const { access_token } = await signTokens(user);
 
     return {
@@ -49,7 +51,7 @@ export const CreateUserMutation = mutationWithClientMutationId({
       resolve: ({ access_token }) => access_token,
     },
 
-    user: {
+    me: {
       type: UserType,
       resolve: ({ user }) => user,
     },
