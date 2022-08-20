@@ -1,5 +1,3 @@
-import ModalLayout from '../components/ModalLayout';
-
 import ErrorModal from '../components/ErrorModal';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 

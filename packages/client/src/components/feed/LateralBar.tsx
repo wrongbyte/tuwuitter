@@ -7,6 +7,7 @@ import { ReactComponent as ListsIcon } from '../../assets/lists.svg';
 import { ReactComponent as UserProfileIcon } from '../../assets/profile.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more.svg';
 import { ReactComponent as WriteTweetIcon } from '../../assets/writetweet.svg';
+import type { LateralBarQuery$data } from './__generated__/LateralBarQuery.graphql';
 import { Link } from 'react-router-dom';
 import NewTweetModal from './NewTweetModal';
 import '../../styles/global.css';
@@ -23,7 +24,7 @@ export default function LateralBar() {
         username
       }
     }
-  `);
+  `) as LateralBarQuery$data;
 
   return (
     <>
@@ -40,7 +41,7 @@ export default function LateralBar() {
           <MessagesIcon className="svg-small" />
           <SavedItemsIcon className="svg-small" />
           <ListsIcon className="svg-small" />
-          <Link to={`/user/${me.username}`}>
+          <Link to={`/user/${me?.username}`}>
             <UserProfileIcon className="svg-small" />
           </Link>
           <MoreIcon className="svg-small" />
