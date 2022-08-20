@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { getAuthToken } from './auth/jwt';
+
+const getAuthToken = () => localStorage.getItem('ACCESS_TOKEN');
 
 export const RequireAuthLayout = () => {
   const location = useLocation();

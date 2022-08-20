@@ -15,7 +15,7 @@ export default function Tweet({
   username,
 }: {
   content: string;
-  displayName: string;
+  displayName: string | null;
   username: string;
 }) {
   return (
@@ -25,7 +25,7 @@ export default function Tweet({
         <div className="flex justify-between">
           <div className="tweet-user-info-row flex gap-3">
             <Link to={`/user/${username}`}>
-              <p className="text-white font-semibold">{displayName}</p>
+              <p className="text-white font-semibold">{displayName || ''}</p>
             </Link>
             <Link to={`/user/${username}`}>
               <p className="dark-gray">@{username}</p>

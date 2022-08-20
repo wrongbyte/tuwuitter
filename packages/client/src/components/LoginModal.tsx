@@ -11,7 +11,6 @@ import { object, string, TypeOf } from 'zod';
 import { useMutation } from 'react-relay';
 import { UserLogin } from '../relay/user/UserLoginMutation';
 import type { UserLoginMutation } from '../relay/user/__generated__/UserLoginMutation.graphql';
-import { updateAuthToken } from '../auth/jwt';
 import { useAuth } from '../auth/AuthContext';
 import ErrorModal from './ErrorModal';
 import { useState } from 'react';
@@ -53,15 +52,11 @@ export default function LoginModal({
     handleUserLogin({
       variables: values,
       onCompleted: ({ userLoginMutation }, error) => {
-        if (error) {
-          const errorMessage = error[0].message || 'Unknown error';
-          setErrorStatus(errorMessage);
-        }
         if (error && error.length > 0) {
-          return;
+          const errorMessage = error[0].message || 'Unknown error';
+          return setErrorStatus(`Error: ${errorMessage}`);
         }
-        updateAuthToken(userLoginMutation?.token as string);
-        loginUser(userLoginMutation?.me);
+        loginUser(userLoginMutation?.token as string);
         navigate(`/user/${userLoginMutation?.me?.username}`);
       },
     });

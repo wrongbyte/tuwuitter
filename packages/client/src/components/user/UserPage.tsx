@@ -8,6 +8,7 @@ import UserHeader from '../feed/Profile';
 import UserTopBar from './UserTopBar';
 import { useParams } from 'react-router-dom';
 import NotFoundUser from './NotFoundUser';
+import type { UserPageQuery$data } from './__generated__/UserPageQuery.graphql';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function UserPage() {
@@ -41,7 +42,7 @@ export default function UserPage() {
       }
     `,
     { username: username }
-  );
+  ) as UserPageQuery$data;
 
   return (
     <MainColumn>
@@ -52,12 +53,12 @@ export default function UserPage() {
           <UserHeader
             username={findUserByUsername.username as string}
             displayName={findUserByUsername.displayName as string}
-            followingCount={findUserByUsername.following.length}
-            followersCount={findUserByUsername.followers.length}
+            followingCount={findUserByUsername?.following?.length}
+            followersCount={findUserByUsername?.followers?.length}
             userId={findUserByUsername.id}
           />
           <div className="profile-tweets-column">
-            {findUserByUsername.tweets.edges.map((tweet: any) => {
+            {findUserByUsername?.tweets?.edges?.map((tweet: any) => {
               return (
                 <Tweet
                   content={tweet.node.content}
