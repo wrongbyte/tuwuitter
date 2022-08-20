@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 
 export default function ErrorModal({

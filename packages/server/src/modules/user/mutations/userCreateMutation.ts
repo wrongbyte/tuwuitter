@@ -3,6 +3,7 @@ import { mutationWithClientMutationId } from 'graphql-relay';
 import { UserModel } from '../userModel';
 import { UserType } from '../userType';
 import { User } from '../userModel';
+import { signTokens } from '../userAuth';
 import { findUserByEmail, findUserByUsername } from '../userService';
 
 export const CreateUserMutation = mutationWithClientMutationId({
@@ -34,13 +35,23 @@ export const CreateUserMutation = mutationWithClientMutationId({
       ...accountInfo,
     });
 
-    return user.save();
+    const { access_token } = await signTokens(user);
+
+    return {
+      access_token,
+      user,
+    };
   },
 
   outputFields: {
+    token: {
+      type: GraphQLString,
+      resolve: ({ access_token }) => access_token,
+    },
+
     user: {
       type: UserType,
-      resolve: async ({ email }) => findUserByEmail({ email }),
+      resolve: ({ user }) => user,
     },
   },
 });

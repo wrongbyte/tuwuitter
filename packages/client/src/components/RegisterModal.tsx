@@ -4,8 +4,10 @@ import '../styles/home.css';
 import '../styles/profile.css';
 import '../styles/global.css';
 import '../styles/login.css';
-import { Dispatch, SetStateAction } from 'react';
-import { Link } from 'react-router-dom';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import ErrorModal from './ErrorModal';
 
 export default function RegisterModal({
   setOpenRegisterModal,
@@ -21,21 +23,17 @@ export default function RegisterModal({
           </div>
           <img className="img-modal-login" src="twitter-xxl.png" alt="" />
           <p className="join-phrase-login">Join Tuwuitter today :3 </p>
-          <button className="button-white-modal-login">Sign up with Google</button>
-          <button className="button-white-modal-login font-bold">Sign up with Apple</button>
-          <p className="or-text">or</p>
-          <button className="button-white-modal-login font-bold">
-            <Link to="/register">Sign up with phone or email</Link>
-          </button>
-
-          <p className="policy">
-            By signing up, you agree to the <span className="highlight">Terms of Service</span> and{' '}
-            <span className="highlight">Privacy Policy</span>, including{' '}
-            <span className="highlight">Cookie Use</span>.
-          </p>
-          <p className="policy">
-            Have an account already? <span className="highlight">Log in</span>
-          </p>
+          <form className="flex flex-col gap-6">
+            <input type="search" className="login-input-register" placeholder="Name" />
+            <input type="search" className="login-input-register" placeholder="Username" />
+            <input type="search" className="login-input-register" placeholder="Email" />
+            <input type="search" className="login-input-register" placeholder="Password" />
+            <input
+              type="submit"
+              className="button-white-modal-login font-bold cursor-pointer self-center"
+              value="Next"
+            />
+          </form>
         </div>
       </div>
       <div className="modalBackground"></div>
