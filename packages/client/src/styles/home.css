@@ -4,7 +4,7 @@ body {
 
 .main-column-app {
   padding-top: 10px;
-  height: 100vh;
+  height: 100%;
   border-right: 1px solid var(--dark-gray);
 }
 
