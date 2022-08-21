@@ -12,7 +12,7 @@ export default function Home() {
   const { findTimelineTweets } = useLazyLoadQuery(
     graphql`
       query HomeTweetsQuery {
-        findTimelineTweets {
+        findTimelineTweets(first: 100) {
           edges {
             node {
               author {

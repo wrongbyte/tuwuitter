@@ -28,7 +28,7 @@ export default function UserPage() {
           followers
           following
           id
-          tweets {
+          tweets(first: 100) {
             edges {
               node {
                 content

@@ -5,7 +5,7 @@
 ## WORK IN PROGRESS
 
 ### To-do list
-- [ ] clear unused dependencies
+- [ ] clean unused dependencies
 - [x] fix timeline bug
 - [x] redirect user to their profile when clicking on lateral bar icon
 - [x] simplify register page
@@ -17,6 +17,8 @@
 - [x] remove unused fields (such as birthday)
 - [ ] update pages on change
 - [ ] refactor repeated queries
+- [ ] add timestamps and sort by last posted
+- [ ] add pagination
 
 ### How to run
 

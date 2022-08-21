@@ -11,10 +11,12 @@ export const findTimelineTweets: GraphQLFieldConfig<any, any, any> = {
     if (!context.user) {
       throw new Error('User not logged in');
     }
+
     const currentUser = await UserModel.findById(context.user._id);
+    const displayedUsers = currentUser.following.concat(context.user._id);
     return await TweetLoader.loadAll(
       context,
-      withFilter(args, { author: { $in: currentUser.following } })
+      withFilter(args, { author: { $in: displayedUsers } })
     );
   },
 };
