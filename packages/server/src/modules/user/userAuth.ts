@@ -8,11 +8,7 @@ export const signTokens = async (user) => {
     expiresIn: `${parseInt(process.env.ACCESS_TOKEN_TIMEOUT)}m`,
   });
 
-  const refresh_token = signJWT({ sub: user.id }, 'REFRESHTOKEN_PRIVATE_KEY', {
-    expiresIn: `${parseInt(process.env.REFRESH_TOKEN_TIMEOUT)}m`,
-  });
-
-  return { access_token, refresh_token };
+  return { access_token };
 };
 
 export const getUser = async (token: string | null | undefined) => {
