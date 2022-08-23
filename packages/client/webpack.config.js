@@ -15,6 +15,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.join(cwd, 'dist'),
+    assetModuleFilename: '[name][ext]',
     publicPath: '/',
   },
   resolve: {

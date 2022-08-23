@@ -1,7 +1,5 @@
 import '../styles/global.css';
 import '../styles/login.css';
-import '../styles/home.css';
-import '../styles/profile.css';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +12,7 @@ import type { UserLoginMutation } from '../relay/user/__generated__/UserLoginMut
 import { useAuth } from '../auth/AuthContext';
 import ErrorModal from './ErrorModal';
 import { useState } from 'react';
+import TwitterIcon from '../assets/twitter-xxl.png';
 
 const loginSchema = object({
   username: string()
@@ -69,7 +68,7 @@ export default function LoginModal({
           <div className="close-x" onClick={() => setOpenLoginModal(false)}>
             x
           </div>
-          <img className="img-modal-login" src="twitter-xxl.png" alt="" />
+          <img className="img-modal-login" src={TwitterIcon} alt="" />
           <p className="join-phrase-login">Sign in to Tuwuitter :3 </p>
 
           <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmitHandler)}>

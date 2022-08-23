@@ -7,6 +7,7 @@ import { ReactComponent as RetweetsIcon } from '../../assets/retweets.svg';
 import { ReactComponent as LikesIcon } from '../../assets/likes.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more-options-tweet.svg';
 import { ReactComponent as ShareIcon } from '../../assets/share.svg';
+import ProfilePicture from '../../assets/default-pfp-tt.png';
 import { Link } from 'react-router-dom';
 
 export default function Tweet({
@@ -20,7 +21,7 @@ export default function Tweet({
 }) {
   return (
     <div className="tweet-wrapper">
-      <img src="default-pfp-tt.png" className="tweet-avatar"></img>
+      <img src={ProfilePicture} className="tweet-avatar"></img>
       <div className="tweet-content-column">
         <div className="flex justify-between">
           <div className="tweet-user-info-row flex gap-3">

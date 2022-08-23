@@ -10,6 +10,7 @@ import type { UserCreateMutation } from '../relay/user/__generated__/UserCreateM
 import ErrorModal from './ErrorModal';
 import { useAuth } from '../auth/AuthContext';
 import { object, string, TypeOf } from 'zod';
+import TwitterIcon from '../assets/twitter-xxl.png';
 
 const registerSchema = object({
   username: string()
@@ -71,7 +72,7 @@ export default function RegisterModal({
           <div className="close-x" onClick={() => setOpenRegisterModal(false)}>
             x
           </div>
-          <img className="img-modal-login" src="twitter-xxl.png" alt="" />
+          <img className="img-modal-login" src={TwitterIcon} alt="twitter icon" />
           <p className="join-phrase-login">Join Tuwuitter today :3 </p>
           <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmitHandler)}>
             <input

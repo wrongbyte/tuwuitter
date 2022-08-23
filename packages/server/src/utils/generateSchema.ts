@@ -4,13 +4,14 @@ import { printSchema } from 'graphql/utilities';
 
 import { schema } from '../graphql/schema';
 
-const pwd = process.cwd();
-
 const schemaFile = 'schema.graphql';
 
 const generateSchema = async () => {
   try {
-    const config = { schema, path: path.join(pwd, '../graphql', schemaFile) };
+    const config = {
+      schema,
+      path: path.join(__dirname, '../graphql', schemaFile),
+    };
     await fs.writeFile(config.path, printSchema(config.schema));
   } catch (error) {
     console.log(error);

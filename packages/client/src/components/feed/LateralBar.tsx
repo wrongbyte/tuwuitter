@@ -8,6 +8,7 @@ import { ReactComponent as UserProfileIcon } from '../../assets/profile.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more.svg';
 import { ReactComponent as WriteTweetIcon } from '../../assets/writetweet.svg';
 import type { LateralBarQuery$data } from './__generated__/LateralBarQuery.graphql';
+import TwitterIcon from '../../assets/twitter-xxl.png';
 import { Link } from 'react-router-dom';
 import NewTweetModal from './NewTweetModal';
 import '../../styles/global.css';
@@ -35,7 +36,7 @@ export default function LateralBar() {
       {openNewTweetModal !== false && <NewTweetModal setOpenTweetModal={setOpenTweetModal} />}
       <aside className="lateralbar-wrapper">
         <div className="lateralbar-icons">
-          <img className="twitter-icon-lateralbar" src="twitter-xxl.png"></img>
+          <img className="twitter-icon-lateralbar" src={TwitterIcon} alt="twitter icon"></img>
 
           <Link to="/home">
             <HomeIcon className="svg-small" />

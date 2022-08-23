@@ -6,6 +6,7 @@ import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
+import ProfilePicture from '../../assets/default-pfp-tt.png';
 
 const tweetSchema = object({
   content: string()
@@ -49,7 +50,7 @@ export default function WriteTweetFeed() {
       <div className="tweet-wrapper">
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <div className="flex ml-4 mt-16 gap-5 ">
-            <img src="default-pfp-tt.png" className="tweet-avatar"></img>
+            <img src={ProfilePicture} className="tweet-avatar"></img>
             <div className="tweet-input-wrapper-timeline">
               <textarea
                 {...register('content')}

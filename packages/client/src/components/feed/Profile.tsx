@@ -8,6 +8,8 @@ import type { UserFollowMutation } from '../../relay/user/__generated__/UserFoll
 import type { ProfileCurrentUserQuery$data } from './__generated__/ProfileCurrentUserQuery.graphql';
 import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
+import ProfileHeader from '../../assets/tt-header-test.png';
+import ProfilePicture from '../../assets/default-pfp-tt.png';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function UserHeader({
@@ -45,10 +47,10 @@ export default function UserHeader({
       {errorStatus && <ErrorModal phrase={errorStatus as string} setErrorStatus={setErrorStatus} />}
       <div className="user-header-info">
         <div className="user-profile-cover">
-          <img className="user-image-cover" src="tt-header-test.png"></img>
+          <img className="user-image-cover" src={ProfileHeader}></img>
         </div>
         <div className="flex justify-between">
-          <img className="user-avatar-profile" src="default-pfp-tt.png"></img>
+          <img className="user-avatar-profile" src={ProfilePicture}></img>
           {username === me?.username ? (
             <button className="edit-profile-button cursor-default font-bold ">Editar perfil</button>
           ) : me?.following?.includes(userMongoId) ? (
