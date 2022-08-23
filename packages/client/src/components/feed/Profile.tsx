@@ -68,7 +68,6 @@ export default function UserHeader({
                       const errorMessage = error[0].message || 'Unknown error';
                       return setErrorStatus(`Error when following user: ${errorMessage}`);
                     }
-                    window.location.reload();
                   },
                 });
               }}

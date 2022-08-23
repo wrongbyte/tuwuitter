@@ -14,7 +14,7 @@ const app = new Koa();
 const static_pages = new Koa();
 const router = new Router();
 
-const REACT_ROUTER_PATHS = ['/login', '/home', '/user/'];
+const REACT_ROUTER_PATHS = ['/login', '/home'];
 
 const graphqlSettingsPerRequest = async (
   _req: Request,
@@ -39,7 +39,11 @@ static_pages.use(serve(path.resolve(__dirname + '../../../client/dist')));
 
 app
   .use(async (ctx, next) => {
-    if (REACT_ROUTER_PATHS.includes(ctx.request.path)) {
+    // ¯\_(ツ)_/¯
+    if (
+      REACT_ROUTER_PATHS.includes(ctx.request.path) ||
+      ctx.request.path.match('/user/')
+    ) {
       ctx.request.path = '/';
     }
     await next();

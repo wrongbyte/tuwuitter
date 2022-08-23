@@ -1,4 +1,3 @@
-import '../styles/global.css';
 import '../styles/login.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
