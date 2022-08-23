@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "schema": "ts-node src/utils/generateSchema.ts",
+    "postinstall": "yarn build && yarn schema",
     "start": "node build/src/index.js",
     "lint": "eslint --fix"
   },
