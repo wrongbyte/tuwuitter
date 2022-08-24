@@ -6,6 +6,7 @@
   "repository": "git@github.com:wrongbyte/tuwuitter.git",
   "author": "wrongbyte <57643375+wrongbyte@users.noreply.github.com>",
   "license": "MIT",
+  "engines": { "node": "17.9.0" },
   "workspaces": {
     "packages": [
       "packages/*"
@@ -22,10 +23,11 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "yarn dev:all",
+    "postinstall": "yarn workspace @tuwuitter/client relay && yarn workspace @tuwuitter/client webpack",
+    "start": "yarn workspace @tuwuitter/server start",
     "dev:all": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
     "dev:server": "yarn workspace @tuwuitter/server dev",
-    "dev:client": "yarn workspace @tuwuitter/client start",
-    "compile-relay": "yarn workspace @tuwuitter/client relay"
+    "dev:client": "yarn workspace @tuwuitter/client start"
   },
   "dependencies": {
     "commitlint": "^17.0.3",

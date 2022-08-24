@@ -8,6 +8,7 @@ import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ErrorModal from '../ErrorModal';
 import { useState } from 'react';
+import ProfilePicture from '../../assets/default-pfp-tt.png';
 
 const tweetSchema = object({
   content: string()
@@ -60,7 +61,7 @@ export default function NewTweetModal({
             x
           </div>
           <div className="flex ml-4 mt-16 gap-5 ">
-            <img src="default-pfp-tt.png" className="tweet-avatar"></img>
+            <img src={ProfilePicture} className="tweet-avatar"></img>
             <div className="tweet-input-wrapper">
               <textarea
                 className="tweet-input"

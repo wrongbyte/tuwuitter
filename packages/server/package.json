@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": { "node": "17.9.0" },
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "schema": "ts-node src/utils/generateSchema.ts",
+    "postinstall": "yarn build && yarn schema",
+    "start": "node build/src/index.js",
     "lint": "eslint --fix"
   },
   "devDependencies": {
@@ -40,6 +45,8 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-graphql": "^0.12.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
     "mongoose": "^6.5.1",
     "ts-node-dev": "^2.0.0"
   }

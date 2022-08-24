@@ -3,6 +3,7 @@ import '../styles/login.css';
 import LoginBar from '../components/LoginBar';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import TwitterIcon from '../assets/twitter-xxl.png';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function LoginPage() {
   return (
     <main className="login-page-main flex justify-center">
       <div className="content-login">
-        <img className="login-white-logo" src="twitter-xxl.png" />
+        <img className="login-white-logo" src={TwitterIcon} alt="twitter icon" />
         <form>
           <input type="search" className="search" placeholder="Search Twitter" />
         </form>
