@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": { "node": "17.9.0" },
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -6,6 +6,7 @@
   "repository": "git@github.com:wrongbyte/tuwuitter.git",
   "author": "wrongbyte <57643375+wrongbyte@users.noreply.github.com>",
   "license": "MIT",
+  "engines": { "node": "17.9.0" },
   "workspaces": {
     "packages": [
       "packages/*"
