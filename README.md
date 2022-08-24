@@ -27,8 +27,7 @@ Install the dependencies
 yarn install
 ```
 
-Run both the client and server:
 ```
-yarn dev:all
+yarn start
 ```
-The frontend will be initialized in `localhost:8080`.
+The frontend will be initialized in `localhost:3001`.
