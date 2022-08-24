@@ -23,7 +23,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "yarn dev:all",
-    "postinstall": "yarn workspace @tuwuitter/client webpack && yarn workspace @tuwuitter/client relay",
+    "postinstall": "yarn workspace @tuwuitter/client relay && yarn workspace @tuwuitter/client webpack",
     "start": "yarn workspace @tuwuitter/server start",
     "dev:all": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
     "dev:server": "yarn workspace @tuwuitter/server dev",
