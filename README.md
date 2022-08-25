@@ -4,22 +4,6 @@
 
 ## WORK IN PROGRESS
 
-### To-do list
-- [ ] clean unused dependencies
-- [x] fix timeline bug
-- [x] redirect user to their profile when clicking on lateral bar icon
-- [x] simplify register page
-- [x] implement funcionality to post tweets on timeline component
-- [x] implement follow feature
-- [x] show followers in profiles
-- [x] display following users' tweets on timeline
-- [x] create error modal
-- [x] remove unused fields (such as birthday)
-- [ ] update pages on change
-- [ ] refactor repeated queries
-- [ ] add timestamps and sort by last posted
-- [ ] add pagination
-
 ### How to run
 
 Install the dependencies
