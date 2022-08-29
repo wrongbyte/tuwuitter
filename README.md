@@ -4,14 +4,13 @@
 
 ## WORK IN PROGRESS
 
-### How to run
+### How to run in dev mode
 
 Install the dependencies
 ```
 yarn install
 ```
-
+Fill the envs and generate the `graphql.schema` file. Then, run 
 ```
-yarn start
+yarn dev:all
 ```
-The frontend will be initialized in `localhost:3001`.
