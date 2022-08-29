@@ -58,7 +58,7 @@ export default function UserHeader({
         <div className="flex justify-between">
           <img className="user-avatar-profile" src={ProfilePicture}></img>
           {username === me?.username ? (
-            <button className="edit-profile-button cursor-default font-bold">Editar perfil</button>
+            <button className="edit-profile-button cursor-default font-bold">Edit profile</button>
           ) : meIsFollowingUser ? (
             <button
               className="edit-profile-button font-bold"
@@ -77,7 +77,7 @@ export default function UserHeader({
                 });
               }}
             >
-              Seguindo
+              Following
             </button>
           ) : (
             <button
@@ -97,7 +97,7 @@ export default function UserHeader({
                 });
               }}
             >
-              Seguir
+              Follow
             </button>
           )}
         </div>
@@ -107,17 +107,17 @@ export default function UserHeader({
           <p className="text-white bio">404 bio not found</p>
           <div className="flex text-white gap-4">
             <span>
-              <strong>{followingCount}</strong> <span className="dark-gray">Seguindo</span>
+              <strong>{followingCount}</strong> <span className="dark-gray">Following</span>
             </span>
             <span>
-              <strong>{followersCount}</strong> <span className="dark-gray">Seguidores</span>
+              <strong>{followersCount}</strong> <span className="dark-gray">Followers</span>
             </span>
           </div>
           <nav className="flex justify-around nav-user font-semibold">
             <div className="nav-user-active">Tweets</div>
-            <div className="nav-user-inactive">Tweets e respostas</div>
-            <div className="nav-user-inactive">Mídia</div>
-            <div className="nav-user-inactive">Curtidas</div>
+            <div className="nav-user-inactive">Tweets and replies</div>
+            <div className="nav-user-inactive">Media</div>
+            <div className="nav-user-inactive">Likes</div>
           </nav>
         </div>
       </div>
