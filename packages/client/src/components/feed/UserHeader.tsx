@@ -8,7 +8,7 @@ import type { UserFollowMutation } from '../../relay/user/__generated__/UserFoll
 import type { UserHeaderQuery$data } from './__generated__/UserHeaderQuery.graphql';
 import { UserUnfollow } from '../../relay/user/UserUnfollowMutation';
 import type { UserUnfollowMutation } from '../../relay/user/__generated__/UserUnfollowMutation.graphql';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
 import ProfileHeader from '../../assets/tt-header-test.png';
 import ProfilePicture from '../../assets/default-pfp-tt.png';
