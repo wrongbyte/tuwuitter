@@ -8,7 +8,7 @@ import type { UserFollowMutation } from '../../relay/user/__generated__/UserFoll
 import type { UserHeaderQuery$data } from './__generated__/UserHeaderQuery.graphql';
 import { UserUnfollow } from '../../relay/user/UserUnfollowMutation';
 import type { UserUnfollowMutation } from '../../relay/user/__generated__/UserUnfollowMutation.graphql';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorModal from '../ErrorModal';
 import ProfileHeader from '../../assets/tt-header-test.png';
 import ProfilePicture from '../../assets/default-pfp-tt.png';
@@ -37,11 +37,14 @@ export default function UserHeader({
       }
     `,
     {},
-    { fetchPolicy: 'store-or-network' }
+    { fetchPolicy: 'network-only' }
   ) as UserHeaderQuery$data;
 
   const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const userMongoId = fromGlobalId(userId as string).id;
+  const [meIsFollowingUser, updateFollowingState] = useState<boolean>(
+    me?.following?.includes(userMongoId) || false
+  );
   const [followUser] = useMutation<UserFollowMutation>(UserFollow);
   const [unfollowUser] = useMutation<UserUnfollowMutation>(UserUnfollow);
 
@@ -56,7 +59,7 @@ export default function UserHeader({
           <img className="user-avatar-profile" src={ProfilePicture}></img>
           {username === me?.username ? (
             <button className="edit-profile-button cursor-default font-bold">Editar perfil</button>
-          ) : me?.following?.includes(userMongoId) ? (
+          ) : meIsFollowingUser ? (
             <button
               className="edit-profile-button font-bold"
               onClick={() => {
@@ -69,6 +72,7 @@ export default function UserHeader({
                       const errorMessage = error[0].message || 'Unknown error';
                       return setErrorStatus(`Error when unfollowing user: ${errorMessage}`);
                     }
+                    updateFollowingState(false);
                   },
                 });
               }}
@@ -88,6 +92,7 @@ export default function UserHeader({
                       const errorMessage = error[0].message || 'Unknown error';
                       return setErrorStatus(`Error when following user: ${errorMessage}`);
                     }
+                    updateFollowingState(true);
                   },
                 });
               }}
