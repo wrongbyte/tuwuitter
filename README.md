@@ -14,3 +14,6 @@ Fill the envs and generate the `graphql.schema` file. Then, run
 ```
 yarn dev:all
 ```
+
+It's also important to note that, if you run this app in dev mode, it will run two instances (backend and frontend), since it uses webpack dev server with hot reload and ts-node-dev. Therefore, you should alter the `fetchGraphQL.ts` file to point to this URL when running locally.
+In production, the frontend is served from the koa server.
