@@ -1,14 +1,12 @@
-import '../../styles/global.css';
-import '../../styles/profile.css';
-import MainColumn from '../feed/MainColumn';
-import LateralBar from '../feed/LateralBar';
+import MainColumn from '../components/feed/MainColumn';
+import LateralBar from '../components/feed/LateralBar';
 import { useNavigate } from 'react-router-dom';
-import Tweet from '../feed/Tweet';
-import UserHeader from '../feed/UserHeader';
-import UserTopBar from './UserTopBar';
+import Tweet from '../components/feed/Tweet';
+import UserHeader from '../components/feed/UserHeader';
+import UserTopBar from '../components/user/UserTopBar';
 import { useParams } from 'react-router-dom';
-import NotFoundUser from './NotFoundUser';
-import type { UserPageQuery$data } from './__generated__/UserPageQuery.graphql';
+import NotFoundUser from '../components/user/NotFoundUser';
+import type { UserPageQuery$data } from '../components/user/__generated__/UserPageQuery.graphql';
 const { graphql, useLazyLoadQuery } = require('react-relay');
 
 export default function UserPage() {
@@ -35,6 +33,7 @@ export default function UserPage() {
                 likedBy
                 retweetedBy
                 replies
+                createdAt
               }
             }
           }
@@ -65,6 +64,7 @@ export default function UserPage() {
                   content={tweet.node.content}
                   displayName={findUserByUsername.displayName}
                   username={findUserByUsername.username}
+                  createdAt={tweet.node.createdAt}
                 />
               );
             })}

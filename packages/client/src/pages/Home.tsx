@@ -20,6 +20,7 @@ export default function Home() {
                 displayName
               }
               content
+              createdAt
             }
           }
         }
@@ -39,6 +40,7 @@ export default function Home() {
               content={tweet.node.content}
               displayName={tweet.node.author.displayName}
               username={tweet.node.author.username}
+              createdAt={tweet.node.createdAt}
             />
           );
         })}

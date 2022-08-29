@@ -9,15 +9,18 @@ import { ReactComponent as MoreIcon } from '../../assets/more-options-tweet.svg'
 import { ReactComponent as ShareIcon } from '../../assets/share.svg';
 import ProfilePicture from '../../assets/default-pfp-tt.png';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 export default function Tweet({
   content,
   displayName,
   username,
+  createdAt,
 }: {
   content: string;
   displayName: string | null;
   username: string;
+  createdAt: string;
 }) {
   return (
     <div className="tweet-wrapper">
@@ -31,7 +34,7 @@ export default function Tweet({
             <Link to={`/user/${username}`}>
               <p className="dark-gray">@{username}</p>
             </Link>
-            <p className="dark-gray"> · 1h</p>
+            <p className="dark-gray"> · {moment(createdAt).fromNow()}</p>
           </div>
           <MoreIcon className="svg-smaller-gray cursor-pointer" />
         </div>

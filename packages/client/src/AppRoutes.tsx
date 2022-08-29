@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
-import UserPage from './components/user/UserPage';
+import UserPage from './pages/UserPage';
 import { RequireAuthLayout } from './RequireAuthLayout';
 // import Test from './pages/Test';
 
