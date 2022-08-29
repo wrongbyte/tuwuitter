@@ -4,7 +4,7 @@ import MainColumn from '../feed/MainColumn';
 import LateralBar from '../feed/LateralBar';
 import { useNavigate } from 'react-router-dom';
 import Tweet from '../feed/Tweet';
-import UserHeader from '../feed/Profile';
+import UserHeader from '../feed/UserHeader';
 import UserTopBar from './UserTopBar';
 import { useParams } from 'react-router-dom';
 import NotFoundUser from './NotFoundUser';

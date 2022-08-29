@@ -92,6 +92,11 @@ type Mutation {
   """
   FollowUserMutation(input: FolowUserInput!): FolowUserPayload
 
+  """
+  Removes the target user from the list of followed accounts of current user logged in
+  """
+  UnfollowUserMutation(input: UnfolowUserInput!): UnfolowUserPayload
+
   """Posts a new tweet"""
   CreateTweetMutation(input: CreateTweetInput!): CreateTweetPayload
 }
@@ -128,6 +133,16 @@ type FolowUserPayload {
 }
 
 input FolowUserInput {
+  username: String!
+  clientMutationId: String
+}
+
+type UnfolowUserPayload {
+  user: User
+  clientMutationId: String
+}
+
+input UnfolowUserInput {
   username: String!
   clientMutationId: String
 }

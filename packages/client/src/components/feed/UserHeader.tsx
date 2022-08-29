@@ -5,7 +5,9 @@ import '../../styles/profile.css';
 import { useMutation } from 'react-relay';
 import { UserFollow } from '../../relay/user/UserFollowMutation';
 import type { UserFollowMutation } from '../../relay/user/__generated__/UserFollowMutation.graphql';
-import type { ProfileCurrentUserQuery$data } from './__generated__/ProfileCurrentUserQuery.graphql';
+import type { UserHeaderQuery$data } from './__generated__/UserHeaderQuery.graphql';
+import { UserUnfollow } from '../../relay/user/UserUnfollowMutation';
+import type { UserUnfollowMutation } from '../../relay/user/__generated__/UserUnfollowMutation.graphql';
 import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
 import ProfileHeader from '../../assets/tt-header-test.png';
@@ -27,7 +29,7 @@ export default function UserHeader({
 }) {
   const { me } = useLazyLoadQuery(
     graphql`
-      query ProfileCurrentUserQuery {
+      query UserHeaderQuery {
         me {
           username
           following
@@ -36,11 +38,12 @@ export default function UserHeader({
     `,
     {},
     { fetchPolicy: 'store-or-network' }
-  ) as ProfileCurrentUserQuery$data;
+  ) as UserHeaderQuery$data;
 
   const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const userMongoId = fromGlobalId(userId as string).id;
   const [followUser] = useMutation<UserFollowMutation>(UserFollow);
+  const [unfollowUser] = useMutation<UserUnfollowMutation>(UserUnfollow);
 
   return (
     <>
@@ -52,9 +55,26 @@ export default function UserHeader({
         <div className="flex justify-between">
           <img className="user-avatar-profile" src={ProfilePicture}></img>
           {username === me?.username ? (
-            <button className="edit-profile-button cursor-default font-bold ">Editar perfil</button>
+            <button className="edit-profile-button cursor-default font-bold">Editar perfil</button>
           ) : me?.following?.includes(userMongoId) ? (
-            <button className="edit-profile-button font-bold cursor-default">Seguindo</button>
+            <button
+              className="edit-profile-button font-bold"
+              onClick={() => {
+                unfollowUser({
+                  variables: {
+                    username: username,
+                  },
+                  onCompleted: (_, error) => {
+                    if (error && error.length > 0) {
+                      const errorMessage = error[0].message || 'Unknown error';
+                      return setErrorStatus(`Error when unfollowing user: ${errorMessage}`);
+                    }
+                  },
+                });
+              }}
+            >
+              Seguindo
+            </button>
           ) : (
             <button
               className="edit-profile-button font-bold"
