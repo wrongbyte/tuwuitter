@@ -5,7 +5,11 @@ import {
   GraphQLList,
 } from 'graphql';
 import { registerTypeLoader, nodeInterface } from '../../graphql/typeRegister';
-import { connectionDefinitions, globalIdField } from 'graphql-relay';
+import {
+  connectionDefinitions,
+  timestampResolver,
+} from '@entria/graphql-mongo-helpers';
+import { globalIdField } from 'graphql-relay';
 import { Tweet } from './tweetModel';
 import { load } from './TweetLoader';
 import { UserType } from '../user/userType';
@@ -39,6 +43,7 @@ export const TweetType = new GraphQLObjectType<Tweet>({
       type: new GraphQLList(GraphQLString),
       resolve: (tweet) => tweet.replies,
     },
+    ...timestampResolver,
   }),
   interfaces: () => [nodeInterface],
 });
