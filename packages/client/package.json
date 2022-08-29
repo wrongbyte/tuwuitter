@@ -38,7 +38,7 @@
     "zod": "^3.17.10"
   },
   "scripts": {
-    "start": "yarn run relay && webpack serve --mode=production",
+    "start": "yarn run relay && webpack serve --hot",
     "relay": "yarn run relay-compiler",
     "build": "react-scripts build",
     "test": "react-scripts test",
