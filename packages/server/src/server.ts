@@ -25,7 +25,7 @@ const graphqlSettingsPerRequest = async (
 
   return {
     schema: schema,
-    graphiql: true,
+    graphiql: process.env.NODE_ENV !== 'production' ? true : false,
     pretty: true,
     context: await getContext({ user }),
   };
