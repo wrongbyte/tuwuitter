@@ -15,7 +15,7 @@ import '../../styles/global.css';
 import '../../styles/home.css';
 import '../../styles/profile.css';
 import { useState } from 'react';
-const { graphql, useLazyLoadQuery } = require('react-relay');
+import { graphql, useLazyLoadQuery } from 'react-relay';
 
 export default function LateralBar() {
   const [openNewTweetModal, setOpenTweetModal] = useState(false);

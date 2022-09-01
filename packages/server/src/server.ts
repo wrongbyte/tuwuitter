@@ -35,7 +35,6 @@ const graphqlServer = graphqlHTTP(graphqlSettingsPerRequest);
 
 router.all('/graphql', graphqlServer);
 
-// if you are running in dev, the path should be ../../../client/dist
 static_pages.use(serve(path.resolve(__dirname + '../../../../client/dist')));
 
 app

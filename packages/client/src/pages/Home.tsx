@@ -6,7 +6,7 @@ import LateralBar from '../components/feed/LateralBar';
 import Tweet from '../components/feed/Tweet';
 import WriteTweetFeed from '../components/feed/WriteTweet';
 import { HomeTweetsQuery$data } from './__generated__/HomeTweetsQuery.graphql';
-const { graphql, useLazyLoadQuery } = require('react-relay');
+import { graphql, useLazyLoadQuery } from 'react-relay';
 
 export default function Home() {
   const { findTimelineTweets } = useLazyLoadQuery(

@@ -12,7 +12,7 @@ import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
 import ProfileHeader from '../../assets/tt-header-test.png';
 import ProfilePicture from '../../assets/default-pfp-tt.png';
-const { graphql, useLazyLoadQuery } = require('react-relay');
+import { graphql, useLazyLoadQuery } from 'react-relay';
 
 export default function UserHeader({
   username,

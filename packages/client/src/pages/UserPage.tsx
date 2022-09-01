@@ -7,7 +7,7 @@ import UserTopBar from '../components/user/UserTopBar';
 import { useParams } from 'react-router-dom';
 import NotFoundUser from '../components/user/NotFoundUser';
 import type { UserPageQuery$data } from '../components/user/__generated__/UserPageQuery.graphql';
-const { graphql, useLazyLoadQuery } = require('react-relay');
+import { graphql, useLazyLoadQuery } from 'react-relay';
 
 export default function UserPage() {
   const { username } = useParams();
