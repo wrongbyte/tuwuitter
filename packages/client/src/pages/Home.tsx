@@ -17,7 +17,6 @@ export default function Home() {
     }));
   }, []);
 
-  console.log(refreshedQueryOptions);
   return (
     <MainColumn>
       <LateralBar />

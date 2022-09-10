@@ -23,7 +23,6 @@ export default function Timeline({ queryOptions }: { queryOptions: any }) {
     {},
     queryOptions
   ) as TimelineTweetsQuery$data;
-  console.log(findTimelineTweets?.edges.length);
   return (
     <>
       {findTimelineTweets?.edges?.map((tweet: any) => {
