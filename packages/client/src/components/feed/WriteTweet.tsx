@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
 import ProfilePicture from '../../assets/default-pfp-tt.png';
+import { Dispatch, SetStateAction } from 'react';
 
 const tweetSchema = object({
   content: string()
@@ -20,7 +21,7 @@ const defaultValues: ITweet = {
   content: '',
 };
 
-export default function WriteTweetFeed() {
+export default function WriteTweetFeed({ refresh }: { refresh: Dispatch<SetStateAction<any>> }) {
   const [handleSubmitTweet] = useMutation<TweetCreateMutation>(TweetCreate);
   const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
   const {
@@ -40,7 +41,7 @@ export default function WriteTweetFeed() {
           const errorMessage = error[0].message || 'Unknown error';
           return setErrorStatus(`Error when posting tweet: ${errorMessage}`);
         }
-        window.location.reload();
+        refresh(0);
       },
     });
   };

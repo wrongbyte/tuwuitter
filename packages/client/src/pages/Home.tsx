@@ -3,47 +3,27 @@ import '../styles/home.css';
 import '../styles/profile.css';
 import MainColumn from '../components/feed/MainColumn';
 import LateralBar from '../components/feed/LateralBar';
-import Tweet from '../components/feed/Tweet';
 import WriteTweetFeed from '../components/feed/WriteTweet';
-import { HomeTweetsQuery$data } from './__generated__/HomeTweetsQuery.graphql';
-import { graphql, useLazyLoadQuery } from 'react-relay';
+import { useState, useCallback } from 'react';
+import Timeline from '../components/feed/Timeline';
 
 export default function Home() {
-  const { findTimelineTweets } = useLazyLoadQuery(
-    graphql`
-      query HomeTweetsQuery {
-        findTimelineTweets(first: 100) {
-          edges {
-            node {
-              author {
-                username
-                displayName
-              }
-              content
-              createdAt
-            }
-          }
-        }
-      }
-    `,
-    {},
-    { fetchPolicy: 'store-or-network' }
-  ) as HomeTweetsQuery$data;
+  const [refreshedQueryOptions, setRefreshedQueryOptions] = useState<any>(null);
+
+  const refresh = useCallback(() => {
+    setRefreshedQueryOptions((prev: any) => ({
+      fetchKey: (prev?.fetchKey ?? 0) + 1,
+      fetchPolicy: 'network-only',
+    }));
+  }, []);
+
+  console.log(refreshedQueryOptions);
   return (
     <MainColumn>
       <LateralBar />
       <div className="user-column">
-        <WriteTweetFeed />
-        {findTimelineTweets?.edges?.map((tweet: any) => {
-          return (
-            <Tweet
-              content={tweet.node.content}
-              displayName={tweet.node.author.displayName}
-              username={tweet.node.author.username}
-              createdAt={tweet.node.createdAt}
-            />
-          );
-        })}
+        <WriteTweetFeed refresh={refresh} />
+        <Timeline queryOptions={refreshedQueryOptions ?? {}} />
       </div>
     </MainColumn>
   );

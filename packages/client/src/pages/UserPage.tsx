@@ -40,8 +40,7 @@ export default function UserPage() {
         }
       }
     `,
-    { username: username },
-    { fetchPolicy: 'store-or-network' }
+    { username: username }
   ) as UserPageQuery$data;
 
   return (

@@ -27,8 +27,7 @@ export default function LateralBar() {
         }
       }
     `,
-    {},
-    { fetchPolicy: 'store-or-network' }
+    {}
   ) as LateralBarQuery$data;
 
   return (
