@@ -199,3 +199,8 @@ input CreateTweetInput {
   replies: [String]
   clientMutationId: String
 }
+
+"""Root of subscriptions"""
+type Subscription {
+  tweet: Tweet
+}

@@ -26,6 +26,14 @@ export const CreateTweetMutation = mutationWithClientMutationId({
       { _id: ctx.user.id },
       { $addToSet: { tweets: tweet._id } }
     );
+
+    ctx.pubSub.publish('tweet', {
+      tweet: {
+        mutation: 'POSTED',
+        data: tweet,
+      },
+    });
+
     return tweet;
   },
 
