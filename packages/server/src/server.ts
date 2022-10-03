@@ -8,8 +8,7 @@ import path from 'path';
 import cors from '@koa/cors';
 import serve from 'koa-static';
 import mount from 'koa-mount';
-import { WebSocketServer } from 'ws';
-import { useServer } from 'graphql-ws/lib/use/ws';
+
 import {
   getGraphQLParameters,
   processRequest,
@@ -18,13 +17,6 @@ import {
   sendResult,
 } from 'graphql-helix';
 const app = new Koa();
-
-const server = new WebSocketServer({
-  port: 4000,
-  path: '/graphql',
-});
-
-useServer({ schema }, server);
 
 const static_pages = new Koa();
 const router = new Router();
