@@ -8,7 +8,8 @@ import path from 'path';
 import cors from '@koa/cors';
 import serve from 'koa-static';
 import mount from 'koa-mount';
-
+import { WebSocketServer } from 'ws';
+import { useServer } from 'graphql-ws/lib/use/ws';
 import {
   getGraphQLParameters,
   processRequest,
@@ -23,7 +24,16 @@ const router = new Router();
 
 const REACT_ROUTER_PATHS = ['/login', '/home'];
 
-router.all('/graphql', async (ctx, next) => {
+const server = new WebSocketServer({
+  port: 4000,
+  path: '/graphql',
+});
+
+useServer({ schema }, server);
+
+console.log('Listening to port 4000');
+
+router.all('/graphql', async (ctx, _) => {
   const { user } = await getUser(ctx.header.authorization);
   const request = {
     body: ctx.request.body,

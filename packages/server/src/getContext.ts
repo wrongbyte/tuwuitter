@@ -1,10 +1,8 @@
 import { Request } from 'koa';
 import { User } from './modules/user/userModel';
 import { DataLoaders, getAllDataLoaders } from './graphql/loaderRegister';
-// import { createPubSub, PubSub } from 'graphql-yoga'
 import { PubSub } from 'graphql-subscriptions';
-const pubSub = new PubSub();
-//TODO: type pubSub correctly
+export const pubSub = new PubSub();
 
 export type GraphQLContext = {
   user?: User;

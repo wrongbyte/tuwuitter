@@ -1,26 +1,35 @@
-import { useState } from 'react';
-import type { TestQuery$data } from './__generated__/TestQuery.graphql';
-import { graphql, useLazyLoadQuery } from 'react-relay';
+import { useMemo } from 'react';
+import { GraphQLSubscriptionConfig } from 'relay-runtime';
+import { useSubscription } from 'react-relay';
+import { tweetNew, updater } from '../relay/tweet/TweetNewSubscription';
+
+export const useNewTweetSubscription = () => {
+  const tweetNewConfig = useMemo<GraphQLSubscriptionConfig<any>>(
+    () => ({
+      subscription: tweetNew,
+      variables: {
+        input: {},
+      },
+      onCompleted: (...args) => {
+        console.log('onCompleted: ', args);
+      },
+      onError: (...args) => {
+        console.log('onError: ', args);
+      },
+      onNext: ({ TweetNew }: any) => {
+        console.log(TweetNew);
+        const { tweet } = TweetNew;
+      },
+      updater,
+    }),
+    []
+  );
+
+  useSubscription(tweetNewConfig);
+};
 
 export default function Test() {
-  const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
-  const data = useLazyLoadQuery(
-    graphql`
-      query TestQuery($id: ID!) {
-        node(id: $id) {
-          id
-          ... on User {
-            username
-            displayName
-          }
-        }
-      }
-    `,
-    { id: 'VXNlcjo2MmRmM2UyZDE3ODc2YWI0MjdlNmJlMnY=' }
-  ) as TestQuery$data;
+  useNewTweetSubscription();
 
-  return (
-    <h1 className="text-white">{data.node?.displayName}</h1>
-    // <ErrorModal phrase="Invalid token." setErrorStatus={setErrorStatus}></ErrorModal>
-  );
+  return <h1 className="text-white">aaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>;
 }

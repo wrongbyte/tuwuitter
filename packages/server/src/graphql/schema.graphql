@@ -200,7 +200,15 @@ input CreateTweetInput {
   clientMutationId: String
 }
 
-"""Root of subscriptions"""
 type Subscription {
+  TweetNew(input: TweetNewInput!): TweetNewPayload
+}
+
+type TweetNewPayload {
   tweet: Tweet
+  clientSubscriptionId: String
+}
+
+input TweetNewInput {
+  clientSubscriptionId: String
 }
