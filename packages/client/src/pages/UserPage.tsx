@@ -8,6 +8,46 @@ import { useParams } from 'react-router-dom';
 import NotFoundUser from '../components/user/NotFoundUser';
 import type { UserPageQuery$data } from '../components/user/__generated__/UserPageQuery.graphql';
 import { graphql, useLazyLoadQuery } from 'react-relay';
+import Timeline from './Timeline';
+
+const userPagePaginationFragment = graphql`
+  fragment UserPageTweets on Query
+  @argumentDefinitions(
+    first: { type: Int, defaultValue: 15 }
+    after: { type: String }
+    username: { type: String }
+  )
+  @refetchable(queryName: "findTweetsFromUser") {
+    findTweetsFromUser(first: $first, after: $after, username: $username)
+      @connection(key: "user_findTweetsFromUser", filters: []) {
+      endCursorOffset
+      startCursorOffset
+      count
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          author {
+            username
+            displayName
+          }
+          content
+          createdAt
+        }
+      }
+    }
+  }
+`;
+
+const userPageLazyLoadQuery = graphql`
+  query UserPageQuery($username: String!) {
+    ...UserPageTweets @arguments(username: $username)
+  }
+`;
 
 export default function UserPage() {
   const { username } = useParams();
@@ -18,30 +58,18 @@ export default function UserPage() {
 
   const { findUserByUsername } = useLazyLoadQuery(
     graphql`
-      query UserPageQuery($username: String!) {
+      query UserPageHeaderQuery($username: String!) {
         findUserByUsername(username: $username) {
-          displayName
           username
+          displayName
           followers
           following
           id
-          tweets(first: 100) {
-            edges {
-              node {
-                content
-                likedBy
-                retweetedBy
-                replies
-                createdAt
-              }
-            }
-          }
         }
       }
     `,
-    { username: username },
-    { fetchPolicy: 'store-or-network' }
-  ) as UserPageQuery$data;
+    { username: username }
+  ) as any;
 
   return (
     <MainColumn>
@@ -57,16 +85,12 @@ export default function UserPage() {
             userId={findUserByUsername.id}
           />
           <div className="profile-tweets-column">
-            {findUserByUsername?.tweets?.edges?.map((tweet: any) => {
-              return (
-                <Tweet
-                  content={tweet.node.content}
-                  displayName={findUserByUsername.displayName}
-                  username={findUserByUsername.username}
-                  createdAt={tweet.node.createdAt}
-                />
-              );
-            })}
+            <Timeline
+              paginationFragment={userPagePaginationFragment}
+              lazyLoadQuery={userPageLazyLoadQuery}
+              queryName="findTweetsFromUser"
+              queryVariables={{ username: username }}
+            />
           </div>
         </div>
       ) : (

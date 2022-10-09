@@ -1,2 +1,2 @@
-export * from './findUsers';
+export * from './findUser';
 export * from './testQuery';

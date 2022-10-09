@@ -1,6 +1,3 @@
-import '../styles/global.css';
-import '../styles/home.css';
-import '../styles/profile.css';
 import MainColumn from '../components/feed/MainColumn';
 import LateralBar from '../components/feed/LateralBar';
 import WriteTweetFeed from '../components/feed/WriteTweet';
