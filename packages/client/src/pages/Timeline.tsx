@@ -69,6 +69,7 @@ export default function Timeline() {
               }
               content
               createdAt
+              id
             }
           }
         }
@@ -94,6 +95,7 @@ export default function Timeline() {
       {data?.findTimelineTweets.edges?.map((tweet: any) => {
         return (
           <Tweet
+            key={tweet.node.id}
             content={tweet.node.content}
             displayName={tweet.node.author.displayName}
             username={tweet.node.author.username}
