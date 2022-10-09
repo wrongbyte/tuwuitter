@@ -119,7 +119,6 @@ type User implements Node {
   password: String!
   following: [String]
   followers: [String]
-  tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
 }
 
 """Root of mutations"""

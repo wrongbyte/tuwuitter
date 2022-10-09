@@ -1,12 +1,10 @@
 import MainColumn from '../components/feed/MainColumn';
 import LateralBar from '../components/feed/LateralBar';
 import { useNavigate } from 'react-router-dom';
-import Tweet from '../components/feed/Tweet';
 import UserHeader from '../components/feed/UserHeader';
 import UserTopBar from '../components/user/UserTopBar';
 import { useParams } from 'react-router-dom';
 import NotFoundUser from '../components/user/NotFoundUser';
-import type { UserPageQuery$data } from '../components/user/__generated__/UserPageQuery.graphql';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import Timeline from './Timeline';
 
