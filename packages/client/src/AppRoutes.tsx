@@ -3,7 +3,8 @@ import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
 import UserPage from './pages/UserPage';
 import { RequireAuthLayout } from './RequireAuthLayout';
-import Test from './pages/Test';
+import { useLazyLoadQuery, graphql } from 'react-relay';
+import Test from './pages/Timeline';
 
 export default function AppRoutes() {
   return (
