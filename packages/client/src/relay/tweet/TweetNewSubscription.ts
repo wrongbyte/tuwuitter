@@ -31,7 +31,7 @@ export const updater = (store: RecordSourceSelectorProxy) => {
     connectionUpdater({
       store,
       parentId: ROOT_ID,
-      connectionName: 'Timeline_tweets',
+      connectionName: 'tweets_findTimelineTweets',
       edge: tweetEdge,
       before: true,
     });

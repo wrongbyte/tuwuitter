@@ -41,7 +41,7 @@ export default function Timeline({
   queryName: string;
   queryVariables?: any;
 }) {
-  // useNewTweetSubscription();
+  useNewTweetSubscription();
   const query = useLazyLoadQuery(lazyLoadQuery, queryVariables);
 
   const { data, loadNext, isLoadingNext } = usePaginationFragment<any, any>(
