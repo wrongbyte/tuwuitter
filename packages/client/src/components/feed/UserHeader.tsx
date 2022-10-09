@@ -36,8 +36,7 @@ export default function UserHeader({
         }
       }
     `,
-    {},
-    { fetchPolicy: 'store-or-network' }
+    {}
   ) as UserHeaderQuery$data;
 
   const [errorStatus, setErrorStatus] = useState<boolean | string>(false);

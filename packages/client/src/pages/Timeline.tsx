@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 import { GraphQLSubscriptionConfig } from 'relay-runtime';
-import { useSubscription, useLazyLoadQuery } from 'react-relay';
 import { tweetNew, updater } from '../relay/tweet/TweetNewSubscription';
 import InfiniteScroll from 'react-infinite-scroller';
-import { graphql, usePaginationFragment } from 'react-relay';
+import { graphql, usePaginationFragment, useSubscription, useLazyLoadQuery } from 'react-relay';
 import Tweet from '../components/feed/Tweet';
 
 export const useNewTweetSubscription = () => {
@@ -31,50 +30,20 @@ export const useNewTweetSubscription = () => {
   useSubscription(tweetNewConfig);
 };
 
-export default function Timeline() {
-  useNewTweetSubscription();
-  const query = useLazyLoadQuery(
-    graphql`
-      query TimelineQuery {
-        ...TimelineTweetsTimeline
-        me {
-          id
-        }
-      }
-    `,
-    {}
-  );
+export default function Timeline({
+  paginationFragment,
+  lazyLoadQuery,
+  queryName,
+}: {
+  paginationFragment: any;
+  lazyLoadQuery: any;
+  queryName: string;
+}) {
+  // useNewTweetSubscription();
+  const query = useLazyLoadQuery(lazyLoadQuery, {});
 
   const { data, loadNext, isLoadingNext } = usePaginationFragment<any, any>(
-    graphql`
-      fragment TimelineTweetsTimeline on Query
-      @argumentDefinitions(first: { type: Int, defaultValue: 15 }, after: { type: String })
-      @refetchable(queryName: "TimelineTweetListPaginationQuery") {
-        findTimelineTweets(first: $first, after: $after)
-          @connection(key: "tweets_findTimelineTweets", filters: []) {
-          endCursorOffset
-          startCursorOffset
-          count
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
-          edges {
-            node {
-              author {
-                username
-                displayName
-              }
-              content
-              createdAt
-              id
-            }
-          }
-        }
-      }
-    `,
+    paginationFragment,
     query
   );
 
@@ -89,10 +58,10 @@ export default function Timeline() {
     <InfiniteScroll
       pageStart={0}
       loadMore={loadMore}
-      hasMore={data.findTimelineTweets.pageInfo.hasNextPage}
+      hasMore={data[queryName].pageInfo.hasNextPage}
       useWindow
     >
-      {data?.findTimelineTweets.edges?.map((tweet: any) => {
+      {data?.[queryName].edges?.map((tweet: any) => {
         return (
           <Tweet
             key={tweet.node.id}

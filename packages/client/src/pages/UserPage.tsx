@@ -16,7 +16,6 @@ export default function UserPage() {
     navigate('/home');
   }
 
-  // TODO: exhibit number of likes, retweets etc. (needs to be implemented.)
   const { findUserByUsername } = useLazyLoadQuery(
     graphql`
       query UserPageQuery($username: String!) {
