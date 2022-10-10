@@ -40,7 +40,6 @@ export const CreateTweetMutation = mutationWithClientMutationId({
   },
 
   outputFields: {
-    //todo: mudar para tweetNode
     tweet: {
       type: TweetConnection.edgeType,
       resolve: async ({ id }, _, context) => {
