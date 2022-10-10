@@ -27,6 +27,7 @@ export default function WriteTweetFeed() {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm<ITweet>({
     resolver: zodResolver(tweetSchema),
     defaultValues,
@@ -41,7 +42,7 @@ export default function WriteTweetFeed() {
           const errorMessage = error[0].message || 'Unknown error';
           return setErrorStatus(`Error when posting tweet: ${errorMessage}`);
         }
-        //todo: reset value of form
+        reset();
       },
     });
   };

@@ -3,8 +3,6 @@ import { mutationWithClientMutationId, toGlobalId } from 'graphql-relay';
 import { GraphQLContext } from '../../../getContext';
 import { UserModel } from '../../user/userModel';
 import { Tweet, TweetModel } from '../tweetModel';
-import { findTweetById } from '../tweetService';
-import { TweetType } from '../tweetType';
 import * as TweetLoader from '../../tweet/TweetLoader';
 import { TweetConnection } from '../tweetType';
 
