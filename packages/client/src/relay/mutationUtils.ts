@@ -17,21 +17,19 @@ export function connectionUpdater({
 }: ConnectionUpdater) {
   if (edge) {
     if (!parentId) {
-      console.log('maybe you forgot to pass a parentId: ');
+      console.log('No parentId found');
       return;
     }
 
     const parentProxy = store.get(parentId);
 
     if (!parentProxy) {
-      // eslint-disable-next-line
       console.log(`Parent proxy not found for "${parentId}"`);
       return;
     }
 
     const conn = ConnectionHandler.getConnection(parentProxy, connectionName);
     if (!conn) {
-      // eslint-disable-next-line
       console.log('maybe this connection is not in relay store: ', connectionName);
       return;
     }

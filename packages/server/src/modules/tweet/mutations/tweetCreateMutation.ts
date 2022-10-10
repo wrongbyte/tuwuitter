@@ -1,10 +1,12 @@
 import { GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
-import { mutationWithClientMutationId } from 'graphql-relay';
+import { mutationWithClientMutationId, toGlobalId } from 'graphql-relay';
 import { GraphQLContext } from '../../../getContext';
 import { UserModel } from '../../user/userModel';
 import { Tweet, TweetModel } from '../tweetModel';
 import { findTweetById } from '../tweetService';
 import { TweetType } from '../tweetType';
+import * as TweetLoader from '../../tweet/TweetLoader';
+import { TweetConnection } from '../tweetType';
 
 export const CreateTweetMutation = mutationWithClientMutationId({
   name: 'CreateTweet',
@@ -38,9 +40,16 @@ export const CreateTweetMutation = mutationWithClientMutationId({
   },
 
   outputFields: {
+    //todo: mudar para tweetNode
     tweet: {
-      type: TweetType,
-      resolve: async ({ id }) => findTweetById({ id }),
+      type: TweetConnection.edgeType,
+      resolve: async ({ id }, _, context) => {
+        const tweet = await TweetLoader.load(context, id);
+        return {
+          cursor: toGlobalId('Tweet', tweet._id),
+          node: tweet,
+        };
+      },
     },
   },
 });

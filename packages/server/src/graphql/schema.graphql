@@ -190,7 +190,7 @@ input UnfolowUserInput {
 }
 
 type CreateTweetPayload {
-  tweet: Tweet
+  tweet: TweetEdge
   clientMutationId: String
 }
 

@@ -2,7 +2,7 @@ import { useMutation } from 'react-relay';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import type { TweetCreateMutation } from '../../relay/tweet/__generated__/TweetCreateMutation.graphql';
 import { object, string, TypeOf } from 'zod';
-import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
+import { newTweetUpdater, TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ErrorModal from '../ErrorModal';
@@ -35,12 +35,13 @@ export default function WriteTweetFeed() {
   const onSubmitHandler: SubmitHandler<ITweet> = async (values: ITweet) => {
     handleSubmitTweet({
       variables: values,
+      updater: newTweetUpdater,
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
           const errorMessage = error[0].message || 'Unknown error';
           return setErrorStatus(`Error when posting tweet: ${errorMessage}`);
         }
-        window.location.reload();
+        //todo: reset value of form
       },
     });
   };
