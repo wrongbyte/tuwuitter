@@ -1,38 +1,35 @@
 import { connectionUpdater } from '../mutationUtils';
 import { graphql } from 'react-relay';
-import { ConnectionHandler, RecordSourceSelectorProxy, ROOT_ID } from 'relay-runtime';
+import { RecordSourceSelectorProxy, ROOT_ID, ConnectionHandler } from 'relay-runtime';
 
-export const tweetNew = graphql`
+export const tweetNewSubscription = graphql`
   subscription TweetNewSubscription($input: TweetNewInput!) {
     TweetNew(input: $input) {
       tweet {
+        author {
+          username
+          displayName
+        }
         content
+        createdAt
+        id
       }
     }
   }
 `;
 
-export const updater = (store: RecordSourceSelectorProxy) => {
-  const tweetNode = store?.getRootField('TweetNew')?.getLinkedRecord('tweet');
-
-  const tweetId = tweetNode?.getValue('id');
+export const timelineSubscriptionUpdater = (store: RecordSourceSelectorProxy) => {
+  const tweetEdge = store.getRootField('TweetNew')?.getLinkedRecord('tweet');
+  const tweetId = tweetEdge?.getValue('id');
 
   const tweetStore = store.get(tweetId as string);
 
   if (!tweetStore) {
-    const tweetConnection = ConnectionHandler.getConnection(store.getRoot(), 'Timeline_tweets');
-    const tweetEdge = ConnectionHandler.createEdge(
-      store,
-      tweetConnection as any,
-      tweetNode as any,
-      'tweetEdge'
-    );
-
     connectionUpdater({
       store,
       parentId: ROOT_ID,
       connectionName: 'tweets_findTimelineTweets',
-      edge: tweetEdge,
+      edge: tweetEdge as any,
       before: true,
     });
   }

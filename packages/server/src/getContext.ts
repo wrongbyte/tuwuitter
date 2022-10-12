@@ -7,7 +7,6 @@ export const pubSub = new PubSub();
 export type GraphQLContext = {
   user?: User;
   dataloaders: DataLoaders;
-  pubSub: any;
 };
 
 type ContextVars = {
@@ -22,6 +21,5 @@ export const getContext = async (ctx: ContextVars) => {
     req: ctx.req,
     dataloaders,
     user: ctx.user,
-    pubSub,
   } as GraphQLContext;
 };

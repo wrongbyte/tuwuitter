@@ -101,13 +101,18 @@ type TweetEdge {
 type Tweet implements Node {
   """The ID of an object"""
   id: ID!
-  author: User
+  author: AuthorType!
   content: String!
   likedBy: [String]
   retweetedBy: [String]
   replies: [String]
   createdAt: String
   updatedAt: String
+}
+
+type AuthorType {
+  displayName: String
+  username: String
 }
 
 type User implements Node {

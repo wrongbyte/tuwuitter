@@ -1,8 +1,9 @@
 import { subscriptionWithClientId } from 'graphql-relay-subscription';
-import { TweetType } from '../tweetType';
 import { GraphQLContext } from '../../../getContext';
 import { findTweetById } from '../tweetService';
+import { TweetConnection, TweetType } from '../tweetType';
 import { pubSub } from '../../../getContext';
+import { toGlobalId } from 'graphql-relay';
 
 const TweetNewSubscription = subscriptionWithClientId<any, GraphQLContext>({
   name: 'TweetNew',
@@ -10,14 +11,17 @@ const TweetNewSubscription = subscriptionWithClientId<any, GraphQLContext>({
   outputFields: {
     tweet: {
       type: TweetType,
-      resolve: async ({ tweetId }) => findTweetById({ id: tweetId }),
+      resolve: async ({ id }, _, context) => {
+        const tweet = await findTweetById({ id });
+        return tweet;
+      },
     },
   },
   subscribe: (_, ctx) => {
     return pubSub.asyncIterator('tweet');
   },
-  getPayload: (obj, input, context, info) => {
-    return { tweetId: obj.tweet.data.id };
+  getPayload: (obj) => {
+    return { id: obj.tweet.tweetId };
   },
 });
 

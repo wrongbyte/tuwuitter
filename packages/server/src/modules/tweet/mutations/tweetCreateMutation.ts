@@ -1,6 +1,6 @@
 import { GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationWithClientMutationId, toGlobalId } from 'graphql-relay';
-import { GraphQLContext } from '../../../getContext';
+import { GraphQLContext, pubSub } from '../../../getContext';
 import { UserModel } from '../../user/userModel';
 import { Tweet, TweetModel } from '../tweetModel';
 import * as TweetLoader from '../../tweet/TweetLoader';
@@ -18,6 +18,7 @@ export const CreateTweetMutation = mutationWithClientMutationId({
     if (!ctx?.user) {
       throw new Error('User not logged in');
     }
+
     const tweet = await new TweetModel({
       author: ctx.user.id,
       ...tweetPayload,
@@ -26,11 +27,10 @@ export const CreateTweetMutation = mutationWithClientMutationId({
       { _id: ctx.user.id },
       { $addToSet: { tweets: tweet._id } }
     );
-
-    ctx.pubSub.publish('tweet', {
+    pubSub.publish('tweet', {
       tweet: {
         mutation: 'POSTED',
-        data: tweet,
+        tweetId: tweet.id,
       },
     });
 

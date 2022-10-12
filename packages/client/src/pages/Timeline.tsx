@@ -1,34 +1,6 @@
-import { useMemo } from 'react';
-import { GraphQLSubscriptionConfig } from 'relay-runtime';
-import { tweetNew, updater } from '../relay/tweet/TweetNewSubscription';
 import InfiniteScroll from 'react-infinite-scroller';
-import { usePaginationFragment, useSubscription, useLazyLoadQuery } from 'react-relay';
+import { usePaginationFragment, useLazyLoadQuery } from 'react-relay';
 import Tweet from '../components/feed/Tweet';
-
-export const useNewTweetSubscription = () => {
-  const tweetNewConfig = useMemo<GraphQLSubscriptionConfig<any>>(
-    () => ({
-      subscription: tweetNew,
-      variables: {
-        input: {},
-      },
-      onCompleted: (...args) => {
-        console.log('onCompleted: ', args);
-      },
-      onError: (...args) => {
-        console.log('onError: ', args);
-      },
-      onNext: ({ TweetNew }: any) => {
-        console.log(TweetNew);
-        const { tweet } = TweetNew;
-      },
-      updater,
-    }),
-    []
-  );
-
-  useSubscription(tweetNewConfig);
-};
 
 export default function Timeline({
   paginationFragment,
@@ -41,7 +13,6 @@ export default function Timeline({
   queryName: string;
   queryVariables?: any;
 }) {
-  useNewTweetSubscription();
   const query = useLazyLoadQuery(lazyLoadQuery, queryVariables);
 
   const { data, loadNext, isLoadingNext } = usePaginationFragment<any, any>(
