@@ -5,13 +5,14 @@ import { PubSub } from 'graphql-subscriptions';
 export const pubSub = new PubSub();
 
 export type GraphQLContext = {
+  req?: Request;
   user?: User;
   dataloaders: DataLoaders;
 };
 
 type ContextVars = {
+  user?: any;
   req?: Request;
-  user?: User | null;
 };
 
 export const getContext = async (ctx: ContextVars) => {

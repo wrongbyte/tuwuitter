@@ -20,8 +20,11 @@ export const TweetCreate = graphql`
 `;
 
 export const newTweetUpdater: SelectorStoreUpdater = (store) => {
-  const newEdge = store.getRootField('CreateTweetMutation')?.getLinkedRecord('tweet');
+  // get or create
 
+  const newEdge = store.getRootField('CreateTweetMutation')?.getLinkedRecord('tweet');
+  const tweetId = newEdge?.getValue('id');
+  console.log(tweetId);
   connectionUpdater({
     store,
     parentId: ROOT_ID,

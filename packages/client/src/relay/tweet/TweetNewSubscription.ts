@@ -1,6 +1,6 @@
 import { connectionUpdater } from '../mutationUtils';
 import { graphql } from 'react-relay';
-import { RecordSourceSelectorProxy, ROOT_ID, ConnectionHandler } from 'relay-runtime';
+import { RecordSourceSelectorProxy, ROOT_ID } from 'relay-runtime';
 
 export const tweetNewSubscription = graphql`
   subscription TweetNewSubscription($input: TweetNewInput!) {
@@ -21,7 +21,6 @@ export const tweetNewSubscription = graphql`
 export const timelineSubscriptionUpdater = (store: RecordSourceSelectorProxy) => {
   const tweetEdge = store.getRootField('TweetNew')?.getLinkedRecord('tweet');
   const tweetId = tweetEdge?.getValue('id');
-
   const tweetStore = store.get(tweetId as string);
 
   if (!tweetStore) {

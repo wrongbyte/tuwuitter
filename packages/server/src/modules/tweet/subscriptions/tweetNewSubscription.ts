@@ -1,9 +1,8 @@
 import { subscriptionWithClientId } from 'graphql-relay-subscription';
 import { GraphQLContext } from '../../../getContext';
 import { findTweetById } from '../tweetService';
-import { TweetConnection, TweetType } from '../tweetType';
+import { TweetType } from '../tweetType';
 import { pubSub } from '../../../getContext';
-import { toGlobalId } from 'graphql-relay';
 
 const TweetNewSubscription = subscriptionWithClientId<any, GraphQLContext>({
   name: 'TweetNew',

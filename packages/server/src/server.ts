@@ -29,11 +29,19 @@ const server = new WebSocketServer({
   path: '/graphql',
 });
 
-useServer({ schema }, server);
+useServer(
+  {
+    schema,
+    context: (ctx) =>
+      getContext({
+        req: ctx.extra.request as any,
+        user: ctx.connectionParams.authorization,
+      }),
+  },
+  server
+);
 
-console.log('Listening to port 4000');
-
-router.all('/graphql', async (ctx, _) => {
+router.all('/graphql', async (ctx) => {
   const { user } = await getUser(ctx.header.authorization);
   const request = {
     body: ctx.request.body,
@@ -54,7 +62,7 @@ router.all('/graphql', async (ctx, _) => {
       request,
       schema,
       contextFactory: () => {
-        return getContext({ user });
+        return getContext({ req: request as any, user });
       },
     });
 

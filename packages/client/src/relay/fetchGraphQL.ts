@@ -1,4 +1,4 @@
-import { Network, Observable, RequestParameters, Variables } from 'relay-runtime';
+import { Observable, RequestParameters, Variables } from 'relay-runtime';
 import { createClient } from 'graphql-ws';
 
 export const setupSubscription = (request: RequestParameters, variables: Variables) => {
