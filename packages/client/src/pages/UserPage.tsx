@@ -35,6 +35,7 @@ const userPagePaginationFragment = graphql`
           }
           content
           createdAt
+          id
         }
       }
     }

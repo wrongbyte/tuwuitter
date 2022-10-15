@@ -27,6 +27,7 @@ export const CreateTweetMutation = mutationWithClientMutationId({
       { _id: ctx.user.id },
       { $addToSet: { tweets: tweet._id } }
     );
+
     pubSub.publish('tweet', {
       tweet: {
         mutation: 'POSTED',

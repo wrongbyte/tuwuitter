@@ -4,7 +4,7 @@ import { useMutation } from 'react-relay';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import type { TweetCreateMutation } from '../../relay/tweet/__generated__/TweetCreateMutation.graphql';
 import { object, string, TypeOf } from 'zod';
-import { newTweetUpdater, TweetCreate } from '../../relay/tweet/TweetCreateMutation';
+import { TweetCreate } from '../../relay/tweet/TweetCreateMutation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ErrorModal from '../ErrorModal';
 import { useState } from 'react';
@@ -15,7 +15,6 @@ const tweetSchema = object({
     .min(1, 'You cannot post an empty tweet.')
     .max(280, 'Maximum number of characters exceeded.'),
 });
-// todo: redirect if not logged in
 
 type ITweet = TypeOf<typeof tweetSchema>;
 
@@ -42,7 +41,6 @@ export default function NewTweetModal({
   const onSubmitHandler: SubmitHandler<ITweet> = async (values: ITweet) => {
     handleSubmitTweet({
       variables: values,
-      updater: newTweetUpdater,
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
           const errorMessage = error[0].message || 'Unknown error';

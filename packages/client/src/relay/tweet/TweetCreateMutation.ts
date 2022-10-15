@@ -18,18 +18,3 @@ export const TweetCreate = graphql`
     }
   }
 `;
-
-export const newTweetUpdater: SelectorStoreUpdater = (store) => {
-  // get or create
-
-  const newEdge = store.getRootField('CreateTweetMutation')?.getLinkedRecord('tweet');
-  const tweetId = newEdge?.getValue('id');
-  console.log(tweetId);
-  connectionUpdater({
-    store,
-    parentId: ROOT_ID,
-    connectionName: 'tweets_findTimelineTweets',
-    edge: newEdge as any,
-    before: true,
-  });
-};

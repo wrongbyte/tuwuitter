@@ -6,13 +6,15 @@ export const tweetNewSubscription = graphql`
   subscription TweetNewSubscription($input: TweetNewInput!) {
     TweetNew(input: $input) {
       tweet {
-        author {
-          username
-          displayName
+        node {
+          author {
+            username
+            displayName
+          }
+          content
+          createdAt
+          id
         }
-        content
-        createdAt
-        id
       }
     }
   }
@@ -20,16 +22,11 @@ export const tweetNewSubscription = graphql`
 
 export const timelineSubscriptionUpdater = (store: RecordSourceSelectorProxy) => {
   const tweetEdge = store.getRootField('TweetNew')?.getLinkedRecord('tweet');
-  const tweetId = tweetEdge?.getValue('id');
-  const tweetStore = store.get(tweetId as string);
-
-  if (!tweetStore) {
-    connectionUpdater({
-      store,
-      parentId: ROOT_ID,
-      connectionName: 'tweets_findTimelineTweets',
-      edge: tweetEdge as any,
-      before: true,
-    });
-  }
+  connectionUpdater({
+    store,
+    parentId: ROOT_ID,
+    connectionName: 'tweets_findTimelineTweets',
+    edge: tweetEdge as any,
+    before: true,
+  });
 };

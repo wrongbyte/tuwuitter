@@ -63,7 +63,7 @@ export const useNewTweetSubscription = () => {
         console.log('onError: ', args);
       },
       onNext: (a) => {
-        // console.log(a)
+        console.log(a);
       },
       updater: timelineSubscriptionUpdater,
     }),

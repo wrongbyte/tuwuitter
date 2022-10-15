@@ -1,18 +1,18 @@
 import { subscriptionWithClientId } from 'graphql-relay-subscription';
 import { GraphQLContext } from '../../../getContext';
-import { findTweetById } from '../tweetService';
-import { TweetType } from '../tweetType';
+import { TweetConnection, TweetType } from '../tweetType';
 import { pubSub } from '../../../getContext';
+import * as TweetLoader from '../TweetLoader';
 
 const TweetNewSubscription = subscriptionWithClientId<any, GraphQLContext>({
   name: 'TweetNew',
   inputFields: {},
   outputFields: {
     tweet: {
-      type: TweetType,
+      type: TweetConnection.edgeType,
       resolve: async ({ id }, _, context) => {
-        const tweet = await findTweetById({ id });
-        return tweet;
+        const tweet = await TweetLoader.load(context as any, id);
+        return { node: tweet };
       },
     },
   },
