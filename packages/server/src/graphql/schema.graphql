@@ -13,9 +13,10 @@ type Query {
   ): [Node]!
   tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
   me: User
-  findUserByUsername(username: String): User
+  findUserByUsername(after: String, first: Int, before: String, last: Int, username: String): User
   VersionQuery: String!
   findTimelineTweets(after: String, first: Int, before: String, last: Int): TweetConnection!
+  findTweetsFromUser(after: String, first: Int, before: String, last: Int, username: String): TweetConnection!
 }
 
 """An object with an ID"""
@@ -100,13 +101,18 @@ type TweetEdge {
 type Tweet implements Node {
   """The ID of an object"""
   id: ID!
-  author: User
+  author: AuthorType!
   content: String!
   likedBy: [String]
   retweetedBy: [String]
   replies: [String]
   createdAt: String
   updatedAt: String
+}
+
+type AuthorType {
+  displayName: String
+  username: String
 }
 
 type User implements Node {
@@ -118,7 +124,6 @@ type User implements Node {
   password: String!
   following: [String]
   followers: [String]
-  tweets(after: String, first: Int, before: String, last: Int): TweetConnection!
 }
 
 """Root of mutations"""
@@ -190,7 +195,7 @@ input UnfolowUserInput {
 }
 
 type CreateTweetPayload {
-  tweet: Tweet
+  tweet: TweetEdge
   clientMutationId: String
 }
 
@@ -198,4 +203,17 @@ input CreateTweetInput {
   content: String!
   replies: [String]
   clientMutationId: String
+}
+
+type Subscription {
+  TweetNew(input: TweetNewInput!): TweetNewPayload
+}
+
+type TweetNewPayload {
+  tweet: TweetEdge
+  clientSubscriptionId: String
+}
+
+input TweetNewInput {
+  clientSubscriptionId: String
 }

@@ -1,7 +1,45 @@
-import { Variables } from 'relay-runtime';
+import { Observable, RequestParameters, Variables } from 'relay-runtime';
+import { createClient } from 'graphql-ws';
+
+export const setupSubscription = (request: RequestParameters, variables: Variables) => {
+  const query = request.text;
+  const authorization = localStorage.getItem('ACCESS_TOKEN');
+
+  const HOSTWS = window.location.origin.replace(/^http/, 'ws');
+
+  const connectionParams = { authorization: '' };
+  if (authorization) {
+    connectionParams['authorization'] = authorization;
+  }
+
+  const subscriptionClient = createClient({
+    url: `${HOSTWS}/graphql`,
+    connectionParams: () => {
+      if (!authorization) {
+        return {};
+      }
+      return { authorization };
+    },
+  });
+
+  return Observable.create((sink) => {
+    if (!request.text) {
+      return sink.error(new Error('Operation text cannot be empty'));
+    }
+    return subscriptionClient.subscribe(
+      {
+        operationName: request.name,
+        query: query!,
+        variables,
+      },
+      sink
+    );
+  });
+};
 
 export const fetchGraphQL = async (query: string, variables: Variables) => {
   const token = localStorage.getItem('ACCESS_TOKEN');
+
   const response = await fetch('/graphql', {
     method: 'POST',
     headers: {

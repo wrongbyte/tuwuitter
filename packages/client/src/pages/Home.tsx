@@ -1,49 +1,90 @@
-import '../styles/global.css';
-import '../styles/home.css';
-import '../styles/profile.css';
 import MainColumn from '../components/feed/MainColumn';
 import LateralBar from '../components/feed/LateralBar';
-import Tweet from '../components/feed/Tweet';
 import WriteTweetFeed from '../components/feed/WriteTweet';
-import { HomeTweetsQuery$data } from './__generated__/HomeTweetsQuery.graphql';
-import { graphql, useLazyLoadQuery } from 'react-relay';
+import Timeline from './Timeline';
+import { graphql, GraphQLSubscriptionConfig } from 'relay-runtime';
+import { useMemo } from 'react';
+import { useSubscription } from 'react-relay';
+import {
+  tweetNewSubscription,
+  timelineSubscriptionUpdater,
+} from '../relay/tweet/TweetNewSubscription';
 
-export default function Home() {
-  const { findTimelineTweets } = useLazyLoadQuery(
-    graphql`
-      query HomeTweetsQuery {
-        findTimelineTweets(first: 100) {
-          edges {
-            node {
-              author {
-                username
-                displayName
-              }
-              content
-              createdAt
-            }
+const timelinePaginationFragment = graphql`
+  fragment HomeTimelineTweetsTimeline on Query
+  @argumentDefinitions(first: { type: Int, defaultValue: 15 }, after: { type: String })
+  @refetchable(queryName: "TimelineTweetListPaginationQuery") {
+    findTimelineTweets(first: $first, after: $after)
+      @connection(key: "tweets_findTimelineTweets", filters: []) {
+      endCursorOffset
+      startCursorOffset
+      count
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          author {
+            username
+            displayName
           }
+          content
+          createdAt
+          id
         }
       }
-    `,
-    {},
-    { fetchPolicy: 'store-or-network' }
-  ) as HomeTweetsQuery$data;
+    }
+  }
+`;
+
+const timelineLazyLoadQuery = graphql`
+  query HomeTimelineQuery {
+    ...HomeTimelineTweetsTimeline
+    me {
+      id
+    }
+  }
+`;
+
+export const useNewTweetSubscription = () => {
+  const tweetNewConfig = useMemo<GraphQLSubscriptionConfig<any>>(
+    () => ({
+      subscription: tweetNewSubscription,
+      variables: {
+        input: {},
+      },
+      onCompleted: (...args) => {
+        console.log('onCompleted: ', args);
+      },
+      onError: (...args) => {
+        console.log('onError: ', args);
+      },
+      onNext: (a) => {
+        console.log(a);
+      },
+      updater: timelineSubscriptionUpdater,
+    }),
+    []
+  );
+
+  useSubscription(tweetNewConfig);
+};
+
+export default function Home() {
+  useNewTweetSubscription();
   return (
     <MainColumn>
       <LateralBar />
       <div className="user-column">
         <WriteTweetFeed />
-        {findTimelineTweets?.edges?.map((tweet: any) => {
-          return (
-            <Tweet
-              content={tweet.node.content}
-              displayName={tweet.node.author.displayName}
-              username={tweet.node.author.username}
-              createdAt={tweet.node.createdAt}
-            />
-          );
-        })}
+        <Timeline
+          paginationFragment={timelinePaginationFragment}
+          lazyLoadQuery={timelineLazyLoadQuery}
+          queryName="findTimelineTweets"
+        />
       </div>
     </MainColumn>
   );

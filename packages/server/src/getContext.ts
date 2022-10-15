@@ -1,15 +1,18 @@
 import { Request } from 'koa';
 import { User } from './modules/user/userModel';
 import { DataLoaders, getAllDataLoaders } from './graphql/loaderRegister';
+import { PubSub } from 'graphql-subscriptions';
+export const pubSub = new PubSub();
 
 export type GraphQLContext = {
+  req?: Request;
   user?: User;
   dataloaders: DataLoaders;
 };
 
 type ContextVars = {
+  user?: any;
   req?: Request;
-  user?: User | null;
 };
 
 export const getContext = async (ctx: ContextVars) => {

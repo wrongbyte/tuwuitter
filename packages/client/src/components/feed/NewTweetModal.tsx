@@ -15,7 +15,6 @@ const tweetSchema = object({
     .min(1, 'You cannot post an empty tweet.')
     .max(280, 'Maximum number of characters exceeded.'),
 });
-// todo: redirect if not logged in
 
 type ITweet = TypeOf<typeof tweetSchema>;
 

@@ -1,10 +1,10 @@
 import { GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
-import { mutationWithClientMutationId } from 'graphql-relay';
-import { GraphQLContext } from '../../../getContext';
+import { mutationWithClientMutationId, toGlobalId } from 'graphql-relay';
+import { GraphQLContext, pubSub } from '../../../getContext';
 import { UserModel } from '../../user/userModel';
 import { Tweet, TweetModel } from '../tweetModel';
-import { findTweetById } from '../tweetService';
-import { TweetType } from '../tweetType';
+import * as TweetLoader from '../../tweet/TweetLoader';
+import { TweetConnection } from '../tweetType';
 
 export const CreateTweetMutation = mutationWithClientMutationId({
   name: 'CreateTweet',
@@ -18,6 +18,7 @@ export const CreateTweetMutation = mutationWithClientMutationId({
     if (!ctx?.user) {
       throw new Error('User not logged in');
     }
+
     const tweet = await new TweetModel({
       author: ctx.user.id,
       ...tweetPayload,
@@ -26,13 +27,27 @@ export const CreateTweetMutation = mutationWithClientMutationId({
       { _id: ctx.user.id },
       { $addToSet: { tweets: tweet._id } }
     );
+
+    pubSub.publish('tweet', {
+      tweet: {
+        mutation: 'POSTED',
+        tweetId: tweet.id,
+      },
+    });
+
     return tweet;
   },
 
   outputFields: {
     tweet: {
-      type: TweetType,
-      resolve: async ({ id }) => findTweetById({ id }),
+      type: TweetConnection.edgeType,
+      resolve: async ({ id }, _, context) => {
+        const tweet = await TweetLoader.load(context, id);
+        return {
+          cursor: toGlobalId('Tweet', tweet._id),
+          node: tweet,
+        };
+      },
     },
   },
 });
