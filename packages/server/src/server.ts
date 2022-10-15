@@ -8,8 +8,6 @@ import path from 'path';
 import cors from '@koa/cors';
 import serve from 'koa-static';
 import mount from 'koa-mount';
-import { WebSocketServer } from 'ws';
-import { useServer } from 'graphql-ws/lib/use/ws';
 import {
   getGraphQLParameters,
   processRequest,
@@ -17,29 +15,13 @@ import {
   shouldRenderGraphiQL,
   sendResult,
 } from 'graphql-helix';
+
 const app = new Koa();
 
 const static_pages = new Koa();
 const router = new Router();
 
 const REACT_ROUTER_PATHS = ['/login', '/home'];
-
-const server = new WebSocketServer({
-  port: 4000,
-  path: '/graphql',
-});
-
-useServer(
-  {
-    schema,
-    context: (ctx) =>
-      getContext({
-        req: ctx.extra.request as any,
-        user: ctx.connectionParams.authorization,
-      }),
-  },
-  server
-);
 
 router.all('/graphql', async (ctx) => {
   const { user } = await getUser(ctx.header.authorization);

@@ -5,13 +5,15 @@ export const setupSubscription = (request: RequestParameters, variables: Variabl
   const query = request.text;
   const authorization = localStorage.getItem('ACCESS_TOKEN');
 
+  const HOSTWS = window.location.origin.replace(/^http/, 'ws');
+
   const connectionParams = { authorization: '' };
   if (authorization) {
     connectionParams['authorization'] = authorization;
   }
 
   const subscriptionClient = createClient({
-    url: 'ws://localhost:4000/graphql',
+    url: `${HOSTWS}/graphql`,
     connectionParams: () => {
       if (!authorization) {
         return {};
