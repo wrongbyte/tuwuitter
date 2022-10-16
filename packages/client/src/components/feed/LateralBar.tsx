@@ -5,7 +5,7 @@ import { ReactComponent as MessagesIcon } from '../../assets/messages.svg';
 import { ReactComponent as SavedItemsIcon } from '../../assets/saved.svg';
 import { ReactComponent as ListsIcon } from '../../assets/lists.svg';
 import { ReactComponent as UserProfileIcon } from '../../assets/profile.svg';
-import { ReactComponent as MoreIcon } from '../../assets/more.svg';
+import { ReactComponent as GithubIcon } from '../../assets/github-icon2.svg';
 import { ReactComponent as WriteTweetIcon } from '../../assets/writetweet.svg';
 import type { LateralBarQuery$data } from './__generated__/LateralBarQuery.graphql';
 import TwitterIcon from '../../assets/twitter-xxl.png';
@@ -49,8 +49,9 @@ export default function LateralBar() {
           <Link to={`/user/${me?.username}`}>
             <UserProfileIcon className="svg-small" />
           </Link>
-          <MoreIcon className="svg-small" />
-
+          <a href="https://github.com/wrongbyte/tuwuitter">
+            <GithubIcon className="svg-small-github" />
+          </a>
           <div className="blue-circle cursor-pointer">
             <WriteTweetIcon className="svg-small" onClick={() => setOpenTweetModal(true)} />
           </div>

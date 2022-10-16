@@ -40,8 +40,19 @@ body {
 .svg-small {
   cursor: pointer;
   width: 27px;
+  height: auto;
   filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(143deg)
     brightness(104%) contrast(100%);
+}
+
+.svg-small-github {
+  cursor: pointer;
+  width: 50px;
+  position: relative;
+  right: 10px;
+  height: auto;
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(143deg)
+  brightness(104%) contrast(100%);
 }
 /* TODO: make it responsive */
 .new-tweet-modal {
