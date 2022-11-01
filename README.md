@@ -1,7 +1,7 @@
 ## Tuwuitter - a Twitter clone made with GraphQL + Relay
 This is a study project in continuous development, in which I am implementing features from Twitter - such as a real-time timeline, user profiles and tweets - using the Relay stack. Feel free to open a PR anytime!
 
-This project has a deployment in heroku, you can see it live [here.](tuwuitter.herokuapp.com/login)
+This project has a deployment in heroku, you can see it live [here.](https://tuwuitter.herokuapp.com/login)
 
 ## Technologies used:
 - Language: Typescript
