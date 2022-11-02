@@ -139,3 +139,6 @@
     filter: invert(82%) sepia(32%) saturate(112%) hue-rotate(162deg) brightness(86%) contrast(85%);
 }
 
+.svg-smaller-no-color {
+    width: 20px;
+}

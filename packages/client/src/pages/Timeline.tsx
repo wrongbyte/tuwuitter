@@ -42,6 +42,8 @@ export default function Timeline({
             displayName={tweet.node.author.displayName}
             username={tweet.node.author.username}
             createdAt={tweet.node.createdAt}
+            likedBy={tweet.node.likedBy}
+            likedByMe={tweet.node.likedByMe}
           />
         );
       })}
