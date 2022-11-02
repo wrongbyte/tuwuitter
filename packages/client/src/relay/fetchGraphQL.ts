@@ -7,13 +7,16 @@ export const setupSubscription = (request: RequestParameters, variables: Variabl
 
   const HOSTWS = window.location.origin.replace(/^http/, 'ws');
 
+  const subscriptionURL =
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3001/graphql' : `${HOSTWS}/graphql`;
+
   const connectionParams = { authorization: '' };
   if (authorization) {
     connectionParams['authorization'] = authorization;
   }
 
   const subscriptionClient = createClient({
-    url: `${HOSTWS}/graphql`,
+    url: subscriptionURL,
     connectionParams: () => {
       if (!authorization) {
         return {};
@@ -40,7 +43,10 @@ export const setupSubscription = (request: RequestParameters, variables: Variabl
 export const fetchGraphQL = async (query: string, variables: Variables) => {
   const token = localStorage.getItem('ACCESS_TOKEN');
 
-  const response = await fetch('/graphql', {
+  const graphqlPath =
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3001/graphql' : '/graphql';
+
+  const response = await fetch(graphqlPath, {
     method: 'POST',
     headers: {
       'Access-Control-Allow-Origin': '*',

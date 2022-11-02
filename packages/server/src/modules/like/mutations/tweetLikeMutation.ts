@@ -12,7 +12,7 @@ type MutationArgs = {
 
 export const TweetLikeMutation = mutationWithClientMutationId({
   name: 'LikeTweet',
-  description: 'Adds a new like from specific add to specific tweet',
+  description: 'Adds a new like from specific user to specific tweet',
   inputFields: {
     tweetId: { type: new GraphQLNonNull(GraphQLID) },
   },
@@ -25,8 +25,6 @@ export const TweetLikeMutation = mutationWithClientMutationId({
     const tweet = await TweetModel.findOne({
       _id: args.tweetId,
     });
-
-    console.log(tweet);
 
     if (!tweet) {
       throw new Error('Tweet not found');
