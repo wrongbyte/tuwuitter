@@ -8,7 +8,7 @@ export const setupSubscription = (request: RequestParameters, variables: Variabl
   const HOSTWS = window.location.origin.replace(/^http/, 'ws');
 
   const subscriptionURL =
-    process.env.NODE_ENV === 'development' ? 'http://localhost:3001/graphql' : `${HOSTWS}/graphql`;
+    process.env.NODE_ENV === 'development' ? 'ws://localhost:3001/graphql' : `${HOSTWS}/graphql`;
 
   const connectionParams = { authorization: '' };
   if (authorization) {
