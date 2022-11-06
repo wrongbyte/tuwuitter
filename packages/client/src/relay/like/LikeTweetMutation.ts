@@ -1,6 +1,6 @@
 import { graphql } from 'react-relay';
 
-export const LikeTweetMutation = graphql`
+export const LikeTweet = graphql`
   mutation LikeTweetMutation($tweetId: ID!) {
     TweetLikeMutation(input: { tweetId: $tweetId }) {
       tweet {

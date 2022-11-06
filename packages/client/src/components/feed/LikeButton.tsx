@@ -1,10 +1,12 @@
 import { ReactComponent as LikesIcon } from '../../assets/likes.svg';
 import { ReactComponent as LikedIcon } from '../../assets/liked.svg';
-import { LikeTweetMutation } from '../../relay/like/LikeTweetMutation';
-import { UnlikeTweetMutation } from '../../relay/like/UnlikeTweetMutation';
+import { LikeTweet } from '../../relay/like/LikeTweetMutation';
+import { UnlikeTweet } from '../../relay/like/UnlikeTweetMutation';
 import { useMutation } from 'react-relay';
 import ErrorModal from '../ErrorModal';
 import { useState } from 'react';
+import type { LikeTweetMutation } from '../../relay/like/__generated__/LikeTweetMutation.graphql';
+import type { UnlikeTweetMutation } from '../../relay/like/__generated__/UnlikeTweetMutation.graphql';
 
 export default function LikeButton({
   tweetId,
@@ -16,8 +18,8 @@ export default function LikeButton({
   likedByMe: boolean;
 }) {
   const [errorStatus, setErrorStatus] = useState<boolean | string>(false);
-  const [handleLikeTweet] = useMutation<any>(LikeTweetMutation);
-  const [handleUnlikeTweet] = useMutation<any>(UnlikeTweetMutation);
+  const [handleLikeTweet] = useMutation<LikeTweetMutation>(LikeTweet);
+  const [handleUnlikeTweet] = useMutation<UnlikeTweetMutation>(UnlikeTweet);
 
   const likeTweet = (tweetId: string) => {
     return handleLikeTweet({
