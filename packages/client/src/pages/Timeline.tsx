@@ -38,6 +38,7 @@ export default function Timeline({
         return (
           <Tweet
             key={tweet.node.id}
+            tweetId={tweet.node.id}
             content={tweet.node.content}
             displayName={tweet.node.author.displayName}
             username={tweet.node.author.username}

@@ -11,8 +11,10 @@ import { ReactComponent as ShareIcon } from '../../assets/share.svg';
 import ProfilePicture from '../../assets/default-pfp-tt.png';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import LikeButton from './LikeButton';
 
 export default function Tweet({
+  tweetId,
   content,
   displayName,
   username,
@@ -20,6 +22,7 @@ export default function Tweet({
   likedBy,
   likedByMe,
 }: {
+  tweetId: string;
   content: string;
   displayName: string | null;
   username: string;
@@ -48,19 +51,7 @@ export default function Tweet({
         <div className="flex justify-evenly mt-3 -ml-10">
           <RepliesIcon className="svg-smaller-gray cursor-pointer" />
           <RetweetsIcon className="svg-smaller-gray cursor-pointer" />
-          <div className="flex gap-2 text-white">
-            {likedByMe ? (
-              <>
-                <LikedIcon className="svg-smaller-no-color cursor-pointer" />
-                <span style={{ color: '#f91880' }}>{`${likedBy}`}</span>
-              </>
-            ) : (
-              <>
-                <LikesIcon className="svg-smaller-gray cursor-pointer" />
-                <span>{`${likedBy}`}</span>
-              </>
-            )}
-          </div>
+          <LikeButton tweetId={tweetId} likedBy={likedBy} likedByMe={likedByMe} />
           <ShareIcon className="svg-smaller-gray cursor-pointer" />
         </div>
       </div>

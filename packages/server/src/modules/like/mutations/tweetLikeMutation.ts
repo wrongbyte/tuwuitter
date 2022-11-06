@@ -1,4 +1,5 @@
 import { GraphQLID, GraphQLNonNull } from 'graphql';
+import { fromGlobalId } from 'graphql-relay';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLContext } from '../../../getContext';
 import { TweetModel } from '../../tweet/tweetModel';
@@ -22,8 +23,10 @@ export const TweetLikeMutation = mutationWithClientMutationId({
       throw new Error('User not logged in');
     }
 
+    const tweetId = fromGlobalId(args.tweetId).id;
+
     const tweet = await TweetModel.findOne({
-      _id: args.tweetId,
+      _id: tweetId,
     });
 
     if (!tweet) {

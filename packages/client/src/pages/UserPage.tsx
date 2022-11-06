@@ -36,6 +36,8 @@ const userPagePaginationFragment = graphql`
           content
           createdAt
           id
+          likedByMe
+          likedBy
         }
       }
     }
