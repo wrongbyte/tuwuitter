@@ -150,6 +150,9 @@ type Mutation {
 
   """Adds a new like from specific user to specific tweet"""
   TweetLikeMutation(input: LikeTweetInput!): LikeTweetPayload
+
+  """Removes like from specific user to specific tweet"""
+  TweetUnlikeMutation(input: UnlikeTweetInput!): UnlikeTweetPayload
 }
 
 type CreateUserPayload {
@@ -215,6 +218,16 @@ type LikeTweetPayload {
 }
 
 input LikeTweetInput {
+  tweetId: ID!
+  clientMutationId: String
+}
+
+type UnlikeTweetPayload {
+  tweet: Tweet
+  clientMutationId: String
+}
+
+input UnlikeTweetInput {
   tweetId: ID!
   clientMutationId: String
 }
