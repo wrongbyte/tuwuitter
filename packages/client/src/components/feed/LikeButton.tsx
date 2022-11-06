@@ -21,9 +21,7 @@ export default function LikeButton({
 
   const likeTweet = (tweetId: string) => {
     return handleLikeTweet({
-      variables: {
-        tweetId: tweetId,
-      },
+      variables: { tweetId },
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
           const errorMessage = error[0].message || 'Unknown error';
@@ -35,9 +33,7 @@ export default function LikeButton({
 
   const unlikeTweet = (tweetId: string) => {
     return handleUnlikeTweet({
-      variables: {
-        tweetId: tweetId,
-      },
+      variables: { tweetId },
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
           const errorMessage = error[0].message || 'Unknown error';
