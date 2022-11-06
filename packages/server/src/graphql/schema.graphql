@@ -103,7 +103,8 @@ type Tweet implements Node {
   id: ID!
   author: AuthorType!
   content: String!
-  likedBy: [String]
+  likedBy: Int!
+  likedByMe: Boolean!
   retweetedBy: [String]
   replies: [String]
   createdAt: String
@@ -146,6 +147,12 @@ type Mutation {
 
   """Posts a new tweet"""
   CreateTweetMutation(input: CreateTweetInput!): CreateTweetPayload
+
+  """Adds a new like from specific user to specific tweet"""
+  TweetLikeMutation(input: LikeTweetInput!): LikeTweetPayload
+
+  """Removes like from specific user to specific tweet"""
+  TweetUnlikeMutation(input: UnlikeTweetInput!): UnlikeTweetPayload
 }
 
 type CreateUserPayload {
@@ -202,6 +209,26 @@ type CreateTweetPayload {
 input CreateTweetInput {
   content: String!
   replies: [String]
+  clientMutationId: String
+}
+
+type LikeTweetPayload {
+  tweet: Tweet
+  clientMutationId: String
+}
+
+input LikeTweetInput {
+  tweetId: ID!
+  clientMutationId: String
+}
+
+type UnlikeTweetPayload {
+  tweet: Tweet
+  clientMutationId: String
+}
+
+input UnlikeTweetInput {
+  tweetId: ID!
   clientMutationId: String
 }
 

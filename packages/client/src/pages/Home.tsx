@@ -34,6 +34,8 @@ const timelinePaginationFragment = graphql`
           content
           createdAt
           id
+          likedByMe
+          likedBy
         }
       }
     }

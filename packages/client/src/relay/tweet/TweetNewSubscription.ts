@@ -14,6 +14,8 @@ export const tweetNewSubscription = graphql`
           content
           createdAt
           id
+          likedBy
+          likedByMe
         }
       }
     }
