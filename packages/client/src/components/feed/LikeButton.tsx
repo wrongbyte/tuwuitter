@@ -41,7 +41,7 @@ export default function LikeButton({
       onCompleted: (_, error) => {
         if (error && error.length > 0) {
           const errorMessage = error[0].message || 'Unknown error';
-          return setErrorStatus(`Error when liking tweet: ${errorMessage}`);
+          return setErrorStatus(`Error when unliking tweet: ${errorMessage}`);
         }
       },
     });
